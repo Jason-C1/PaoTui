@@ -6,7 +6,9 @@
 			"subpage-setting.html",
 			"subpage-about.html",
 			"subpage-contact.html",
-			"subpage-chat.html"
+			"subpage-chat.html",
+			"guide.html",
+			"login.html"
 		],
 		"resources": [
 			"subpage-about.html"
@@ -41,6 +43,16 @@
 	"tab-webview-subpage-about.html": {
 		"refer": [
 			"tab-webview-main.html"
+		]
+	},
+	"guide.html": {
+		"refer": [
+			"login.html"
+		]
+	},
+	"login.html": {
+		"refer": [
+			"guide.html"
 		]
 	}
 }

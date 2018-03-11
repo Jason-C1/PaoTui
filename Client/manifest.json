@@ -201,7 +201,9 @@
 					"tab-webview-main.html",
 					"subpage-setting.html",
 					"subpage-contact.html",
-					"subpage-chat.html"
+					"subpage-chat.html",
+					"guide.html",
+					"login.html"
 				],
 				"priority": 0
 			},
@@ -241,6 +243,20 @@
 				"resources": [],
 				"refer": [
 					"tab-webview-main.html"
+				],
+				"priority": 0
+			},
+			"guide.html": {
+				"resources": [],
+				"refer": [
+					"login.html"
+				],
+				"priority": 0
+			},
+			"login.html": {
+				"resources": [],
+				"refer": [
+					"guide.html"
 				],
 				"priority": 0
 			}

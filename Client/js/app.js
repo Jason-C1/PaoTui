@@ -4,7 +4,6 @@
 	 **/
 	owner.login = function(loginInfo, callback) {
 		// 显示一个等待的对话框  
-
 		var wd = plus.nativeUI.showWaiting();
 		callback = callback || $.noop;
 		loginInfo = loginInfo || {};
@@ -20,11 +19,8 @@
 				}else{
 					mui.alert(JSON.stringify(data), "成功", "关闭");
 				}
-				// 打开下一个画面  
-				mui.openWindow({
-					url: 'tab-webview-main.html',
-					id: 'main',
-				});
+				plus.webview.close("guide");
+				plus.webview.currentWebview().close();
 			}
 			,
 			wd //传递给postData的最后一个参数，失败的时候关闭等待对话框  
