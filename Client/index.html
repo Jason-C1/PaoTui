@@ -10,27 +10,44 @@
 		<!--标准mui.css-->
 		<link rel="stylesheet" href="css/mui.min.css">
 		<!--App自定义的css-->
+		<link rel="stylesheet" type="text/css" href="css/icons-extra.css" />
 		<link rel="stylesheet" type="text/css" href="css/app.css" />
 		<style>
 			* {
 				touch-action: none;
 			}
 			
+			body,
+			.mui-content,
+			.mui-slider,
 			.mui-control-content {
 				background-color: white;
-				min-height: 215px;
 			}
-			
-			.mui-control-content .mui-loading {
-				margin-top: 50px;
-			}
-			
-			
 			
 			.title {
 				margin: 20px 15px 10px;
 				color: #6d6d72;
 				font-size: 15px;
+			}
+			
+			.mui-bar .mui-title {
+				right: 60px;
+				left: 80px;
+			}
+			
+			.title-search {
+				background: rgb(229, 229, 229);
+				border-radius: 10px;
+				top: 6px;
+				bottom: 6px;
+				vertical-align: bottom;
+				line-height: 35px;
+				font-size: 15px;
+				font-weight: 300;
+			}
+			
+			.title-search .mui-icon {
+				font-size: 20px;
 			}
 			
 			.oa-contact-cell.mui-table .mui-table-cell {
@@ -59,29 +76,51 @@
 				margin-right: 20px;
 			}
 			
+			.mui-col-xs-25 {
+				width: 20%;
+			}
+			
 			.oa-contact-name,
 			oa-contact-position {
 				float: left;
+			}
+			
+			.mui-grid-view.mui-grid-9 .mui-table-view-cell {
+				padding: 0px;
+				border-right: none;
+				border-bottom: none;
+			}
+			
+			.mui-media-object.pic {
+				line-height: 60px;
+				max-width: 60px;
+				height: 60px;
+				border-radius: 50%;
 			}
 		</style>
 	</head>
 
 	<body>
 		<header class="mui-bar mui-bar-nav">
-			<h1 class="mui-title">底部选项卡-div模式</h1>
+			<a class="mui-icon mui-icon-plus mui-pull-right mui-a-color"></a>
+			<button type="button" class="mui-btn mui-btn-link"><span class="mui-icon mui-icon-location-filled"></span>杭州</button>
+			<div class="mui-title title-search">
+				<span class="mui-icon mui-icon-search"></span> 垃圾街鸭血粉丝
+			</div>
 		</header>
 		<nav class="mui-bar mui-bar-tab">
 			<a class="mui-tab-item mui-active" href="#tabbar">
 				<span class="mui-icon mui-icon-home"></span>
 				<span class="mui-tab-label">首页</span>
 			</a>
+
+			<a class="mui-tab-item" href="#tabbar-with-contact">
+				<span class="mui-icon-extra mui-icon-extra-find"></span>
+				<span class="mui-tab-label">发现</span>
+			</a>
 			<a class="mui-tab-item" href="#tabbar-with-chat">
 				<span class="mui-icon mui-icon-email"><span class="mui-badge">9</span></span>
 				<span class="mui-tab-label">消息</span>
-			</a>
-			<a class="mui-tab-item" href="#tabbar-with-contact">
-				<span class="mui-icon mui-icon-contact"></span>
-				<span class="mui-tab-label">通讯录</span>
 			</a>
 			<a class="mui-tab-item" href="#tabbar-with-map">
 				<span class="mui-icon mui-icon-gear"></span>
@@ -90,117 +129,156 @@
 		</nav>
 		<div class="mui-content">
 			<div id="tabbar" class="mui-control-content mui-active">
-			
-				
-				
-			<div class="mui-slider" data-duration='0'>
-			    <div class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
-			        <a class="mui-control-item" href="#item1">校园帮帮</a>
-			        <a class="mui-control-item" href="#item2">同城快送</a>
-			        <a class="mui-control-item" href="#item3">生鲜水果</a>
-			        <a class="mui-control-item" href="#item4">餐饮外卖</a>
-			    </div>
-			    <div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-3"></div>
-			    <div class="mui-slider-group">
-			        <div id="item1" class="mui-slider-item mui-control-content mui-active">
-			            <ul class="mui-table-view">
-			                <li class="mui-table-view-cell">第1个选项卡子项</li>
-			                <li class="mui-table-view-cell">第1个选项卡子项</li>
-			            </ul>
-			        </div>
-			        <div id="item2" class="mui-slider-item mui-control-content">
-			            <ul class="mui-table-view">
-			                <li class="mui-table-view-cell">第2个选项卡子项</li>
-			                <li class="mui-table-view-cell">第2个选项卡子项</li>
-			            </ul>
-			        </div>
-			        <div id="item3" class="mui-slider-item mui-control-content">
-			            <ul class="mui-table-view">
-			                <li class="mui-table-view-cell">第3个选项卡子项</li>
-			                <li class="mui-table-view-cell">第3个选项卡子项</li>
-			            </ul>
-			        </div>
-			        <div id="item4" class="mui-slider-item mui-control-content">
-			            <ul class="mui-table-view">
-			                <li class="mui-table-view-cell">第4个选项卡子项</li>
-			                <li class="mui-table-view-cell">第4个选项卡子项</li>
-			            </ul>
-			        </div>
-			    </div>
-			</div>
-				
-				
-				
-				
-				
-			</div>
-			<div id="tabbar-with-chat" class="mui-control-content">
-				<div class="title">这是div模式选项卡中的第2个子页面，该页面展示一个消息列表</div>
 
-				<ul class="mui-table-view mui-table-view-chevron">
-					<li class="mui-table-view-cell">
-						<a href="" class="mui-navigate-right">Item 1</a>
-					</li>
-					<li class="mui-table-view-cell">
-						<a href="" class="mui-navigate-right">Item 2</a>
-					</li>
-					<li class="mui-table-view-cell">
-						<a href="" class="mui-navigate-right">Item 3</a>
-					</li>
-					<li class="mui-table-view-cell">
-						<a href="" class="mui-navigate-right">Item 4</a>
-					</li>
-					<li class="mui-table-view-cell">
-						<a href="" class="mui-navigate-right">Item 5</a>
-					</li>
-					<li class="mui-table-view-cell">
-						<a href="" class="mui-navigate-right">Item 6</a>
-					</li>
-					<li class="mui-table-view-cell">
-						<a href="" class="mui-navigate-right">Item 7</a>
-					</li>
-					<li class="mui-table-view-cell">
-						<a href="" class="mui-navigate-right">Item 8</a>
-					</li>
-					<li class="mui-table-view-cell">
-						<a href="" class="mui-navigate-right">Item 9</a>
-					</li>
-					<li class="mui-table-view-cell">
-						<a href="" class="mui-navigate-right">Item 10</a>
-					</li>
-					<li class="mui-table-view-cell">
-						<a href="" class="mui-navigate-right">Item 11</a>
-					</li>
-					<li class="mui-table-view-cell">
-						<a href="" class="mui-navigate-right">Item 12</a>
-					</li>
-					<li class="mui-table-view-cell">
-						<a href="" class="mui-navigate-right">Item 13</a>
-					</li>
-					<li class="mui-table-view-cell">
-						<a href="" class="mui-navigate-right">Item 14</a>
-					</li>
-					<li class="mui-table-view-cell">
-						<a href="" class="mui-navigate-right">Item 15</a>
-					</li>
-					<li class="mui-table-view-cell">
-						<a href="" class="mui-navigate-right">Item 16</a>
-					</li>
-					<li class="mui-table-view-cell">
-						<a href="" class="mui-navigate-right">Item 17</a>
-					</li>
-					<li class="mui-table-view-cell">
-						<a href="" class="mui-navigate-right">Item 18</a>
-					</li>
-					<li class="mui-table-view-cell">
-						<a href="" class="mui-navigate-right">Item 19</a>
-					</li>
-					<li class="mui-table-view-cell">
-						<a href="" class="mui-navigate-right">Item 20</a>
-					</li>
-				</ul>
+				<div class="mui-slider" data-duration='0'>
+					<div class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+						<a class="mui-control-item" href="#item1">推荐</a>
+						<a class="mui-control-item" href="#item2">校园帮帮</a>
+						<a class="mui-control-item" href="#item3">同城快送</a>
+						<a class="mui-control-item" href="#item4">卖家直达</a>
+						<a class="mui-control-item" href="#item5">生鲜蔬果</a>
+					</div>
+					<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-25"></div>
+					<div class="mui-slider-group">
+						<div id="item1" class="mui-slider-item mui-control-content mui-active">
+							<div id="slider" class="mui-slider">
+								<div class="mui-slider-group mui-slider-loop">
+									<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
+									<div class="mui-slider-item mui-slider-item-duplicate">
+										<a href="#">
+											<img src="http://placehold.it/400x200">
+										</a>
+									</div>
+									<!-- 第一张 -->
+									<div class="mui-slider-item">
+										<a href="#">
+											<img src="http://placehold.it/400x200">
+										</a>
+									</div>
+									<!-- 第二张 -->
+									<div class="mui-slider-item">
+										<a href="#">
+											<img src="http://placehold.it/400x200">
+										</a>
+									</div>
+									<!-- 第三张 -->
+									<div class="mui-slider-item">
+										<a href="#">
+											<img src="http://placehold.it/400x200">
+										</a>
+									</div>
+									<!-- 第四张 -->
+									<div class="mui-slider-item">
+										<a href="#">
+											<img src="http://placehold.it/400x200">
+										</a>
+									</div>
+									<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
+									<div class="mui-slider-item mui-slider-item-duplicate">
+										<a href="#">
+											<img src="http://placehold.it/400x200">
+										</a>
+									</div>
+								</div>
+								<div class="mui-slider-indicator">
+									<div class="mui-indicator mui-active"></div>
+									<div class="mui-indicator"></div>
+									<div class="mui-indicator"></div>
+									<div class="mui-indicator"></div>
+								</div>
+							</div>
+							<ul class="mui-table-view mui-grid-view mui-grid-9">
+								<li class="mui-table-view-cell mui-media mui-col-xs-25">
+									<a href="#">
+										<span class="mui-icon mui-icon-home"></span>
+										<div class="mui-media-body">Home</div>
+									</a>
+								</li>
+								<li class="mui-table-view-cell mui-media mui-col-xs-25">
+									<a href="#">
+										<span class="mui-icon mui-icon-email"><span class="mui-badge mui-badge-red">5</span></span>
+										<div class="mui-media-body">Email</div>
+									</a>
+								</li>
+								<li class="mui-table-view-cell mui-media mui-col-xs-25">
+									<a href="#">
+										<span class="mui-icon mui-icon-chatbubble"></span>
+										<div class="mui-media-body">Chat</div>
+									</a>
+								</li>
+								<li class="mui-table-view-cell mui-media mui-col-xs-25">
+									<a href="#">
+										<span class="mui-icon mui-icon-location"></span>
+										<div class="mui-media-body">Location</div>
+									</a>
+								</li>
+								<li class="mui-table-view-cell mui-media mui-col-xs-25">
+									<a href="#">
+										<span class="mui-icon mui-icon-search"></span>
+										<div class="mui-media-body">Search</div>
+									</a>
+								</li>
+								<li class="mui-table-view-cell mui-media mui-col-xs-25">
+									<a href="#">
+										<span class="mui-icon mui-icon-phone"></span>
+										<div class="mui-media-body">Phone</div>
+									</a>
+								</li>
+								<li class="mui-table-view-cell mui-media mui-col-xs-25">
+									<a href="#">
+										<span class="mui-icon mui-icon-chatbubble"></span>
+										<div class="mui-media-body">Chat</div>
+									</a>
+								</li>
+								<li class="mui-table-view-cell mui-media mui-col-xs-25">
+									<a href="#">
+										<span class="mui-icon mui-icon-location"></span>
+										<div class="mui-media-body">Location</div>
+									</a>
+								</li>
+								<li class="mui-table-view-cell mui-media mui-col-xs-25">
+									<a href="#">
+										<span class="mui-icon mui-icon-search"></span>
+										<div class="mui-media-body">Search</div>
+									</a>
+								</li>
+								<li class="mui-table-view-cell mui-media mui-col-xs-25">
+									<a href="#">
+										<span class="mui-icon mui-icon-phone"></span>
+										<div class="mui-media-body">Phone</div>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div id="item2" class="mui-slider-item mui-control-content">
+							<ul class="mui-table-view">
+								<li class="mui-table-view-cell">第2个选项卡子项</li>
+								<li class="mui-table-view-cell">第2个选项卡子项</li>
+							</ul>
+						</div>
+						<div id="item3" class="mui-slider-item mui-control-content">
+							<ul class="mui-table-view">
+								<li class="mui-table-view-cell">第3个选项卡子项</li>
+								<li class="mui-table-view-cell">第3个选项卡子项</li>
+							</ul>
+						</div>
+						<div id="item4" class="mui-slider-item mui-control-content">
+							<ul class="mui-table-view">
+								<li class="mui-table-view-cell">第4个选项卡子项</li>
+								<li class="mui-table-view-cell">第4个选项卡子项</li>
+							</ul>
+						</div>
+						<div id="item5" class="mui-slider-item mui-control-content">
+							<ul class="mui-table-view">
+								<li class="mui-table-view-cell">第5个选项卡子项</li>
+								<li class="mui-table-view-cell">第5个选项卡子项</li>
+							</ul>
+						</div>
+					</div>
+				</div>
 
 			</div>
+
 			<div id="tabbar-with-contact" class="mui-control-content">
 				<div class="title">这是div模式选项卡中的第3个子页面，该页面展示一个通讯录示例.</div>
 				<ul class="mui-table-view mui-table-view-striped mui-table-view-condensed">
@@ -296,9 +374,52 @@
 					</li>
 				</ul>
 			</div>
+			<div id="tabbar-with-chat" class="mui-control-content">
+				<div class="title">这是div模式选项卡中的第2个子页面，该页面展示一个消息列表</div>
+
+				<ul class="mui-table-view">
+					<li id="xingfu" class="mui-table-view-cell mui-media">
+						<a href="javascript:;">
+							<img class="pic mui-media-object mui-pull-left" src="images/head.jpg">
+							<div class="mui-media-body">
+								幸福
+								<p class="mui-ellipsis">能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？</p>
+							</div>
+						</a>
+					</li>
+					<li class="mui-table-view-cell mui-media">
+						<a href="javascript:;">
+							<img class="pic mui-media-object mui-pull-left" src="http://placehold.it/40x30">
+							<div class="mui-media-body">
+								木屋
+								<p class="mui-ellipsis">想要这样一间小木屋，夏天挫冰吃瓜，冬天围炉取暖.</p>
+							</div>
+						</a>
+					</li>
+					<li class="mui-table-view-cell mui-media">
+						<a href="javascript:;">
+							<img class="pic mui-media-object mui-pull-left" src="http://placehold.it/40x30">
+							<div class="mui-media-body">
+								CBD
+								<p class="mui-ellipsis">烤炉模式的城，到黄昏，如同打翻的调色盘一般.</p>
+							</div>
+						</a>
+					</li>
+				</ul>
+
+			</div>
 			<div id="tabbar-with-map" class="mui-control-content">
 				<div class="title">这是div模式选项卡中的第4个子页面，该页面展示一个常见的设置示例.</div>
 				<ul class="mui-table-view">
+					<li class="mui-table-view-cell mui-media">
+								<a class="mui-navigate-right" href="#account">
+									<img class="mui-media-object mui-pull-left head-img" id="head-img" src="images/logo.png">
+									<div class="mui-media-body">
+										Jason
+										<p class="mui-ellipsis">账号:6666666</p>
+									</div>
+								</a>
+							</li>
 					<li class="mui-table-view-cell">
 						<a class="mui-navigate-right">
 							新消息通知
@@ -352,7 +473,7 @@
 				mui.openWindow({
 					url: "guide.html",
 					id: "guide"
-					
+
 				});
 			}
 			document.getElementById("reset_launch").addEventListener("tap", function() {
@@ -388,13 +509,17 @@
 					}
 				}, "重置启动", ["重置", "放弃"]);
 			});
+			document.getElementById("xingfu").addEventListener("tap", function() {
+				/**
+				 * 进入聊天界面
+				 * 
+				 */
+				mui.openWindow({
+					url: "im-chat.html",
+					id: "im-chat"
+				});
+			});
 		});
-		
-		
-		
-		
-		
-		
 	</script>
 
 </html>
