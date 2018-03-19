@@ -9,7 +9,7 @@
 		loginInfo = loginInfo || {};
 		loginInfo.account = loginInfo.account || '';
 		loginInfo.password = loginInfo.password || '';
-		postData("http://169.254.136.8/server.php", loginInfo,
+		postData("http://sjk06.cn/chatphp/signin.php", loginInfo,
 			function(data) {
 				wd.close(); // 调用成功，先关闭等待的对话框  
 				if(data.result != "checkOK") {

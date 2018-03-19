@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>signin</title>
+		<script src="js/mui.min.js"></script>
+		<script src="js/md5.min.js" ></script>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="css/style.css" />
+		<script type="text/javascript" charset="utf-8">
+			mui.init({
+				swipeBack:true
+			});
+			/*beforeback: function(){
+		        //获得列表界面的webview
+		        var i=plus.webview.getWebviewById("index.html");
+		        if(i){
+		            i.evalJS("getUserInfo()");
+		        }
+		        return true;
+		    }*/
+		</script>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">登陆</h1>
+		</header>
+		<div class="mui-content">
+			<form class="mui-input-group" style="margin-top: 20px;" id="sign_in">
+				<div class="mui-input-row">
+					<label for="username">用户名</label>
+					<input id="username" type="text" class="mui-input-clear" placeholder="请输入用户名">
+				</div>
+				<div class="mui-input-row">
+					<label for="passwd">密码</label>
+					<input id="passwd" type="password" class="mui-input-password" placeholder="请输入密码">
+				</div>
+			</form>
+			<div id="bdiv" class="mui-content-padded" style="margin-top: 25px;">
+				<button id="button1" class="mui-btn mui-btn-block mui-btn-primary" style="padding: 10px;">登陆</button>
+				<div class="link-area">
+					<a id='reg'>注册账号</a> <span class="spliter">|</span>
+					<a id='forgetPassword'>忘记密码</a>
+				</div>
+			</div>
+		</div>
+		<script>
+			mui.plusReady(function(){
+                var clk=document.getElementById('reg');
+                clk.addEventListener('tap',function(event){
+                    mui.openWindow({
+                        url:'signup.html', 
+                        id:'reg',
+                        show:{                               
+                            aniShow:"slide-in-right",
+                            duration:300,
+                            autoShow:true
+                        },
+                        waiting:{
+                            autoShow:false
+                        }
+                  	});
+                });
+                function rtnAg(){
+		            var signin=plus.webview.currentWebview();
+		            var index=signin.opener(); 
+		            index.evalJS("parameter()");
+		        }
+                function w(){
+                	var signin=plus.webview.currentWebview();
+		            var index=signin.opener(); 
+		            index.evalJS("w()");
+                }
+	           	mui("#bdiv").on("tap","#button1",function(){
+	           		var user_name=document.getElementById("username").value;
+					var passwd=document.getElementById("passwd").value;
+					if(user_name.length==0){
+						mui.toast("用户名未输入");
+					}else{
+						if(passwd.length==0){
+							mui.toast("密码未输入");
+						}else{
+							passwd=md5(passwd);
+							var mask = mui.createMask();
+							mui.ajax("http://sjk0106.cn/chatphp/signin.php",{
+								data:{
+									user_name:user_name,
+									passwd:passwd
+								},
+								dataType:"html",
+								type:"post",
+								timeout:10000,
+								beforeSend: function() {
+							        plus.nativeUI.showWaiting("正在登陆");
+							        mask.show();
+							    },
+							    complete: function() {
+							        plus.nativeUI.closeWaiting();
+							        mask.close();
+							    },
+								success:function(data){
+									var err;
+									if(data=="error"){
+										err="登陆失败，请检查用户名与密码";
+										mui.toast(err);
+										document.getElementById("passwd").value="";
+									}else if(data=="update_error"){
+										mui.toast("登陆失败，请稍后再试");
+									}else{
+							            var storage=window.localStorage;
+							            storage.username=user_name;
+							            storage.passwd=passwd;
+							            
+							            var db = openDatabase("chat", "1.0", "聊天", 2 * 1024 * 1024);
+										db.transaction(function(tx){
+											tx.executeSql("CREATE TABLE IF NOT EXISTS 'message' ('username' VARCHAR(50) NOT NULL , 'msg' TEXT , 'time' DATETIME NOT NULL , 'read' BIT(1) NOT NULL)");
+											/*tx.executeSql("INSERT INTO message VALUES ('1','2','2014/12/03 17:06:15.433',1)");
+											tx.executeSql("INSERT INTO message VALUES ('333','666','2018/12/03 17:06:15.433',0)");
+											tx.executeSql('SELECT * FROM message', [], function (tx, results) {
+								               	var len = results.rows.length;
+								               	alert("查询记录条数: " + len);
+												var sum="";
+								               	for (var i = 0; i < len; i++){
+								                  	sum=sum+results.rows.item(i).username+results.rows.item(i).msg+results.rows.item(i).time+results.rows.item(i).read;
+								               	}
+								               	alert(sum);
+								            }, null);*/
+										});
+										
+										mui.toast("登陆成功");
+										plus.webview.close("guide");
+										/*var signin=plus.webview.currentWebview();
+										var guide=signin.opener();
+										guide.evalJS("addlis1()");*/
+										var index=plus.webview.getWebviewById("H5507C5AC");
+										index.evalJS("addlis1()");
+										mui.back();
+										rtnAg();
+										/*var signin=plus.webview.currentWebview();
+							            var index=signin.opener(); 
+							            index.evalJS("addlis3()");*/
+										w();
+									}
+								},
+								error:function(xhr,type,errorThrown){
+									mui.toast("登陆失败，请稍后再试");
+								}
+							});
+						}
+					}
+	           	});
+        	});
+		</script>
+	</body>
+
+</html>

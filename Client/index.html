@@ -92,9 +92,9 @@
 			}
 			
 			.mui-media-object.pic {
-				line-height: 60px;
-				max-width: 60px;
-				height: 60px;
+				line-height: 42px;
+				max-width: 42px;
+				height: 42px;
 				border-radius: 50%;
 			}
 		</style>
@@ -103,7 +103,9 @@
 	<body>
 		<header class="mui-bar mui-bar-nav">
 			<a class="mui-icon mui-icon-plus mui-pull-right mui-a-color"></a>
-			<button type="button" class="mui-btn mui-btn-link"><span class="mui-icon mui-icon-location-filled"></span>杭州</button>
+			<button type="button" class="mui-btn mui-btn-link">
+				<span class="mui-icon mui-icon-location-filled"></span>杭州
+			</button>
 			<div class="mui-title title-search">
 				<span class="mui-icon mui-icon-search"></span> 垃圾街鸭血粉丝
 			</div>
@@ -375,51 +377,32 @@
 				</ul>
 			</div>
 			<div id="tabbar-with-chat" class="mui-control-content">
-				<div class="title">这是div模式选项卡中的第2个子页面，该页面展示一个消息列表</div>
-
-				<ul class="mui-table-view">
-					<li id="xingfu" class="mui-table-view-cell mui-media">
-						<a href="javascript:;">
-							<img class="pic mui-media-object mui-pull-left" src="images/head.jpg">
-							<div class="mui-media-body">
-								幸福
-								<p class="mui-ellipsis">能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？</p>
-							</div>
-						</a>
-					</li>
+				<!--<div class="title"></div>-->
+				<ul class="mui-table-view mui-table-view-chevron">
 					<li class="mui-table-view-cell mui-media">
-						<a href="javascript:;">
-							<img class="pic mui-media-object mui-pull-left" src="http://placehold.it/40x30">
-							<div class="mui-media-body">
-								木屋
-								<p class="mui-ellipsis">想要这样一间小木屋，夏天挫冰吃瓜，冬天围炉取暖.</p>
+						<a class="mui-navigate-right" id="system-message">
+							<img class="pic mui-media-object mui-pull-left head-img" id="chat-header-img" src="images/unlogin.jpg">
+							<div class="mui-media-body" id="system-message-div">
+								系统消息
+								<p class='mui-ellipsis' id="p">您的鸭血粉丝已送达，请签收</p>
 							</div>
-						</a>
-					</li>
-					<li class="mui-table-view-cell mui-media">
-						<a href="javascript:;">
-							<img class="pic mui-media-object mui-pull-left" src="http://placehold.it/40x30">
-							<div class="mui-media-body">
-								CBD
-								<p class="mui-ellipsis">烤炉模式的城，到黄昏，如同打翻的调色盘一般.</p>
-							</div>
+							<span class="mui-badge mui-badge-primary">9</span>
 						</a>
 					</li>
 				</ul>
-
 			</div>
 			<div id="tabbar-with-map" class="mui-control-content">
 				<div class="title">这是div模式选项卡中的第4个子页面，该页面展示一个常见的设置示例.</div>
 				<ul class="mui-table-view">
 					<li class="mui-table-view-cell mui-media">
-								<a class="mui-navigate-right" href="#account">
-									<img class="mui-media-object mui-pull-left head-img" id="head-img" src="images/logo.png">
-									<div class="mui-media-body">
-										Jason
-										<p class="mui-ellipsis">账号:6666666</p>
-									</div>
-								</a>
-							</li>
+						<a class="mui-navigate-right">
+							<img class="mui-media-object mui-pull-left head-img" id="head-img" src="images/logo.png">
+							<div class="mui-media-body" id="signin">
+								未登陆
+								<p class="mui-ellipsis">点击登陆</p>
+							</div>
+						</a>
+					</li>
 					<li class="mui-table-view-cell">
 						<a class="mui-navigate-right">
 							新消息通知
@@ -461,7 +444,17 @@
 	<script src="js/mui.min.js"></script>
 	<script>
 		mui.init();
+
+		
 		mui.plusReady(function() {
+			function addlis1() {
+				var signin=document.getElementById("signin");
+				signin.innerHTML="已登陆";
+				var p=document.createElement("p");
+				p.className="mui-ellipsis";
+				p.innerHTML="......";
+				signin.appendChild(p);
+			}
 			/**
 			 * 获取本地存储中launchFlag的值
 			 * http://www.html5plus.org/doc/zh_cn/storage.html#plus.storage.getItem
@@ -473,7 +466,6 @@
 				mui.openWindow({
 					url: "guide.html",
 					id: "guide"
-
 				});
 			}
 			document.getElementById("reset_launch").addEventListener("tap", function() {
@@ -509,16 +501,16 @@
 					}
 				}, "重置启动", ["重置", "放弃"]);
 			});
-			document.getElementById("xingfu").addEventListener("tap", function() {
-				/**
-				 * 进入聊天界面
-				 * 
-				 */
-				mui.openWindow({
-					url: "im-chat.html",
-					id: "im-chat"
-				});
-			});
+			//			document.getElementById("xingfu").addEventListener("tap", function() {
+			//				/**
+			//				 * 进入聊天界面
+			//				 * 
+			//				 */
+			//				mui.openWindow({
+			//					url: "im-chat.html",
+			//					id: "im-chat"
+			//				});
+			//			});
 		});
 	</script>
 

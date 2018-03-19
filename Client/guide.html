@@ -262,6 +262,11 @@
 		<script src="js/mui.min.js"></script>
 		<script>
 			mui.back = function() {};
+			function addlis1(){
+				var guide=plus.webview.currentWebview();
+				var index=guide.opener();
+				index.evalJS("addlis1()");
+			}
 			mui.plusReady(function() {
 				if(mui.os.ios) {
 					plus.navigator.setFullscreen(true);
@@ -274,11 +279,11 @@
 				plus.navigator.setFullscreen(false);
 				var token = plus.storage.getItem("token");
 				if(token) {
-					plus.webview.currentWebview().close()
+					//plus.webview.currentWebview().close();
 				} else {
 					mui.openWindow({
-						url: "login.html",
-						id: "login"
+						url: "signin.html",
+						id: "signin"
 					});
 				}
 			}, false);
