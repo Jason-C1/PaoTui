@@ -17,10 +17,8 @@
 				touch-action: none;
 			}
 			
-			body,
-			.mui-content,
-			.mui-slider,
-			.mui-control-content {
+			.mui-grid-view.mui-grid-9,
+			.mui-segmented-control {
 				background-color: white;
 			}
 			
@@ -102,7 +100,7 @@
 
 	<body>
 		<header class="mui-bar mui-bar-nav">
-			<a class="mui-icon mui-icon-plus mui-pull-right mui-a-color"></a>
+			<a id="push" class="mui-icon mui-icon-plus mui-pull-right mui-a-color"></a>
 			<button type="button" class="mui-btn mui-btn-link">
 				<span class="mui-icon mui-icon-location-filled"></span>杭州
 			</button>
@@ -118,7 +116,7 @@
 
 			<a class="mui-tab-item" href="#tabbar-with-contact">
 				<span class="mui-icon-extra mui-icon-extra-find"></span>
-				<span class="mui-tab-label">发现</span>
+				<span class="mui-tab-label">订单</span>
 			</a>
 			<a class="mui-tab-item" href="#tabbar-with-chat">
 				<span class="mui-icon mui-icon-email"><span class="mui-badge">9</span></span>
@@ -447,14 +445,16 @@
 
 		
 		mui.plusReady(function() {
-			function addlis1() {
-				var signin=document.getElementById("signin");
-				signin.innerHTML="已登陆";
-				var p=document.createElement("p");
-				p.className="mui-ellipsis";
-				p.innerHTML="......";
-				signin.appendChild(p);
-			}
+			
+			
+//			function addlis1() {
+//				var signin=document.getElementById("signin");
+//				signin.innerHTML="已登陆";
+//				var p=document.createElement("p");
+//				p.className="mui-ellipsis";
+//				p.innerHTML="......";
+//				signin.appendChild(p);
+//			}
 			/**
 			 * 获取本地存储中launchFlag的值
 			 * http://www.html5plus.org/doc/zh_cn/storage.html#plus.storage.getItem
@@ -500,6 +500,17 @@
 						}, 1000);
 					}
 				}, "重置启动", ["重置", "放弃"]);
+			});
+			//按钮功能
+			document.getElementById("push").addEventListener("tap", function() {
+				/**
+				 * 进入发单界面
+				 * 
+				 */
+				mui.openWindow({
+					url: "push.html",
+					id: "push"
+				});
 			});
 			//			document.getElementById("xingfu").addEventListener("tap", function() {
 			//				/**
