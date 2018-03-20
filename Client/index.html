@@ -16,7 +16,6 @@
 			* {
 				touch-action: none;
 			}
-			
 			.mui-grid-view.mui-grid-9,
 			.mui-segmented-control {
 				background-color: white;
@@ -96,10 +95,35 @@
 				border-radius: 50%;
 			}
 			
+			#head-img {
+				line-height: 60px;
+				max-width: 60px;
+				height: 60px;
+				border-radius: 50%;
+			}
+			
+			.my-inline {
+				padding: 0px;
+				display: inline-block;
+				text-align: center;
+			}
+			.my-inline .mui-icon{
+				font-size: 30px;
+			}
+			
+			.my-inline:after {
+				height: 0px;
+			}
+			
 			.card-rmb {
 				font-size: 18px;
 				font-weight: normal;
 				color: #e8b008;
+			}
+			.my-h4{
+				font-family: cursive;
+				font-weight: 700;
+				font-size: 20px;
 			}
 		</style>
 	</head>
@@ -152,37 +176,37 @@
 									<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
 									<div class="mui-slider-item mui-slider-item-duplicate">
 										<a href="#">
-											<img src="http://placehold.it/400x200">
+											<img src="https://dummyimage.com/400x200/888/fff">
 										</a>
 									</div>
 									<!-- 第一张 -->
 									<div class="mui-slider-item">
 										<a href="#">
-											<img src="http://placehold.it/400x200">
+											<img src="https://dummyimage.com/400x200/000/fff">
 										</a>
 									</div>
 									<!-- 第二张 -->
 									<div class="mui-slider-item">
 										<a href="#">
-											<img src="http://placehold.it/400x200">
+											<img src="https://dummyimage.com/400x200/0e88eb/fff">
 										</a>
 									</div>
 									<!-- 第三张 -->
 									<div class="mui-slider-item">
 										<a href="#">
-											<img src="http://placehold.it/400x200">
+											<img src="https://dummyimage.com/400x200/880eeb/fff">
 										</a>
 									</div>
 									<!-- 第四张 -->
 									<div class="mui-slider-item">
 										<a href="#">
-											<img src="http://placehold.it/400x200">
+											<img src="https://dummyimage.com/400x200/888/fff">
 										</a>
 									</div>
 									<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
 									<div class="mui-slider-item mui-slider-item-duplicate">
 										<a href="#">
-											<img src="http://placehold.it/400x200">
+											<img src="https://dummyimage.com/400x200/000/fff">
 										</a>
 									</div>
 								</div>
@@ -345,7 +369,49 @@
 						</div>
 						<div id="item2" class="mui-slider-item mui-control-content">
 							<ul class="mui-table-view">
-								<li class="mui-table-view-cell">第2个选项卡子项</li>
+								<li class="mui-table-view-cell mui-media">
+									<a href="javascript:;">
+										<div class="mui-table">
+											<div class="mui-row">
+												<div class="mui-table-cell mui-col-xs-10">
+													<img class="mui-media-object mui-pull-left" src="http://placehold.it/40x30">
+													<div class="mui-media-body">
+														Maya
+														<p class="mui-h6">00:00:01</p>
+													</div>
+												</div>
+												<div class="mui-table-cell mui-col-xs-2 mui-text-right">
+													<span class="card-rmb">&yen;</span>
+													<span class="card-rmb">10</span>
+												</div>
+											</div>
+											<div class="mui-row">
+
+												<div class="mui-table-cell mui-col-xs-10">
+													<h4 class="mui-ellipsis">我要一碗垃圾街的鸭血粉丝汤！！！</h4>
+												</div>
+											</div>
+											<div class="mui-row">
+												<div class="mui-table-cell mui-col-xs-1 mui-text-left"><span class="mui-h6">Form</span></div>
+												<div class="mui-table-cell mui-col-xs-11">
+													<h6 class="mui-ellipsis">杭州滨江垃圾街正数第好几家店</h4>
+												</div>
+											</div>
+											<div class="mui-row">
+												<div class="mui-table-cell mui-col-xs-1 mui-text-left"><span class="mui-h6">To</span></div>
+												<div class="mui-table-cell mui-col-xs-11">
+													<h6 class="mui-ellipsis">杭州滨江XX小区X幢X单元</h4>
+												</div>
+											</div>
+											<div class="mui-row">
+												<div class="mui-table-cell mui-col-xs-1 mui-text-left"><span class="mui-h6">Exp</span></div>
+												<div class="mui-table-cell mui-col-xs-10">
+													<h6 class="mui-ellipsis">2012/12/21 23:59:59</h4>
+												</div>
+											</div>
+										</div>
+									</a>
+								</li>
 								<li class="mui-table-view-cell">第2个选项卡子项</li>
 							</ul>
 						</div>
@@ -373,99 +439,96 @@
 			</div>
 
 			<div id="tabbar-with-contact" class="mui-control-content">
-				<div class="title">这是div模式选项卡中的第3个子页面，该页面展示一个通讯录示例.</div>
-				<ul class="mui-table-view mui-table-view-striped mui-table-view-condensed">
-					<li class="mui-table-view-cell">
-						<div class="mui-slider-cell">
-							<div class="oa-contact-cell mui-table">
-								<div class="oa-contact-avatar mui-table-cell">
-									<img src="images/60x60.gif" />
-								</div>
-								<div class="oa-contact-content mui-table-cell">
-									<div class="mui-clearfix">
-										<h4 class="oa-contact-name">叶文洁</h4>
-										<span class="oa-contact-position mui-h6">董事长</span>
-									</div>
-									<p class="oa-contact-email mui-h6">
-										yewenjie@sina.com
-									</p>
-								</div>
-							</div>
+				<div class="mui-slider" data-duration='0'>
+					<div class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+						<a class="mui-control-item" href="#dditem1">未接单</a>
+						<a class="mui-control-item" href="#dditem2">已接单</a>
+						<a class="mui-control-item" href="#dditem3">已发布</a>
+						<a class="mui-control-item" href="#dditem4">未生效</a>
+						<a class="mui-control-item" href="#dditem5">已完成</a>
+						<a class="mui-control-item" href="#dditem6">全部订单</a>
+					</div>
+					<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-2"></div>
+					<div class="mui-slider-group">
+						<div id="dditem1" class="mui-slider-item mui-control-content mui-active">
+							
 						</div>
-					</li>
-					<li class="mui-table-view-cell">
-						<div class="mui-slider-cell">
-							<div class="oa-contact-cell mui-table">
-								<div class="oa-contact-avatar mui-table-cell">
-									<img src="images/60x60.gif" />
-								</div>
-								<div class="oa-contact-content mui-table-cell">
-									<div class="mui-clearfix">
-										<h4 class="oa-contact-name">艾AA</h4>
-										<span class="oa-contact-position mui-h6">总经理</span>
-									</div>
-									<p class="oa-contact-email mui-h6">
-										aaa@163.com
-									</p>
-								</div>
-							</div>
+						<div id="dditem2" class="mui-slider-item mui-control-content">
+							<ul class="mui-table-view">
+								<li class="mui-table-view-cell mui-media">
+									<a href="javascript:;">
+										<div class="mui-table">
+											<div class="mui-row">
+												<div class="mui-table-cell mui-col-xs-10">
+													<img class="mui-media-object mui-pull-left" src="http://placehold.it/40x30">
+													<div class="mui-media-body">
+														Maya
+														<p class="mui-h6">00:00:01</p>
+													</div>
+												</div>
+												<div class="mui-table-cell mui-col-xs-2 mui-text-right">
+													<span class="card-rmb">&yen;</span>
+													<span class="card-rmb">10</span>
+												</div>
+											</div>
+											<div class="mui-row">
+
+												<div class="mui-table-cell mui-col-xs-10">
+													<h4 class="mui-ellipsis">我要一碗垃圾街的鸭血粉丝汤！！！</h4>
+												</div>
+											</div>
+											<div class="mui-row">
+												<div class="mui-table-cell mui-col-xs-1 mui-text-left"><span class="mui-h6">Form</span></div>
+												<div class="mui-table-cell mui-col-xs-11">
+													<h6 class="mui-ellipsis">杭州滨江垃圾街正数第好几家店</h4>
+												</div>
+											</div>
+											<div class="mui-row">
+												<div class="mui-table-cell mui-col-xs-1 mui-text-left"><span class="mui-h6">To</span></div>
+												<div class="mui-table-cell mui-col-xs-11">
+													<h6 class="mui-ellipsis">杭州滨江XX小区X幢X单元</h4>
+												</div>
+											</div>
+											<div class="mui-row">
+												<div class="mui-table-cell mui-col-xs-1 mui-text-left"><span class="mui-h6">Exp</span></div>
+												<div class="mui-table-cell mui-col-xs-10">
+													<h6 class="mui-ellipsis">2012/12/21 23:59:59</h4>
+												</div>
+											</div>
+										</div>
+									</a>
+								</li>
+								<li class="mui-table-view-cell">第2个选项卡子项</li>
+							</ul>
 						</div>
-					</li>
-					<li class="mui-table-view-cell">
-						<div class="mui-slider-cell">
-							<div class="oa-contact-cell mui-table">
-								<div class="oa-contact-avatar mui-table-cell">
-									<img src="images/60x60.gif" />
-								</div>
-								<div class="oa-contact-content mui-table-cell">
-									<div class="mui-clearfix">
-										<h4 class="oa-contact-name">罗辑</h4>
-										<span class="oa-contact-position mui-h6">员工</span>
-									</div>
-									<p class="oa-contact-email mui-h6">
-										luoji@126.com
-									</p>
-								</div>
-							</div>
+						<div id="dditem3" class="mui-slider-item mui-control-content">
+							<ul class="mui-table-view">
+								<li class="mui-table-view-cell">第3个选项卡子项</li>
+								<li class="mui-table-view-cell">第3个选项卡子项</li>
+							</ul>
 						</div>
-					</li>
-					<li class="mui-table-view-cell">
-						<div class="mui-slider-cell">
-							<div class="oa-contact-cell mui-table">
-								<div class="oa-contact-avatar mui-table-cell">
-									<img src="images/60x60.gif" />
-								</div>
-								<div class="oa-contact-content mui-table-cell">
-									<div class="mui-clearfix">
-										<h4 class="oa-contact-name">云天明</h4>
-										<span class="oa-contact-position mui-h6">员工</span>
-									</div>
-									<p class="oa-contact-email mui-h6">
-										ytm@163.com
-									</p>
-								</div>
-							</div>
+						<div id="dditem4" class="mui-slider-item mui-control-content">
+							<ul class="mui-table-view">
+								<li class="mui-table-view-cell">第4个选项卡子项</li>
+								<li class="mui-table-view-cell">第4个选项卡子项</li>
+							</ul>
 						</div>
-					</li>
-					<li class="mui-table-view-cell">
-						<div class="mui-slider-cell">
-							<div class="oa-contact-cell mui-table">
-								<div class="oa-contact-avatar mui-table-cell">
-									<img src="images/60x60.gif" />
-								</div>
-								<div class="oa-contact-content mui-table-cell">
-									<div class="mui-clearfix">
-										<h4 class="oa-contact-name">史强</h4>
-										<span class="oa-contact-position mui-h6">员工</span>
-									</div>
-									<p class="oa-contact-email mui-h6">
-										shiqiang@gmail.com
-									</p>
-								</div>
-							</div>
+						<div id="dditem5" class="mui-slider-item mui-control-content">
+							<ul class="mui-table-view">
+								<li class="mui-table-view-cell">第5个选项卡子项</li>
+								<li class="mui-table-view-cell">第5个选项卡子项</li>
+							</ul>
 						</div>
-					</li>
-				</ul>
+						<div id="dditem6" class="mui-slider-item mui-control-content">
+							<ul class="mui-table-view">
+								<li class="mui-table-view-cell">第5个选项卡子项</li>
+								<li class="mui-table-view-cell">第5个选项卡子项</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				
+				
 			</div>
 			<div id="tabbar-with-chat" class="mui-control-content">
 				<!--<div class="title"></div>-->
@@ -483,54 +546,77 @@
 				</ul>
 			</div>
 			<div id="tabbar-with-map" class="mui-control-content">
-				<div class="title">这是div模式选项卡中的第4个子页面，该页面展示一个常见的设置示例.</div>
 				<ul class="mui-table-view">
-					<li class="mui-table-view-cell mui-media">
+				<li class="mui-table-view-cell mui-media">
 						<a class="mui-navigate-right">
-							<img class="mui-media-object mui-pull-left head-img" id="head-img" src="images/logo.png">
+							<img class="mui-media-object mui-pull-left head-img" id="head-img" src="https://dummyimage.com/60x60/a22/fff">
 							<div class="mui-media-body" id="signin">
-								未登陆
-								<p class="mui-ellipsis">点击登陆</p>
+								<div class="my-h4">游客12138</div>
+								<h6>查看或修改个人资料</h6>
+												</div>
+									</a>
+								</li>
+							</ul>
+							<ul class="mui-table-view" style="margin-top: 25px;">
+								<li class="mui-table-view-cell">
+									<a class="mui-navigate-right">
+										全部订单
+									</a>
+								</li>
+								<li class="mui-table-view-cell">
+									<div class="mui-table">
+										<div class="mui-table-view-cell mui-media my-inline mui-col-xs-4">
+											<span class="mui-icon mui-icon-refreshempty"></span>
+											<div class="mui-media-body">未接单</div>
+										</div>
+										<div class="mui-table-view-cell mui-media my-inline mui-col-xs-4">
+											<span class="mui-icon mui-icon-flag"></span>
+											<div class="mui-media-body">已被接</div>
+										</div>
+										<div class="mui-table-view-cell mui-media my-inline mui-col-xs-4">
+											<span class="mui-icon mui-icon-checkmarkempty"></span>
+											<div class="mui-media-body">已完成</div>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<ul class="mui-table-view" style="margin-top: 25px;">
+								<li class="mui-table-view-cell">
+									<a class="mui-navigate-right">
+										我的钱包
+									</a>
+								</li>
+								<li class="mui-table-view-cell">
+									<a class="mui-navigate-right">
+										我的优惠卷
+									</a>
+								</li>
+								
+							</ul>
+							<ul class="mui-table-view" style="margin-top: 25px;">
+								<li class="mui-table-view-cell">
+									<a class="mui-navigate-right">
+										设置
+									</a>
+								</li>
+							</ul>
+							<ul class="mui-table-view" style="margin-top: 25px;">
+								<li class="mui-table-view-cell">
+									<a style="text-align: center;color: #FF3B30;">
+										退出登录
+									</a>
+								</li>
+							</ul>
+							<ul class="mui-table-view" style="margin-top: 25px;">
+								<li class="mui-table-view-cell">
+									<a class="mui-navigate-right" id="reset_launch">
+										重置首次打开app
+									</a>
+								</li>
+							</ul>
+							
 							</div>
-						</a>
-					</li>
-					<li class="mui-table-view-cell">
-						<a class="mui-navigate-right">
-							新消息通知
-						</a>
-					</li>
-					<li class="mui-table-view-cell">
-						<a class="mui-navigate-right">
-							隐私
-						</a>
-					</li>
-					<li class="mui-table-view-cell">
-						<a class="mui-navigate-right">
-							通用
-						</a>
-					</li>
-					<li class="mui-table-view-cell">
-						<a class="mui-navigate-right" id="reset_launch">
-							重置首次打开app
-						</a>
-					</li>
-				</ul>
-				<ul class="mui-table-view" style="margin-top: 25px;">
-					<li class="mui-table-view-cell">
-						<a class="mui-navigate-right">
-							关于mui
-						</a>
-					</li>
-				</ul>
-				<ul class="mui-table-view" style="margin-top: 25px;">
-					<li class="mui-table-view-cell">
-						<a style="text-align: center;color: #FF3B30;">
-							退出登录
-						</a>
-					</li>
-				</ul>
-			</div>
-		</div>
+							</div>
 	</body>
 	<script src="js/mui.min.js"></script>
 	<script>
