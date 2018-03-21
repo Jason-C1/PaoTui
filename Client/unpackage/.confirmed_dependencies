@@ -8,7 +8,8 @@
 			"subpage-contact.html",
 			"subpage-chat.html",
 			"guide.html",
-			"login.html"
+			"login.html",
+			"push.html"
 		],
 		"resources": [
 			"subpage-about.html"
@@ -47,12 +48,18 @@
 	},
 	"guide.html": {
 		"refer": [
-			"login.html"
+			"login.html",
+			"signin.html"
 		]
 	},
 	"login.html": {
 		"refer": [
 			"guide.html"
+		]
+	},
+	"push.html": {
+		"refer": [
+			"push.html"
 		]
 	}
 }

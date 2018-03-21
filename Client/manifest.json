@@ -150,7 +150,8 @@
 				"resources": [],
 				"refer": [
 					"guide.html",
-					"im-chat.html"
+					"im-chat.html",
+					"push.html"
 				],
 				"priority": 0
 			},
@@ -158,6 +159,13 @@
 				"resources": [],
 				"refer": [
 					"signup.html"
+				],
+				"priority": 0
+			},
+			"push.html": {
+				"resources": [],
+				"refer": [
+					"push.html"
 				],
 				"priority": 0
 			}
