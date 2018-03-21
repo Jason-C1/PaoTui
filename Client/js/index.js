@@ -68,6 +68,19 @@
 							 	id: "push"
 							 });
 							});
+							for(){
+								document.getElementById("ddgz"+dd[i].id).addEventListener("tap", function() {
+							/**
+							 * 进入发单界面
+							 * 
+							 */
+							 mui.openWindow({
+							 	url: "ddgz.html/id="+dd[i].id,
+							 	id: "ddgz"
+							 });
+							});
+							}
+							
 						//			document.getElementById("xingfu").addEventListener("tap", function() {
 						//				/**
 						//				 * 进入聊天界面
