@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>track</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="css/mui.min.css">
+		<script type="text/javascript" src="js/mui.min.js"></script>
+		<script src="js/statusBar.js"></script>
+		<style>
+			html,
+			body {
+				height: 100%;
+			}
+			
+			.mui-card-header:after {
+				position: fixed;
+			}
+		</style>
+	</head>
+
+	<body style="height: 100%;">
+		<header id="header" class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">订单跟踪</h1>
+		</header>
+		<div id="content" class="mui-content" style="height: 100%;">
+			<ul id="ul" class="mui-table-view" style="">
+				<li class="">
+					<div class="mui-ellipsis" style="color: #000000; font-size: 17px;padding: 15px;">我要一碗垃圾街的鸭血粉丝汤！！！</div>
+					<hr style="border: none; height: 1px;background-color: #000000;opacity: 0.1;margin: 0px;" />
+					<div class="mui-card-header mui-card-media" style="margin-left: 5px;margin-right: 5px;">
+						<img src="images/touxiang.jpg" style="border: 1px solid #EEEEEE;float: left;" />
+						<div class="mui-media-body" style="float: left;position: relative;left: -35px;">
+							SJK
+							<p>今天 15:30</p>
+						</div>
+						<div class="mui-media-body" style="float: right;">正在配送</div>
+						<div style="clear: both;"></div>
+
+						<div style="color: #000000; font-family: default;margin-top: 15px;">
+							距离收货地还有 200 米
+						</div>
+					</div>
+				</li>
+			</ul>
+			<div id="map" class="mui-bar mui-bar-tab">
+				<img src="images/map.png" style="height: 100%; width: auto;" />
+			</div>
+			<script>
+				mui.ready(function() {
+					var h = document.body.offsetHeight;
+					var ortherH = document.getElementById("header").offsetHeight + document.getElementById("ul").offsetHeight+15+15;
+					document.getElementById("map").style.height = "" + (h - ortherH) + "px";
+				});
+			</script>
+	</body>
+
+</html>
