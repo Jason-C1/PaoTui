@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<style>
+			html,
+			body {
+				width: 100%;
+				height: 100%;
+				margin: 0px;
+				padding: 0px;
+				overflow: hidden;
+				-webkit-touch-callout: none;
+				-webkit-user-select: none;
+			}
+			footer {
+				position: fixed;
+				width: 100%;
+				height: 50px;
+				min-height: 50px;
+				border-top: solid 1px #bbb;
+				left: 0px;
+				bottom: 0px;
+				overflow: hidden;
+				padding: 0px 50px;
+				background-color: #fafafa;
+				z-index: 100;
+			}
+			.footer-left {
+				position: absolute;
+				width: 50px;
+				height: 50px;
+				left: 0px;
+				bottom: 0px;
+				text-align: center;
+				vertical-align: middle;
+				line-height: 100%;
+				padding: 12px 4px;
+			}
+			.footer-right {
+				position: absolute;
+				width: 50px;
+				height: 50px;
+				right: 0px;
+				bottom: 0px;
+				text-align: center;
+				vertical-align: middle;
+				line-height: 100%;
+				padding: 12px 5px;
+				display: inline-block;
+			}
+			.footer-center {
+				height: 100%;
+				padding: 5px 0px;
+			}
+			.footer-center [class*=input] {
+				width: 100%;
+				height: 100%;
+				border-radius: 5px;
+			}
+			.footer-center .input-text {
+				background: #fff;
+				border: solid 1px #ddd;
+				padding: 10px !important;
+				font-size: 16px !important;
+				line-height: 18px !important;
+				font-family: verdana !important;
+				overflow: hidden;
+			}
+			.footer-center .input-sound {
+				background-color: #eee;
+			}
+			.mui-content {
+				width: 100%;
+				height: 100%;
+				padding: 44px 10px 50px 10px;
+				overflow: auto;
+				background-color: #eaeaea;
+			}
+			footer .mui-icon:active {
+				color: #007AFF !important;
+			}
+			.msg-self-item {
+				border-radius: 3px;
+				border: 1px solid #2AC845;
+				padding: 8px;
+				color: #fff;
+				background-color: #4CD964;
+				word-wrap:break-word;
+				max-width: 70%;
+				margin-right: 10px;
+				float: right;
+			}
+			.msg-item {
+				border-radius: 3px;
+				border: 1px solid #d3d3d3;
+				padding: 8px;
+				color: #000;
+				background-color: #fff;
+				word-wrap:break-word;
+				max-width: 70%;
+				margin-left: 10px;
+				float: left;
+			}
+			.line{
+				float: right;
+				padding: 10px 0px 10px 0px;
+				width:100%;
+			}
+			#message{
+				width: 100%;
+			}
+			.user-self-img{
+				float: right;
+			}
+			.user-img{
+				float: left;
+			}
+			.user-img,.user-self-img{
+				width: 40px;
+				width: 40px;
+				border: 1px solid #d3d3d3;
+				border-radius: 3px;
+			}
+			.notice{
+				text-align: center;
+				font-size: 13px;
+				background-color: #eeeeee;
+				border: 1px solid #cccccc;
+				border-radius: 100px;
+				margin: 10px;
+				padding: 3px 20px;
+				color: #666666;
+				word-wrap:break-word;
+			}
+		</style>
+		<script src="js/mui.min.js"></script>
+		<script>
+			mui.init({
+				swipeBack:true
+			});
+		</script>
+	</head>
+
+	<body onresize="windowSizeChange();">
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">聊天窗口</h1>
+		</header>
+		<a id="a"></a>
+		<div id="sc" class="mui-content mui-scroll-wrapper" style="width: 100%;padding: 44px 0px 50px 0px;">
+			<div class="mui-scroll" id="scroll" style="width: 100%;padding: 0px 10px 0px 10px;margin: 0px;">
+				<div id="message"></div>
+			</div>
+		</div>
+		<footer>
+			<div class="footer-left">
+				<i id='msg-image' class="mui-icon mui-icon-camera" style="font-size: 28px;"></i>
+			</div>
+			<div class="footer-center">
+				<textarea id='msg-text' type="text" class='input-text'></textarea>
+			</div>
+			<label id="send" for="" class="footer-right" style="color: #007AFF; height: 100%; vertical-align: middle; padding-top: 17px;">
+				发送
+			</label>
+		</footer>
+		<script id="s">
+			var oglHeight = document.querySelector("body").offsetHeight;
+			function windowSizeChange() {
+			    var tempHeight = document.querySelector("body").offsetHeight;
+			    if(tempHeight == oglHeight) {
+			        //mui.toast("屏幕键盘隐藏");
+			    } else {
+			        //mui.toast("键盘显示");
+			        var scroll=document.getElementById("scroll");
+					if(scroll.scrollHeight>document.body.clientHeight-94){
+						mui("#sc").scroll().scrollTo(0,-scroll.scrollHeight+document.body.clientHeight-94,100);
+					}
+			    }
+			};
+			function sc(){
+           		var scroll=document.getElementById("scroll");
+				if(scroll.scrollHeight>document.body.clientHeight-94){
+					mui("#sc").scroll().scrollTo(0,-scroll.scrollHeight+document.body.clientHeight-94,0);
+				}
+           	}
+			mui.plusReady(function(){
+	        	var storage=window.localStorage;
+				if(typeof(storage.username)==="undefined"||typeof(storage.passwd)==="undefined"){
+					//alert("未登陆");
+					/*mui.back();
+		            var signin=plus.webview.currentWebview();
+		            var index=signin.opener(); 
+		            index.evalJS("opensignin()");*/
+				}else{
+					var db = openDatabase("chat", "1.0", "聊天", 2 * 1024 * 1024);
+					db.transaction(function(tx){
+						//tx.executeSql("INSERT INTO message VALUES ('"+user+"','"+msg+"','"+fulltime+"',0)");
+						tx.executeSql('SELECT * FROM message', [], function (tx, results) {
+			               	var len = results.rows.length;
+			               	//alert("查询记录条数: " + len); 
+			               	for (var i = 0; i < len; i++){
+			                	var user=results.rows.item(i).username;
+			                	var msg=results.rows.item(i).msg;
+			                	if(user=="system"){
+									/*var data=document.createTextNode(msg);
+									var notice=document.createElement("div");
+									notice.className="notice";
+									notice.appendChild(data);
+									
+									var div=document.getElementById("message");
+									div.appendChild(notice);*/
+								}else{
+									/*创建其他用户头像*/
+									var user_img=document.createElement("img");
+									user_img.src="img/touxiang.jpg";
+									user_img.className="user-img";
+									/*创建其他用户发送的消息框*/
+									var msgdiv=document.createElement("div");
+									var data=document.createTextNode(msg);
+									msgdiv.className="msg-item";
+									msgdiv.appendChild(data);
+									/*创建一行内容，包括消息和头像*/
+									var d=document.createElement("div");
+									d.className="line";
+									d.appendChild(user_img);
+									d.appendChild(msgdiv);
+									/*显示在页面上*/
+									var div=document.getElementById("message");
+									div.appendChild(d);
+								}
+			               	}
+			               	var int=setInterval(function(){sc();},0);
+			               	var scroll=document.getElementById("scroll");
+			               	document.body.addEventListener("touchstart",function(){
+			               		clearInterval(int);
+			               	});
+				           	/*while(scroll.scrollHeight<=scroll.scrollHeight-document.body.clientHeight+94){
+			               		//mui.toast(scroll.scrollHeight-scroll.scrollHeight+document.body.clientHeight-94);
+			               		clearInterval(int);
+			               	}*/
+			               	/*var scroll=document.getElementById("scroll");
+							while(scroll.scrollHeight>document.body.clientHeight-94){
+								var t=setTimeout("sc();",1);
+								if(scroll.scrollHeight<=document.body.clientHeight-94){
+									clearTimeout(t);
+								}
+							}*/
+			            }, null);
+			            
+					});
+					
+					/*var ws = new WebSocket("ws://sjksjk.viphk.ngrok.org");
+					ws.onopen = function(){
+						//console.log("open");
+					};
+					ws.onmessage = function(evt){
+						//console.log(evt.data);
+						var jsondata=JSON.parse(evt.data);
+						var user=jsondata.user;
+						var msg=jsondata.msg;
+						if(user=="system"){
+							var data=document.createTextNode(msg);
+							var notice=document.createElement("div");
+							notice.className="notice";
+							notice.appendChild(data);
+							
+							var div=document.getElementById("message");
+							div.appendChild(notice);
+						}else{*/
+							/*创建其他用户头像*/
+							/*var user_img=document.createElement("img");
+							user_img.src="img/touxiang.jpg";
+							user_img.className="user-img";*/
+							/*创建其他用户发送的消息框*/
+							/*var msgdiv=document.createElement("div");
+							var data=document.createTextNode(msg);
+							msgdiv.className="msg-item";
+							msgdiv.appendChild(data);*/
+							/*创建一行内容，包括消息和头像*/
+							/*var d=document.createElement("div");
+							d.className="line";
+							d.appendChild(user_img);
+							d.appendChild(msgdiv);*/
+							/*显示在页面上*/
+							/*var div=document.getElementById("message");
+							div.appendChild(d);
+						}*/
+						/*var scroll=document.getElementById("scroll");
+						if(scroll.scrollHeight>document.body.clientHeight-94){
+							mui("#sc").scroll().scrollTo(0,-scroll.scrollHeight+document.body.clientHeight-94,0);
+						}
+					};
+					ws.onclose = function(evt){
+						//console.log("WebSocketClosed!");
+						mui.toast("连接已关闭,请稍后再试");
+					};
+					ws.onerror = function(evt){
+						//console.log("WebSocketError!");
+						mui.toast("发生错误,请稍后再试");
+					};*/
+					
+					mui('.mui-scroll-wrapper').scroll({
+						scrollY: true, //是否竖向滚动
+						scrollX: false, //是否横向滚动
+						startX: 0, //初始化时滚动至x
+						startY: 0, //初始化时滚动至y
+						indicators: true, //是否显示滚动条
+						deceleration:0.0006, //阻尼系数,系数越小滑动越灵敏
+						bounce: true//是否启用回弹
+					});
+					var sd=document.getElementById("send");
+					sd.addEventListener("tap",function(){
+						var msg=document.getElementById("msg-text").value;
+						if(msg.length!=0){
+							document.getElementById("msg-text").value="";
+							/*创建自己头像*/
+							var user_img=document.createElement("img");
+							user_img.src="img/touxiang.jpg";
+							user_img.className="user-self-img";
+							/*创建自己发送的消息框*/
+							var msgdiv=document.createElement("div");
+							var data=document.createTextNode(msg);
+							msgdiv.className="msg-self-item";
+							msgdiv.appendChild(data);
+							/*创建一行内容，包括消息和头像*/
+							var d=document.createElement("div");
+							d.className="line";
+							d.appendChild(user_img);
+							d.appendChild(msgdiv);
+							/*显示在页面上*/
+							var div=document.getElementById("message");
+							div.appendChild(d);
+							/*发送消息*/
+							//ws.send(msg);
+							/*滚动到最底部*/
+							var scroll=document.getElementById("scroll");
+							if(scroll.scrollHeight>document.body.clientHeight-94){
+								mui("#sc").scroll().scrollTo(0,-scroll.scrollHeight+document.body.clientHeight-94,0);
+							}
+						}
+					});
+					sd.addEventListener("click",function(){
+						document.getElementById("msg-text").focus();
+					});
+				}
+				
+				
+			});
+		</script>
+	</body>
+
+</html>

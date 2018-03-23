@@ -1,4 +1,29 @@
-mui.init();
+mui.init({
+	/*pullRefresh: {
+		container: "#tabbar-with-chat", //下拉刷新容器标识，querySelector能定位的css选择器均可，比如：id、.class等
+		down: {
+			style: 'circle', //必选，下拉刷新样式，目前支持原生5+ ‘circle’ 样式
+			color: '#2BD009', //可选，默认“#2BD009” 下拉刷新控件颜色
+			height: '52px', //可选,默认50px.下拉刷新控件的高度,
+			range: '100px', //可选 默认100px,控件可下拉拖拽的范围
+			offset: '46px', //可选 默认0px,下拉刷新控件的起始位置
+			auto: false, //可选,默认false.首次加载自动上拉刷新一次
+			callback: function() {
+				//setTimeout(function() {
+				location.reload();
+				mui('#tabbar-with-chat').pullRefresh().endPulldown();
+				//}, 5000);
+			} //必选，刷新函数，根据具体业务来编写，比如通过ajax从服务器获取新数据；
+		},
+		up: {　　　　
+			contentrefresh: '正在加载...',
+			contentnomore: '没有更多数据了',
+			callback: function() {
+
+			} //上拉加载下一页
+		}
+	}*/
+});
 mui.plusReady(function() {
 	/**
 	 * 获取本地存储中launchFlag的值
@@ -13,6 +38,20 @@ mui.plusReady(function() {
 			id: "guide"
 		});
 	}
+	document.getElementById("chat-sample").addEventListener("tap", function() {
+		mui.openWindow({
+			url: "chat.html",
+			id: "chat1",
+			show: {
+				aniShow: "slide-in-right",
+				duration: 300,
+				autoShow: true
+			},
+			waiting: {
+				autoShow: false
+			}
+		});
+	});
 });
 document.getElementById("reset_launch").addEventListener("tap", function() {
 	/**
@@ -114,3 +153,12 @@ var head = function(str) {
 	h1.innerHTML = str;
 	header.appendChild(h1);
 }
+mui('.mui-scroll-wrapper').scroll({
+	scrollY: true, //是否竖向滚动
+	scrollX: false, //是否横向滚动
+	startX: 0, //初始化时滚动至x
+	startY: 0, //初始化时滚动至y
+	indicators: true, //是否显示滚动条
+	deceleration: 0.0006, //阻尼系数,系数越小滑动越灵敏
+	bounce: true, //是否启用回弹
+});
