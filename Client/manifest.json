@@ -151,8 +151,7 @@
 				"refer": [
 					"guide.html",
 					"im-chat.html",
-					"push.html",
-					"chat.html"
+					"push.html"
 				],
 				"priority": 0
 			},

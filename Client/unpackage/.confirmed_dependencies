@@ -9,8 +9,7 @@
 			"subpage-chat.html",
 			"guide.html",
 			"login.html",
-			"push.html",
-			"chat.html"
+			"push.html"
 		],
 		"resources": [
 			"subpage-about.html"
