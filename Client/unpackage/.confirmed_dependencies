@@ -1,0 +1,65 @@
+{
+	"index.html": {
+		"refer": [
+			"main.html",
+			"tab-webview-main.html",
+			"subpage-setting.html",
+			"subpage-about.html",
+			"subpage-contact.html",
+			"subpage-chat.html",
+			"guide.html",
+			"login.html",
+			"push.html"
+		],
+		"resources": [
+			"subpage-about.html"
+		]
+	},
+	"tab-webview-main.html": {
+		"refer": [
+			"tab-webview-subpage-chat.html",
+			"tab-webview-subpage-contact.html",
+			"tab-webview-subpage-setting.html",
+			"tab-webview-subpage-about.html"
+		],
+		"resources": [
+			"tab-webview-subpage-about.html"
+		]
+	},
+	"tab-webview-subpage-chat.html": {
+		"refer": [
+			"tab-webview-main.html"
+		]
+	},
+	"tab-webview-subpage-contact.html": {
+		"refer": [
+			"tab-webview-main.html"
+		]
+	},
+	"tab-webview-subpage-setting.html": {
+		"refer": [
+			"tab-webview-main.html"
+		]
+	},
+	"tab-webview-subpage-about.html": {
+		"refer": [
+			"tab-webview-main.html"
+		]
+	},
+	"guide.html": {
+		"refer": [
+			"login.html",
+			"signin.html"
+		]
+	},
+	"login.html": {
+		"refer": [
+			"guide.html"
+		]
+	},
+	"push.html": {
+		"refer": [
+			"push.html"
+		]
+	}
+}

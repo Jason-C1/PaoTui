@@ -36,32 +36,16 @@
 					</div>
 					<div class="mui-input-row" style="margin: 0px 5px 10px 5px">
 						<textarea rows="5" placeholder="请输入对TA的评价" style="margin-bottom: 0px;"></textarea>
-						<img id="img0" src="images/starFull.png" style="float: left;width: 33.19px;margin: 0px 1px;" />
-						<img id="img1" src="images/starFull.png" style="float: left;width: 33.19px;margin: 0px 1px;" />
-						<img id="img2" src="images/starFull.png" style="float: left;width: 33.19px;margin: 0px 1px;" />
-						<img id="img3" src="images/starFull.png" style="float: left;width: 33.19px;margin: 0px 1px;" />
-						<img id="img4" src="images/starEmpty.png" style="float: left;width: 33.19px;margin: 0px 1px;" />
+						<img src="images/starFull.png" style="float: left;width: 33.19px;margin: 0px 1px;" />
+						<img src="images/starFull.png" style="float: left;width: 33.19px;margin: 0px 1px;" />
+						<img src="images/starFull.png" style="float: left;width: 33.19px;margin: 0px 1px;" />
+						<img src="images/starFull.png" style="float: left;width: 33.19px;margin: 0px 1px;" />
+						<img src="images/starEmpty.png" style="float: left;width: 33.19px;margin: 0px 1px;" />
 						<button class="mui-btn-blue" style="float: right;">提  交</button>
 					</div>
 				</div>
 			</div>
 		</div>
-		<script>
-			function star(i) {
-				document.getElementById("img"+i).addEventListener("tap", function() {
-					for(var j = 0; j < 5; j++) {
-						if(j <= i) {
-							document.getElementById("img" + j).src = "images/starFull.png";
-						} else {
-							document.getElementById("img" + j).src = "images/starEmpty.png";
-						}
-					}
-				});
-			}
-			for(var i=0;i<5;i++){
-				star(i);
-			}
-		</script>
 	</body>
 
 </html>
