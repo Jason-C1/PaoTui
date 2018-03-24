@@ -1,1 +1,90 @@
-null
+{
+  "news.html": {
+    "href": "news.html",
+    "resources": [
+      "css/mui.min.css",
+      "fonts/mui.ttf",
+      "js/mui.min.js"
+    ],
+    "priority": 0
+  },
+  "mine.html": {
+    "href": "mine.html",
+    "resources": [
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "fonts/mui.ttf",
+      "images/60x60.gif"
+    ],
+    "priority": 1
+  },
+  "order.html": {
+    "href": "order.html",
+    "resources": [
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "fonts/mui.ttf",
+      "images/60x60.gif"
+    ],
+    "priority": 2
+  },
+  "push.html": {
+    "href": "push.html",
+    "resources": [
+      "css/mui.min.css",
+      "fonts/mui.ttf",
+      "css/style.css",
+      "js/mui.min.js",
+      "js/app.js"
+    ],
+    "priority": 3
+  },
+  "signup.html": {
+    "href": "signup.html",
+    "resources": [
+      "js/mui.min.js",
+      "js/md5.min.js",
+      "css/mui.min.css",
+      "fonts/mui.ttf",
+      "css/style.css"
+    ],
+    "priority": 4
+  },
+  "signin.html": {
+    "href": "signin.html",
+    "resources": [
+      "js/mui.min.js",
+      "js/md5.min.js",
+      "css/mui.min.css",
+      "fonts/mui.ttf",
+      "css/style.css"
+    ],
+    "refer": [
+      "signup.html"
+    ],
+    "priority": 4
+  },
+  "guide.html": {
+    "href": "guide.html",
+    "resources": [
+      "css/mui.min.css",
+      "fonts/mui.ttf",
+      "js/mui.min.js"
+    ],
+    "refer": [
+      "signin.html"
+    ],
+    "priority": 4
+  },
+  "index.html": {
+    "href": "index.html",
+    "resources": [
+      "js/vue.min.js",
+      "css/common.css",
+      "css/index.css",
+      "images/default.jpg"
+    ],
+    "refer": [],
+    "priority": 0
+  }
+}

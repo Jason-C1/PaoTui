@@ -6,8 +6,18 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<title></title>
 		<link href="css/mui.min.css" rel="stylesheet" />
-		<style>
-
+		<link rel="stylesheet" type="text/css" href="css/common.css" />
+		<style type="text/css">
+			.head {
+				padding: 10 15px;
+				line-height: 60px;
+				height: 100%;
+			}
+			
+			.head span {
+				height: 60px;
+				margin-right: 30px;
+			}
 		</style>
 	</head>
 
@@ -17,14 +27,16 @@
 			<h1 class="mui-title">设置</h1>
 		</header>
 		<div class="mui-content">
-			<ul class="mui-table-view" style="margin-top: 25px;">
-				<li class="mui-table-view-cell">
-					<a id="head" class="mui-navigate-right">头像
-						<span class="mui-pull-right head">
-							<img class="head-img mui-action-preview" id="head-img1" src=""/>
+			<ul class="mui-table-view gap-20">
+				<li class="mui-table-view-cell mui-media head">
+					<a class="mui-navigate-right">头像
+						<span class="mui-pull-right">
+							<img class="head-img mui-action-preview pic-6" src="images/default.jpg"/>
 						</span>
 					</a>
 				</li>
+			</ul>
+			<ul class="mui-table-view gap-20">
 				<li class="mui-table-view-cell">
 					<a>姓名<span class="mui-pull-right mui-h5">Hbuilder</span></a>
 				</li>

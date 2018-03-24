@@ -1,65 +1,160 @@
 {
-	"index.html": {
-		"refer": [
-			"main.html",
-			"tab-webview-main.html",
-			"subpage-setting.html",
-			"subpage-about.html",
-			"subpage-contact.html",
-			"subpage-chat.html",
-			"guide.html",
-			"login.html",
-			"push.html"
-		],
-		"resources": [
-			"subpage-about.html"
-		]
-	},
-	"tab-webview-main.html": {
-		"refer": [
-			"tab-webview-subpage-chat.html",
-			"tab-webview-subpage-contact.html",
-			"tab-webview-subpage-setting.html",
-			"tab-webview-subpage-about.html"
-		],
-		"resources": [
-			"tab-webview-subpage-about.html"
-		]
-	},
-	"tab-webview-subpage-chat.html": {
-		"refer": [
-			"tab-webview-main.html"
-		]
-	},
-	"tab-webview-subpage-contact.html": {
-		"refer": [
-			"tab-webview-main.html"
-		]
-	},
-	"tab-webview-subpage-setting.html": {
-		"refer": [
-			"tab-webview-main.html"
-		]
-	},
-	"tab-webview-subpage-about.html": {
-		"refer": [
-			"tab-webview-main.html"
-		]
-	},
-	"guide.html": {
-		"refer": [
-			"login.html",
-			"signin.html"
-		]
-	},
-	"login.html": {
-		"refer": [
-			"guide.html"
-		]
-	},
-	"push.html": {
-		"refer": [
-			"push.html"
-		]
-	}
+  "index.html": {
+    "resources": [
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "html/tab-webview-subpage-about.html",
+      "fonts/mui.ttf",
+      "fonts/iconfont.ttf",
+      "js/util.js",
+      "html/tab-webview-subpage-chat.html",
+      "news.html",
+      "js/vue.min.js",
+      "css/common.css",
+      "css/index.css",
+      "js/index.js",
+      "images/default.jpg",
+      "order.html"
+    ],
+    "refer": [
+      "html/tab-webview-subpage-setting.html",
+      "html/tab-webview-subpage-chat.html",
+      "html/tab-webview-subpage-contact.html",
+      "html/tab-webview-subpage-about.html",
+      "html/new-webview.html",
+      "push.html",
+      "guide.html",
+      "order.html",
+      "mine.html",
+      "news.html"
+    ]
+  },
+  "launch.html": {
+    "resources": [
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "html/tab-webview-subpage-about.html"
+    ],
+    "refer": [
+      "html/tab-webview-subpage-setting.html",
+      "html/tab-webview-subpage-chat.html",
+      "html/tab-webview-subpage-contact.html",
+      "html/tab-webview-subpage-about.html"
+    ]
+  },
+  "html/tab-webview-subpage-setting.html": {
+    "resources": [
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "js/mui.min.js"
+    ],
+    "refer": []
+  },
+  "html/tab-webview-subpage-about.html": {
+    "resources": [
+      "css/mui.min.css",
+      "js/mui.min.js",
+      "js/util.js"
+    ],
+    "refer": []
+  },
+  "html/tab-webview-subpage-chat.html": {
+    "resources": [
+      "fonts/mui.ttf",
+      "js/mui.min.js",
+      "css/mui.min.css"
+    ],
+    "refer": []
+  },
+  "html/tab-webview-subpage-contact.html": {
+    "resources": [
+      "images/60x60.gif",
+      "js/mui.min.js",
+      "css/mui.min.css"
+    ],
+    "refer": []
+  },
+  "html/new-webview.html": {
+    "resources": [
+      "css/mui.min.css",
+      "js/mui.min.js",
+      "fonts/mui.ttf"
+    ],
+    "refer": []
+  },
+  "news.html": {
+    "href": "news.html",
+    "resources": [
+      "css/mui.min.css",
+      "js/mui.min.js"
+    ],
+    "refer": [],
+    "priority": 0
+  },
+  "mine.html": {
+    "href": "mine.html",
+    "resources": [
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "images/60x60.gif"
+    ],
+    "refer": [],
+    "priority": 0
+  },
+  "order.html": {
+    "href": "order.html",
+    "resources": [
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "images/60x60.gif"
+    ],
+    "refer": [],
+    "priority": 0
+  },
+  "push.html": {
+    "href": "push.html",
+    "resources": [
+      "css/mui.min.css",
+      "css/style.css",
+      "js/mui.min.js",
+      "js/app.js"
+    ],
+    "refer": [],
+    "priority": 0
+  },
+  "signup.html": {
+    "href": "signup.html",
+    "resources": [
+      "js/mui.min.js",
+      "js/md5.min.js",
+      "css/mui.min.css",
+      "css/style.css"
+    ],
+    "refer": [],
+    "priority": 0
+  },
+  "signin.html": {
+    "href": "signin.html",
+    "resources": [
+      "js/mui.min.js",
+      "js/md5.min.js",
+      "css/mui.min.css",
+      "css/style.css"
+    ],
+    "refer": [
+      "signup.html"
+    ],
+    "priority": 0
+  },
+  "guide.html": {
+    "href": "guide.html",
+    "resources": [
+      "css/mui.min.css",
+      "js/mui.min.js"
+    ],
+    "refer": [
+      "signin.html"
+    ],
+    "priority": 0
+  }
 }
