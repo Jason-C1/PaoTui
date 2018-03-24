@@ -1,5 +1,25 @@
-
 <?php
+/**
+ * Created by PhpStorm.
+ * User: YT
+ * Date: 2018/3/24
+ * Time: 15:06
+ */
+
+/**
+ * Created by PhpStorm.
+ * User: YT
+ * Date: 2018/3/24
+ * Time: 13:18
+ * 发布订单
+ */
+/**
+ * Created by PhpStorm.
+ * User: YT
+ * Date: 2018/3/23
+ * Time: 21:11
+ */
+
 header('Access-Control-Allow-Methods:OPTIONS, GET, POST');
 
 header('Access-Control-Allow-Headers:x-requested-with');
@@ -17,26 +37,16 @@ header("Content-Type:text/html;charset=utf-8");
 
 header('Access-Control-Allow-Headers:Origin, No-Cache, X-Requested-With, If-Modified-Since, Pragma, Last-Modified, Cache-Control, Expires, Content-Type, X-E4M-With');
 require_once 'mysql.fnc.php';
-/**
-   首页显示订单;
- */
+$mysqli=connect();
 
+$data=$_POST;
 
+$result=insert($mysqli,'review',$data);
+if($result!=-1){
+    $response= "评价成功";
 
-
-    $mysqli=connect();
-    $response = array();
-    $set="select orderform.title,orderform.oId,user.uId,orderform.dateTime,orderform.deadline,orderform.price,orderform.oFrom,orderform.oTo from orderform,user where user.uId=orderForm.userId";
-    $array = array('\'校园帮帮\'','\'同城快送\'','\'生鲜蔬果\'','\'其他产品\'');
-    $response['C0']=getData($mysqli,$set);
-
-    for($i=1;$i<4;$i++)
-    {
-        $sql=$set." and cate = ".$array[$i];
-        $data=getData($mysqli,$sql);
-        $response['C'.$i]=$data;
-
-    }
-
-
-    echo json_encode($response);
+}
+else{
+    $response= "评价失败";
+}
+echo json_encode($response);

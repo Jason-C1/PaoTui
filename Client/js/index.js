@@ -1,29 +1,77 @@
 (function() {
+	var theurl = "http://10.103.105.55";
+	var lastId = '',
+		minId = ''; //最新新闻的id 
 	mui.init({
 		swipeBack: true, //启用右滑关闭功能
 		pullRefresh: {
-			container: "#tabbar-with-chat", //下拉刷新容器标识，querySelector能定位的css选择器均可，比如：id、.class等
+			container: '#dd',
 			down: {
 				style: 'circle', //必选，下拉刷新样式，目前支持原生5+ ‘circle’ 样式
-				color: '#2BD009', //可选，默认“#2BD009” 下拉刷新控件颜色
-				height: '52px', //可选,默认50px.下拉刷新控件的高度,
-				range: '100px', //可选 默认100px,控件可下拉拖拽的范围
-				offset: '46px', //可选 默认0px,下拉刷新控件的起始位置
-				auto: false, //可选,默认false.首次加载自动上拉刷新一次
-				callback: function() {
-					//setTimeout(function() {
-					location.reload();
-					mui('#tabbar-with-chat').pullRefresh().endPulldown();
-					//}, 5000);
-				} //必选，刷新函数，根据具体业务来编写，比如通过ajax从服务器获取新数据；
+				auto: true, //可选,默认false.首次加载自动上拉刷新一次
+				callback: pulldownRefresh,
 			},
-			up: {　　　　
+			up: {
 				contentrefresh: '正在加载...',
 				contentnomore: '没有更多数据了',
-				callback: function() {} //上拉加载下一页
+				callback: pullupRefresh,
 			}
-		},
+		}
 	});
+	/**
+	 *  下拉刷新获取最新列表 
+	 */
+	function pulldownRefresh() {
+
+		if(window.plus && plus.networkinfo.getCurrentType() === plus.networkinfo.CONNECTION_NONE) {
+			plus.nativeUI.toast('似乎已断开与互联网的连接', {
+				verticalAlign: 'top'
+			});
+			return;
+		}
+		if(lastId) { //说明已有数据，目前处于下拉刷新，增加时间戳，触发服务端立即刷新，返回最新数据
+			data.lastId = lastId;
+			data.time = new Date().getTime() + "";
+		}
+		mui.getJSON(theurl + "/index.php", {}, function(list) {
+			mui('#dd').pullRefresh().endPulldownToRefresh();
+			var list0 = list.C0;
+			if(list0 && list0.length > 0) {
+				lastId = list0[0].id; //保存最新消息的id，方便下拉刷新时使用
+				if(!minId) { //首次拉取列表时保存最后一条消息的id，方便上拉加载时使用
+					minId = list0[list0.length - 1].id;
+				}
+
+				list0.forEach(function(item) {
+					order.c0.push({
+						uId: item.uId,
+						title: item.title,
+						price: item.price,
+						oFrom: item.oFrom,
+						oTo: item.oTo,
+						oId: item.oId,
+						deadline: item.deadline,
+						dateTime: item.dateTime,
+					});
+				});
+			}
+		});
+
+		//请求最新列表信息流
+		//		mui.getJSON("http://spider.dcloud.net.cn/api/news", data, function(rsp) {
+		//			mui('#list').pullRefresh().endPulldownToRefresh();
+		//		if(rsp && rsp.length > 0) {
+		//			lastId = rsp[0].id; //保存最新消息的id，方便下拉刷新时使用
+		//
+		//			if(!minId) { //首次拉取列表时保存最后一条消息的id，方便上拉加载时使用
+		//				minId = rsp[rsp.length - 1].id;
+		//			}
+		//			news.items = convert(rsp).concat(news.items);
+		//		}
+		//		});
+
+	}
+
 	mui.plusReady(function() {
 		/**
 		 * 获取本地存储中launchFlag的值
@@ -37,7 +85,14 @@
 		}
 		var self = plus.webview.currentWebview(),
 			leftPos = Math.ceil((window.innerWidth - 60) / 2); // 设置凸起大图标为水平居中
-		/**	
+
+		var deceleration = mui.os.ios ? 0.003 : 0.0009;
+		mui('.mui-scroll-wrapper').scroll({
+			bounce: false,
+			indicators: true, //是否显示滚动条
+			deceleration: deceleration
+		});
+		/**
 		 * drawNativeIcon 绘制带边框的半圆，
 		 * 实现原理：
 		 *   id为bg的tag 创建带边框的圆
@@ -164,160 +219,62 @@
 			//更新当前活跃的页面
 			activePage = targetPage;
 		});
+
 	});
-	//document.getElementById("chat-sample").addEventListener("tap", function() {
-	//	mui.openWindow({
-	//		url: "chat.html",
-	//		id: "chat1",
-	//		show: {
-	//			aniShow: "slide-in-right",
-	//			duration: 300,
-	//			autoShow: true
-	//		},
-	//		waiting: {
-	//			autoShow: false
-	//		}
-	//	});
-	//});
-	//document.getElementById("reset_launch").addEventListener("tap", function() {
-	//	/**
-	//	 * 系统确认对话框
-	//	 * http://www.html5plus.org/doc/zh_cn/nativeui.html#plus.nativeUI.confirm
-	//	 */
-	//	plus.nativeUI.confirm("是否重置首次打开app？", function(event) {
-	//		/**
-	//		 * 按钮的索引，从0开始；
-	//		 */
-	//		var index = event.index;
-	//		if(index == 0) {
-	//			/**
-	//			 * 通过key值删除键值对存储的数据
-	//			 * http://www.html5plus.org/doc/zh_cn/storage.html#plus.storage.removeItem
-	//			 */
-	//
-	//			plus.storage.removeItem("launchFlag");
-	//			/**
-	//			 * 自动消失提示，位置为center；
-	//			 * http://www.html5plus.org/doc/zh_cn/nativeui.html#plus.nativeUI.ToastOption
-	//			 */
-	//			plus.nativeUI.toast("重置成功，2秒后重启app。", {
-	//				verticalAlign: "center"
-	//			});
-	//			/**
-	//			 * 1秒后重启应用
-	//			 * http://www.html5plus.org/doc/zh_cn/runtime.html#plus.runtime.restart
-	//			 */
-	//			setTimeout(function() {
-	//				plus.runtime.restart();
-	//			}, 1000);
-	//		}
-	//	}, "重置启动", ["重置", "放弃"]);
-	//});
-	////按钮功能
-	//document.getElementById("push").addEventListener("tap", function() {
-	//	/**
-	//	 * 进入发单界面
-	//	 * 
-	//	 */
-	//	mui.openWindow({
-	//		url: "push.html",
-	//		id: "push"
-	//	});
-	//});
-	//var order = new Vue({
-	//	el: '#order',
-	//	data: {
-	//		items: [] //列表信息流数据
-	//	},
-	//});
-	/**
-	 * 1、将服务端返回数据，转换成前端需要的格式
-	 * 2、若服务端返回格式和前端所需格式相同，则不需要改功能
-	 * 
-	 * @param {Array} items 
-	 */
-	function convertOrder(items) {
-		var newItems = [];
-		items.forEach(function(item) {
-			newItems.push({
-				oId: item.oId,
-				cate: item.cate,
-				title: item.title,
-				content: item.content,
-				oFrom: item.oFrom,
-				oTo: item.oTo,
-				uId: item.uId,
-				dateTime: app.dateUtils.format(item.dateTime),
-				deadline: item.deadline,
-				price: item.fee / 100,
-				state: item.state,
-			});
-		});
-		return newItems;
+
+	var order = new Vue({
+		el: '#dd',
+		data: {
+			c0: [],
+			c1: [],
+			c2: [],
+			c3: [],
+			c4: [],
+		}
+
+	})
+
+	function pullupRefresh() {
+		//		var data = {
+		//			column: "id,post_id,title,author_name,cover,published_at" //需要的字段名
+		//		};
+		//
+		//		if(minId) { //说明已有数据，目前处于上拉加载，传递当前minId 返回历史数据
+		//			data.minId = minId;
+		//			data.time = new Date().getTime() + "";
+		//			data.pageSize = 10;
+		//		}
+		//		//请求历史列表信息流
+		//		//				mui.getJSON("http://spider.dcloud.net.cn/api/news", data, function(rsp) {
+		//		//					mui('#list').pullRefresh().endPullupToRefresh();
+		//		//					if(rsp && rsp.length > 0) {
+		//		//						minId = rsp[rsp.length - 1].id; //保存最后一条消息的id，上拉加载时使用
+		//		//						news.items = news.items.concat(convert(rsp));
+		//		//					}
+		//		//				});
+		//		mui.getJSON("http://172.19.24.199/index.php", data, function(list) {
+		//			list.C0.forEach(function(item) {
+		//				order.c0.push({
+		//					uId: item.uId,
+		//					title: item.title,
+		//					price: item.price,
+		//					oFrom: item.oFrom,
+		//					oTo: item.oTo,
+		//					oId: item.oId,
+		//					deadline: item.deadline,
+		//					dateTime: item.dateTime,
+		//				});
+		//			});
+		//		});
 	}
 
-	//var header = document.getElementById("header");
-	//document.getElementById("index").addEventListener("tap", function() {
-	//	header.innerHTML = null;
-	//	var a = document.createElement("a");
-	//	a.id = "push";
-	//	a.className = "mui-icon mui-icon-plus mui-pull-right mui-a-color";
-	//	header.appendChild(a);
-	//	var button = document.createElement("button");
-	//	button.type = "button";
-	//	button.className = "mui-btn mui-btn-link";
-	//	var span = document.createElement("span");
-	//	span.className = "mui-icon mui-icon-search";
-	//	button.appendChild(span);
-	//	span = document.createElement("span");
-	//	span.innerHTML = "杭州";
-	//	button.appendChild(span);
-	//	header.appendChild(button);
-	//	var div = document.createElement("div");
-	//	div.className = "mui-title title-search";
-	//	span = document.createElement("span");
-	//	span.className = "mui-icon mui-icon-search";
-	//	div.appendChild(span);
-	//	span = document.createElement("span");
-	//	span.innerHTML = " 垃圾街鸭血粉丝";
-	//	div.appendChild(span);
-	//	header.appendChild(div);
-	//});
-	//document.getElementById("order").addEventListener("tap", function() {
-	//	header.innerHTML = null;
-	//	var div = document.createElement("div");
-	//	div.className = "mui-title title-search";
-	//	div.style.left = "10px";
-	//	div.style.right = "10px";
-	//	span = document.createElement("span");
-	//	span.className = "mui-icon mui-icon-search";
-	//	div.appendChild(span);
-	//	span = document.createElement("span");
-	//	span.innerHTML = " 搜索订单";
-	//	div.appendChild(span);
-	//	header.appendChild(div);
-	//});
-	//document.getElementById("message").addEventListener("tap", function() {
-	//	head("消息");
-	//});
-	//document.getElementById("mine").addEventListener("tap", function() {
-	//	head("我的");
-	//});
-	//var head = function(str) {
-	//	header.innerHTML = null;
-	//	header.className = "mui-bar mui-bar-nav";
-	//	var h1 = document.createElement("h1");
-	//	h1.className = "mui-title";
-	//	h1.innerHTML = str;
-	//	header.appendChild(h1);
-	//}
-	//mui('.mui-scroll-wrapper').scroll({
-	//	scrollY: true, //是否竖向滚动
-	//	scrollX: false, //是否横向滚动
-	//	startX: 0, //初始化时滚动至x
-	//	startY: 0, //初始化时滚动至y
-	//	indicators: true, //是否显示滚动条
-	//	deceleration: 0.0006, //阻尼系数,系数越小滑动越灵敏
-	//	bounce: true, //是否启用回弹
-	//});
+	mui('.mui-scroll-wrapper').scroll({
+		scrollY: true, //是否竖向滚动
+		scrollX: false, //是否横向滚动
+		startX: 0, //初始化时滚动至x
+		startY: 0, //初始化时滚动至y
+		indicators: true, //是否显示滚动条
+		deceleration: 0.0006, //阻尼系数,系数越小滑动越灵敏
+		bounce: true, //是否启用回弹
+	});
 })();
