@@ -130,45 +130,7 @@
 		/**
 		 * 根据判断view控件点击位置判断切换的tab
 		 */
-		orders = [
-		new Vue({
-			el: '#list1',
-			data: {
-				items: []
-			}
-		}),
-		new Vue({
-			el: '#list2',
-			data: {
-				items: []
-			}
-		}),
-		new Vue({
-			el: '#list3',
-			data: {
-				items: []
-			}
-		}),
-		new Vue({
-			el: '#list4',
-			data: {
-				items: []
-			}
-		}),
-		new Vue({
-			el: '#list5',
-			data: {
-				items: []
-			}
-		}),
-		new Vue({
-			el: '#list6',
-			data: {
-				items: []
-			}
-		}),
 
-	]
 		nview.addEventListener('click', function(e) {
 			var clientX = e.clientX;
 			if(clientX > 0 && clientX <= parseInt(pageW * 0.25)) {
@@ -199,49 +161,90 @@
 		});
 
 	});
-	
+
 	$.ready(function() {
+		var orders = [
+			new Vue({
+				el: '#list1',
+				data: {
+					items: []
+				}
+			}),
+			new Vue({
+				el: '#list2',
+				data: {
+					items: []
+				}
+			}),
+			new Vue({
+				el: '#list3',
+				data: {
+					items: []
+				}
+			}),
+			new Vue({
+				el: '#list4',
+				data: {
+					items: []
+				}
+			}),
+			new Vue({
+				el: '#list5',
+				data: {
+					items: []
+				}
+			}),
+			new Vue({
+				el: '#list6',
+				data: {
+					items: []
+				}
+			}),
+		];
+
+		var pulldownRefresh = function(index, self) {
+			if(window.plus && plus.networkinfo.getCurrentType() === plus.networkinfo.CONNECTION_NONE) {
+				plus.nativeUI.toast('似乎已断开与互联网的连接', {
+					verticalAlign: 'top'
+				});
+				return;
+			}
+			var data = {};
+			if(lastId) { //说明已有数据，目前处于下拉刷新，增加时间戳，触发服务端立即刷新，返回最新数据
+				data.lastId = lastId;
+			}
+			//	var ul = self.element.querySelector('.mui-table-view');
+			//ul.insertBefore(createFragment(ul, index, 10, true), ul.firstChild);
+			$.getJSON(hostUrl + "index.php", data, function(list) {
+				if(self){
+					self.endPullDownToRefresh();
+				}
+				var newItems = [];
+				list.C0.forEach(function(item) {
+					newItems.push({
+						uId: item.uId,
+						title: item.title,
+						price: item.price,
+						oFrom: item.oFrom,
+						oTo: item.oTo,
+						oId: item.oId,
+						deadline: item.deadline,
+						dateTime: item.dateTime,
+					});
+				});
+				orders[index].items = newItems.concat(orders[index].items);
+
+			});
+		};
 		//循环初始化所有下拉刷新，上拉加载。
 		$.each(document.querySelectorAll('.mui-slider-group .mui-scroll'), function(index, pullRefreshEl) {
+			pulldownRefresh(index);//打开页面是自动加载数据
 			$(pullRefreshEl).pullToRefresh({
 				down: {
 					callback: function() {
-
-						if(window.plus && plus.networkinfo.getCurrentType() === plus.networkinfo.CONNECTION_NONE) {
-							plus.nativeUI.toast('似乎已断开与互联网的连接', {
-								verticalAlign: 'top'
-							});
-							return;
-						}
-
-						var data = {};
-						if(lastId) { //说明已有数据，目前处于下拉刷新，增加时间戳，触发服务端立即刷新，返回最新数据
-							data.lastId = lastId;
-						}
-
-						$.getJSON(hostUrl + "index.php", data, function(list) {
-							list.C0.forEach(function(item) {
-								var newItems = [];
-								newItems.push({
-									uId: item.uId,
-									title: item.title,
-									price: item.price,
-									oFrom: item.oFrom,
-									oTo: item.oTo,
-									oId: item.oId,
-									deadline: item.deadline,
-									dateTime: item.dateTime,
-								});
-								orders[index].items = newItems.concat(orders[index].items);
-
-							});
-						});
-						
 						var self = this;
-						//							var ul = self.element.querySelector('.mui-table-view');
-						//							ul.insertBefore(createFragment(ul, index, 10, true), ul.firstChild);
-						self.endPullDownToRefresh();
-					}
+						pulldownRefresh(index, self);
+					},
 				},
 				up: {
 					callback: function() {
@@ -254,17 +257,5 @@
 			});
 		});
 
-		var createFragment = function(ul, index, count, reverse) {
-			var length = ul.querySelectorAll('li').length;
-			var fragment = document.createDocumentFragment();
-			var li;
-			for(var i = 0; i < count; i++) {
-				li = document.createElement('li');
-				li.className = 'mui-table-view-cell';
-				li.innerHTML = '第' + (index + 1) + '个选项卡子项-' + (length + (reverse ? (count - i) : (i + 1)));
-				fragment.appendChild(li);
-			}
-			return fragment;
-		};
 	});
 })(mui);
