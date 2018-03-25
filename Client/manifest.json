@@ -154,7 +154,7 @@
 						},{
 							"tag": "font",
 							"id": "newsIcon",
-							"text": "\ue201",
+							"text": "\ue400",
 							"position": {
 								"top": "4px",
 								"left": "20%",
@@ -169,7 +169,7 @@
 						}, {
 							"tag": "font",
 							"id": "newsText",
-							"text": "消息",
+							"text": "订单",
 							"position": {
 								"top": "23px",
 								"left": "20%",
@@ -183,7 +183,7 @@
 						},{
 							"tag": "font",
 							"id": "contactIcon",
-							"text": "\ue400",
+							"text": "\ue201",
 							"position": {
 								"top": "4px",
 								"left": "55%",
@@ -198,7 +198,7 @@
 						}, {
 							"tag": "font",
 							"id": "contactText",
-							"text": "订单",
+							"text": "消息",
 							"position": {
 								"top": "24px",
 								"left": "55%",

@@ -14,17 +14,14 @@
 				right: 10px;
 				left: 80px;
 			}
-			
 			html,
 			body {
 				background-color: #efeff4;
 			}
-			
 			.mui-bar~.mui-content .mui-fullscreen {
 				top: 44px;
 				height: auto;
 			}
-			
 			.mui-pull-top-tips {
 				position: absolute;
 				top: -20px;
@@ -59,12 +56,8 @@
 			}
 			
 			.mui-pull-top-tips .mui-pull-loading {
-				/*-webkit-backface-visibility: hidden;
-				-webkit-transition-duration: 400ms;
-				transition-duration: 400ms;*/
 				margin: 0;
 			}
-			
 			.mui-pull-top-wrapper .mui-icon,
 			.mui-pull-top-wrapper .mui-spinner {
 				margin-top: 7px;
@@ -81,7 +74,6 @@
 				line-height: 40px;
 				color: #777;
 			}
-			
 			.mui-pull-top-canvas {
 				overflow: hidden;
 				background-color: #fafafa;
@@ -91,15 +83,12 @@
 				height: 40px;
 				margin: 0 auto;
 			}
-			
 			.mui-pull-top-canvas canvas {
 				width: 40px;
 			}
-			
 			.mui-slider-indicator.mui-segmented-control {
 				background-color: #efeff4;
 			}
-			
 			.mui-slider .mui-slider-group .mui-slider-item>a:not(.mui-control-item) {
 				display: inline;
 			}
@@ -330,65 +319,51 @@
 						<div class="mui-scroll-wrapper">
 							<div class="mui-scroll">
 								<ul  id="list3" class="mui-table-view">
-									<li class="mui-table-view-cell">
-										第3个选项卡子项-1
-									</li>
-									<li class="mui-table-view-cell">
-										第3个选项卡子项-2
-									</li>
-									<li class="mui-table-view-cell">
-										第3个选项卡子项-3
-									</li>
-									<li class="mui-table-view-cell">
-										第3个选项卡子项-4
-									</li>
-									<li class="mui-table-view-cell">
-										第3个选项卡子项-5
-									</li>
-									<li class="mui-table-view-cell">
-										第3个选项卡子项-6
-									</li>
-									<li class="mui-table-view-cell">
-										第3个选项卡子项-7
-									</li>
-									<li class="mui-table-view-cell">
-										第3个选项卡子项-8
-									</li>
-									<li class="mui-table-view-cell">
-										第3个选项卡子项-9
-									</li>
-									<li class="mui-table-view-cell">
-										第3个选项卡子项-10
-									</li>
-									<li class="mui-table-view-cell">
-										第3个选项卡子项-11
-									</li>
-									<li class="mui-table-view-cell">
-										第3个选项卡子项-12
-									</li>
-									<li class="mui-table-view-cell">
-										第3个选项卡子项-13
-									</li>
-									<li class="mui-table-view-cell">
-										第3个选项卡子项-14
-									</li>
-									<li class="mui-table-view-cell">
-										第3个选项卡子项-15
-									</li>
-									<li class="mui-table-view-cell">
-										第3个选项卡子项-16
-									</li>
-									<li class="mui-table-view-cell">
-										第3个选项卡子项-17
-									</li>
-									<li class="mui-table-view-cell">
-										第3个选项卡子项-18
-									</li>
-									<li class="mui-table-view-cell">
-										第3个选项卡子项-19
-									</li>
-									<li class="mui-table-view-cell">
-										第3个选项卡子项-20
+									<li class="mui-table-view-cell mui-media" v-for="item in items">
+										<div class="mui-table">
+											<div class="mui-row">
+												<div class="mui-table-cell mui-pull-right">
+													<span class="order-rmb">&yen;<span>{{item.price}}</span></span>
+												</div>
+												<div class="mui-table-cell">
+													<img class="mui-media-object mui-pull-left" src="images/default.jpg">
+													<div class="mui-media-body">
+														{{item.uId}}
+														<p class="mui-h6">{{item.dateTime}}</p>
+													</div>
+												</div>
+
+											</div>
+											<div class="mui-row">
+												<div class="mui-table-cell mui-col-xs-10">
+													<h4 class="mui-ellipsis">{{item.title}}</h4>
+												</div>
+											</div>
+											<div class="mui-row">
+												<div class="mui-table-cell mui-col-xs-1 mui-text-left">
+													<p>Form</p>
+												</div>
+												<div class="mui-table-cell mui-col-xs-11">
+													<p class="mui-ellipsis">{{item.oFrom}}</p>
+												</div>
+											</div>
+											<div class="mui-row">
+												<div class="mui-table-cell mui-col-xs-1 mui-text-left">
+													<p>To</p>
+												</div>
+												<div class="mui-table-cell mui-col-xs-11">
+													<p class="mui-ellipsis">{{item.oTo}}</p>
+												</div>
+											</div>
+											<div class="mui-row">
+												<div class="mui-table-cell mui-col-xs-1 mui-text-left">
+													<p>Exp</p>
+												</div>
+												<div class="mui-table-cell mui-col-xs-10">
+													<p class="mui-ellipsis">{{item.deadline}}</p>
+												</div>
+											</div>
+										</div>
 									</li>
 								</ul>
 							</div>
@@ -398,65 +373,51 @@
 						<div class="mui-scroll-wrapper">
 							<div class="mui-scroll">
 								<ul  id="list4" class="mui-table-view">
-									<li class="mui-table-view-cell">
-										第4个选项卡子项-1
-									</li>
-									<li class="mui-table-view-cell">
-										第4个选项卡子项-2
-									</li>
-									<li class="mui-table-view-cell">
-										第4个选项卡子项-3
-									</li>
-									<li class="mui-table-view-cell">
-										第4个选项卡子项-4
-									</li>
-									<li class="mui-table-view-cell">
-										第4个选项卡子项-5
-									</li>
-									<li class="mui-table-view-cell">
-										第4个选项卡子项-6
-									</li>
-									<li class="mui-table-view-cell">
-										第4个选项卡子项-7
-									</li>
-									<li class="mui-table-view-cell">
-										第4个选项卡子项-8
-									</li>
-									<li class="mui-table-view-cell">
-										第4个选项卡子项-9
-									</li>
-									<li class="mui-table-view-cell">
-										第4个选项卡子项-10
-									</li>
-									<li class="mui-table-view-cell">
-										第4个选项卡子项-11
-									</li>
-									<li class="mui-table-view-cell">
-										第4个选项卡子项-12
-									</li>
-									<li class="mui-table-view-cell">
-										第4个选项卡子项-13
-									</li>
-									<li class="mui-table-view-cell">
-										第4个选项卡子项-14
-									</li>
-									<li class="mui-table-view-cell">
-										第4个选项卡子项-15
-									</li>
-									<li class="mui-table-view-cell">
-										第4个选项卡子项-16
-									</li>
-									<li class="mui-table-view-cell">
-										第4个选项卡子项-17
-									</li>
-									<li class="mui-table-view-cell">
-										第4个选项卡子项-18
-									</li>
-									<li class="mui-table-view-cell">
-										第4个选项卡子项-19
-									</li>
-									<li class="mui-table-view-cell">
-										第4个选项卡子项-20
+									<li class="mui-table-view-cell mui-media" v-for="item in items">
+										<div class="mui-table">
+											<div class="mui-row">
+												<div class="mui-table-cell mui-pull-right">
+													<span class="order-rmb">&yen;<span>{{item.price}}</span></span>
+												</div>
+												<div class="mui-table-cell">
+													<img class="mui-media-object mui-pull-left" src="images/default.jpg">
+													<div class="mui-media-body">
+														{{item.uId}}
+														<p class="mui-h6">{{item.dateTime}}</p>
+													</div>
+												</div>
+
+											</div>
+											<div class="mui-row">
+												<div class="mui-table-cell mui-col-xs-10">
+													<h4 class="mui-ellipsis">{{item.title}}</h4>
+												</div>
+											</div>
+											<div class="mui-row">
+												<div class="mui-table-cell mui-col-xs-1 mui-text-left">
+													<p>Form</p>
+												</div>
+												<div class="mui-table-cell mui-col-xs-11">
+													<p class="mui-ellipsis">{{item.oFrom}}</p>
+												</div>
+											</div>
+											<div class="mui-row">
+												<div class="mui-table-cell mui-col-xs-1 mui-text-left">
+													<p>To</p>
+												</div>
+												<div class="mui-table-cell mui-col-xs-11">
+													<p class="mui-ellipsis">{{item.oTo}}</p>
+												</div>
+											</div>
+											<div class="mui-row">
+												<div class="mui-table-cell mui-col-xs-1 mui-text-left">
+													<p>Exp</p>
+												</div>
+												<div class="mui-table-cell mui-col-xs-10">
+													<p class="mui-ellipsis">{{item.deadline}}</p>
+												</div>
+											</div>
+										</div>
 									</li>
 								</ul>
 							</div>
@@ -466,65 +427,51 @@
 						<div class="mui-scroll-wrapper">
 							<div class="mui-scroll">
 								<ul id="list5" class="mui-table-view">
-									<li class="mui-table-view-cell">
-										第5个选项卡子项-1
-									</li>
-									<li class="mui-table-view-cell">
-										第5个选项卡子项-2
-									</li>
-									<li class="mui-table-view-cell">
-										第5个选项卡子项-3
-									</li>
-									<li class="mui-table-view-cell">
-										第5个选项卡子项-4
-									</li>
-									<li class="mui-table-view-cell">
-										第5个选项卡子项-5
-									</li>
-									<li class="mui-table-view-cell">
-										第5个选项卡子项-6
-									</li>
-									<li class="mui-table-view-cell">
-										第5个选项卡子项-7
-									</li>
-									<li class="mui-table-view-cell">
-										第5个选项卡子项-8
-									</li>
-									<li class="mui-table-view-cell">
-										第5个选项卡子项-9
-									</li>
-									<li class="mui-table-view-cell">
-										第5个选项卡子项-10
-									</li>
-									<li class="mui-table-view-cell">
-										第5个选项卡子项-11
-									</li>
-									<li class="mui-table-view-cell">
-										第5个选项卡子项-12
-									</li>
-									<li class="mui-table-view-cell">
-										第5个选项卡子项-13
-									</li>
-									<li class="mui-table-view-cell">
-										第5个选项卡子项-14
-									</li>
-									<li class="mui-table-view-cell">
-										第5个选项卡子项-15
-									</li>
-									<li class="mui-table-view-cell">
-										第5个选项卡子项-16
-									</li>
-									<li class="mui-table-view-cell">
-										第5个选项卡子项-17
-									</li>
-									<li class="mui-table-view-cell">
-										第5个选项卡子项-18
-									</li>
-									<li class="mui-table-view-cell">
-										第5个选项卡子项-19
-									</li>
-									<li class="mui-table-view-cell">
-										第5个选项卡子项-20
+									<li class="mui-table-view-cell mui-media" v-for="item in items">
+										<div class="mui-table">
+											<div class="mui-row">
+												<div class="mui-table-cell mui-pull-right">
+													<span class="order-rmb">&yen;<span>{{item.price}}</span></span>
+												</div>
+												<div class="mui-table-cell">
+													<img class="mui-media-object mui-pull-left" src="images/default.jpg">
+													<div class="mui-media-body">
+														{{item.uId}}
+														<p class="mui-h6">{{item.dateTime}}</p>
+													</div>
+												</div>
+
+											</div>
+											<div class="mui-row">
+												<div class="mui-table-cell mui-col-xs-10">
+													<h4 class="mui-ellipsis">{{item.title}}</h4>
+												</div>
+											</div>
+											<div class="mui-row">
+												<div class="mui-table-cell mui-col-xs-1 mui-text-left">
+													<p>Form</p>
+												</div>
+												<div class="mui-table-cell mui-col-xs-11">
+													<p class="mui-ellipsis">{{item.oFrom}}</p>
+												</div>
+											</div>
+											<div class="mui-row">
+												<div class="mui-table-cell mui-col-xs-1 mui-text-left">
+													<p>To</p>
+												</div>
+												<div class="mui-table-cell mui-col-xs-11">
+													<p class="mui-ellipsis">{{item.oTo}}</p>
+												</div>
+											</div>
+											<div class="mui-row">
+												<div class="mui-table-cell mui-col-xs-1 mui-text-left">
+													<p>Exp</p>
+												</div>
+												<div class="mui-table-cell mui-col-xs-10">
+													<p class="mui-ellipsis">{{item.deadline}}</p>
+												</div>
+											</div>
+										</div>
 									</li>
 								</ul>
 							</div>
@@ -534,65 +481,51 @@
 						<div class="mui-scroll-wrapper">
 							<div class="mui-scroll">
 								<ul  id="list6" class="mui-table-view">
-									<li class="mui-table-view-cell">
-										第6个选项卡子项-1
-									</li>
-									<li class="mui-table-view-cell">
-										第6个选项卡子项-2
-									</li>
-									<li class="mui-table-view-cell">
-										第6个选项卡子项-3
-									</li>
-									<li class="mui-table-view-cell">
-										第6个选项卡子项-4
-									</li>
-									<li class="mui-table-view-cell">
-										第6个选项卡子项-5
-									</li>
-									<li class="mui-table-view-cell">
-										第6个选项卡子项-6
-									</li>
-									<li class="mui-table-view-cell">
-										第6个选项卡子项-7
-									</li>
-									<li class="mui-table-view-cell">
-										第6个选项卡子项-8
-									</li>
-									<li class="mui-table-view-cell">
-										第6个选项卡子项-9
-									</li>
-									<li class="mui-table-view-cell">
-										第6个选项卡子项-10
-									</li>
-									<li class="mui-table-view-cell">
-										第6个选项卡子项-11
-									</li>
-									<li class="mui-table-view-cell">
-										第6个选项卡子项-12
-									</li>
-									<li class="mui-table-view-cell">
-										第6个选项卡子项-13
-									</li>
-									<li class="mui-table-view-cell">
-										第6个选项卡子项-14
-									</li>
-									<li class="mui-table-view-cell">
-										第6个选项卡子项-15
-									</li>
-									<li class="mui-table-view-cell">
-										第6个选项卡子项-16
-									</li>
-									<li class="mui-table-view-cell">
-										第6个选项卡子项-17
-									</li>
-									<li class="mui-table-view-cell">
-										第6个选项卡子项-18
-									</li>
-									<li class="mui-table-view-cell">
-										第6个选项卡子项-19
-									</li>
-									<li class="mui-table-view-cell">
-										第6个选项卡子项-20
+									<li class="mui-table-view-cell mui-media" v-for="item in items">
+										<div class="mui-table">
+											<div class="mui-row">
+												<div class="mui-table-cell mui-pull-right">
+													<span class="order-rmb">&yen;<span>{{item.price}}</span></span>
+												</div>
+												<div class="mui-table-cell">
+													<img class="mui-media-object mui-pull-left" src="images/default.jpg">
+													<div class="mui-media-body">
+														{{item.uId}}
+														<p class="mui-h6">{{item.dateTime}}</p>
+													</div>
+												</div>
+
+											</div>
+											<div class="mui-row">
+												<div class="mui-table-cell mui-col-xs-10">
+													<h4 class="mui-ellipsis">{{item.title}}</h4>
+												</div>
+											</div>
+											<div class="mui-row">
+												<div class="mui-table-cell mui-col-xs-1 mui-text-left">
+													<p>Form</p>
+												</div>
+												<div class="mui-table-cell mui-col-xs-11">
+													<p class="mui-ellipsis">{{item.oFrom}}</p>
+												</div>
+											</div>
+											<div class="mui-row">
+												<div class="mui-table-cell mui-col-xs-1 mui-text-left">
+													<p>To</p>
+												</div>
+												<div class="mui-table-cell mui-col-xs-11">
+													<p class="mui-ellipsis">{{item.oTo}}</p>
+												</div>
+											</div>
+											<div class="mui-row">
+												<div class="mui-table-cell mui-col-xs-1 mui-text-left">
+													<p>Exp</p>
+												</div>
+												<div class="mui-table-cell mui-col-xs-10">
+													<p class="mui-ellipsis">{{item.deadline}}</p>
+												</div>
+											</div>
+										</div>
 									</li>
 								</ul>
 							</div>
