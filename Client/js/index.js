@@ -1,11 +1,17 @@
-
 (function($) {
 	$.init({
 		swipeBack: false, //关闭右滑关闭功能
 	});
-	var hostUrl = "http://10.103.105.55";
-		var lastId = '',
-			minId = ''; //最新新闻的id 
+	var hostUrl = "http://169.254.136.8/";
+
+	/*
+	 * cate:0,1,2,3,4;类别0为推荐,暂时表示全部.
+	 * lastId:请求lastid到最新,如果没有lastId则表示不是下拉刷新而是正常请求或上拉加载,改为判断size和minid.
+	 * size:正常请求或上拉加载的请求订单条数;
+	 * minId:返回第minid-size条,到第minid条,如果没有minid.则返回size最新的size条订单
+	 */
+	var lastId = '',
+		minId = '';
 	//阻尼系数
 	var deceleration = mui.os.ios ? 0.003 : 0.0009;
 	$('.mui-scroll-wrapper').scroll({
@@ -124,6 +130,45 @@
 		/**
 		 * 根据判断view控件点击位置判断切换的tab
 		 */
+		orders = [
+		new Vue({
+			el: '#list1',
+			data: {
+				items: []
+			}
+		}),
+		new Vue({
+			el: '#list2',
+			data: {
+				items: []
+			}
+		}),
+		new Vue({
+			el: '#list3',
+			data: {
+				items: []
+			}
+		}),
+		new Vue({
+			el: '#list4',
+			data: {
+				items: []
+			}
+		}),
+		new Vue({
+			el: '#list5',
+			data: {
+				items: []
+			}
+		}),
+		new Vue({
+			el: '#list6',
+			data: {
+				items: []
+			}
+		}),
+
+	]
 		nview.addEventListener('click', function(e) {
 			var clientX = e.clientX;
 			if(clientX > 0 && clientX <= parseInt(pageW * 0.25)) {
@@ -154,32 +199,61 @@
 		});
 
 	});
+	
 	$.ready(function() {
 		//循环初始化所有下拉刷新，上拉加载。
 		$.each(document.querySelectorAll('.mui-slider-group .mui-scroll'), function(index, pullRefreshEl) {
 			$(pullRefreshEl).pullToRefresh({
 				down: {
 					callback: function() {
+
+						if(window.plus && plus.networkinfo.getCurrentType() === plus.networkinfo.CONNECTION_NONE) {
+							plus.nativeUI.toast('似乎已断开与互联网的连接', {
+								verticalAlign: 'top'
+							});
+							return;
+						}
+
+						var data = {};
+						if(lastId) { //说明已有数据，目前处于下拉刷新，增加时间戳，触发服务端立即刷新，返回最新数据
+							data.lastId = lastId;
+						}
+
+						$.getJSON(hostUrl + "index.php", data, function(list) {
+							list.C0.forEach(function(item) {
+								var newItems = [];
+								newItems.push({
+									uId: item.uId,
+									title: item.title,
+									price: item.price,
+									oFrom: item.oFrom,
+									oTo: item.oTo,
+									oId: item.oId,
+									deadline: item.deadline,
+									dateTime: item.dateTime,
+								});
+								orders[index].items = newItems.concat(orders[index].items);
+
+							});
+						});
+						
 						var self = this;
-						setTimeout(function() {
-							var ul = self.element.querySelector('.mui-table-view');
-							ul.insertBefore(createFragment(ul, index, 10, true), ul.firstChild);
-							self.endPullDownToRefresh();
-						}, 1000);
+						//							var ul = self.element.querySelector('.mui-table-view');
+						//							ul.insertBefore(createFragment(ul, index, 10, true), ul.firstChild);
+						self.endPullDownToRefresh();
 					}
 				},
 				up: {
 					callback: function() {
 						var self = this;
-						setTimeout(function() {
-							var ul = self.element.querySelector('.mui-table-view');
-							ul.appendChild(createFragment(ul, index, 5));
-							self.endPullUpToRefresh();
-						}, 1000);
+						//							var ul = self.element.querySelector('.mui-table-view');
+						//							ul.appendChild(createFragment(ul, index, 5));
+						self.endPullUpToRefresh();
 					}
 				}
 			});
 		});
+
 		var createFragment = function(ul, index, count, reverse) {
 			var length = ul.querySelectorAll('li').length;
 			var fragment = document.createDocumentFragment();
