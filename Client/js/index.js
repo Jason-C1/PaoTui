@@ -5,13 +5,15 @@
 	var hostUrl = "http://169.254.136.8/";
 
 	/*
-	 * cate:0,1,2,3,4;类别0为推荐,暂时表示全部.
-	 * lastId:请求lastid到最新,如果没有lastId则表示不是下拉刷新而是正常请求或上拉加载,改为判断size和minid.
-	 * size:正常请求或上拉加载的请求订单条数;
-	 * minId:返回第minid-size条,到第minid条,如果没有minid.则返回size最新的size条订单
+	 *请求
+	 * ate:0,1,2,3,4;类别0为推荐,暂时表示全部.
+	 * 下拉刷新要cate size
+	 * 上拉加载要minid cate size
+	 * size:正常请求或下拉加载的请求订单条数;
+	 * minid:返回第minid-size条,到第minid条
 	 */
-	var lastId = '',
-		minId = '';
+	var lastId = [0, 0, 0, 0, 0];
+	var minId = '';
 	//阻尼系数
 	var deceleration = mui.os.ios ? 0.003 : 0.0009;
 	$('.mui-scroll-wrapper').scroll({
@@ -209,36 +211,80 @@
 				});
 				return;
 			}
-			var data = {};
-			if(lastId) { //说明已有数据，目前处于下拉刷新，增加时间戳，触发服务端立即刷新，返回最新数据
-				data.lastId = lastId;
-			}
+			var data = {
+				cate: index,
+				size: 5,
+			};
 			//	var ul = self.element.querySelector('.mui-table-view');
 			//ul.insertBefore(createFragment(ul, index, 10, true), ul.firstChild);
 			$.getJSON(hostUrl + "index.php", data, function(list) {
-				if(self){
+				if(self) {
 					self.endPullDownToRefresh();
 				}
-				var newItems = [];
-				list.C0.forEach(function(item) {
-					newItems.push({
-						uId: item.uId,
-						title: item.title,
-						price: item.price,
-						oFrom: item.oFrom,
-						oTo: item.oTo,
-						oId: item.oId,
-						deadline: item.deadline,
-						dateTime: item.dateTime,
+				if(list && list.length > 0) {
+					if(lastId[index] == list[0].oId) {
+						mui.toast("没有新的订单了哟~")
+					} else {
+						lastId[index] = list[0].oId;
+						if(!minId) { //首次拉取列表时保存最后一条消息的id，方便上拉加载时使用
+							minId = list[list.length - 1].oId;
+						}
+						var newItems = [];
+						list.forEach(function(item) {
+							newItems.push({
+								uId: item.uId,
+								title: item.title,
+								price: item.price,
+								oFrom: item.oFrom,
+								oTo: item.oTo,
+								oId: item.oId,
+								deadline: item.deadline,
+								dateTime: item.dateTime,
+							});
+						});
+						orders[index].items = newItems;
+					}
+				}
+			});
+		};
+
+		var pullUpToRefresh = function(index, self) {
+			var data = {
+				cate: index,
+				size: 5,
+			};
+			if(minId) { //说明已有数据，目前处于上拉加载，传递当前minId 返回历史数据
+				data.minId = minId;
+			}
+
+			$.getJSON(hostUrl + "index.php", data, function(list) {
+				self.endPullUpToRefresh();
+				if(list && list.length > 0) {
+					minId = list[list.length - 1].oId; //保存最后一条消息的id，上拉加载时使用
+					var newItems = [];
+					list.forEach(function(item) {
+						newItems.push({
+							uId: item.uId,
+							title: item.title,
+							price: item.price,
+							oFrom: item.oFrom,
+							oTo: item.oTo,
+							oId: item.oId,
+							deadline: item.deadline,
+							dateTime: item.dateTime,
+						});
 					});
-				});
-				orders[index].items = newItems.concat(orders[index].items);
+					orders[index].items = newItems.concat(orders[index].items);
+				} else {
+					mui.toast("没有更多订单了哟~");
+				}
 
 			});
+
 		};
 		//循环初始化所有下拉刷新，上拉加载。
 		$.each(document.querySelectorAll('.mui-slider-group .mui-scroll'), function(index, pullRefreshEl) {
-			pulldownRefresh(index);//打开页面是自动加载数据
+			pulldownRefresh(index); //打开页面是自动加载数据
 			$(pullRefreshEl).pullToRefresh({
 				down: {
 					callback: function() {
@@ -247,12 +293,13 @@
 					},
 				},
 				up: {
+					contentrefresh: '正在查找更多订单...',
 					callback: function() {
 						var self = this;
-						//							var ul = self.element.querySelector('.mui-table-view');
-						//							ul.appendChild(createFragment(ul, index, 5));
-						self.endPullUpToRefresh();
+						pullUpToRefresh(index, self);
+
 					}
+
 				}
 			});
 		});
