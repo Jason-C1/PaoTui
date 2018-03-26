@@ -34,11 +34,22 @@ body,
 .title-search .mui-icon {
 	font-size: 20px;
 }
-
+.order,
+.order p{
+	font-size: 15px;
+}
 .order-rmb {
 	font-size: 18px;
 	font-weight: normal;
 	color: #e8b008;
+}
+.order-title{
+	line-height: 20px;
+	font-size: 20px;
+	padding:5px 0px;
+}
+.order-label{
+	width: 40px;
 }
 
 .mui-slider-indicator.mui-segmented-control,
