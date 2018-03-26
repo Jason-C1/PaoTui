@@ -374,204 +374,201 @@
 		}
 	},
 	"dependencies": {
-	  "pages": {
-	    "index.html": {
-	      "resources": [
-	        "js/mui.min.js",
-	        "css/mui.min.css",
-	        "order.html",
-	        "fonts/mui.ttf",
-	        "fonts/iconfont.ttf",
-	        "mine.html",
-	        "js/util.js",
-	        "html/tab-webview-subpage-contact.html",
-	        "news.html",
-	        "js/vue.min.js",
-	        "css/common.css",
-	        "css/index.css",
-	        "js/index.js",
-	        "images/default.jpg"
-	      ],
-	      "refer": [
-	        "html/new-webview.html",
-	        "push.html",
-	        "guide.html",
-	        "news.html",
-	        "mine.html",
-	        "order.html"
-	      ],
-	      "priority": 0
-	    },
-	    "launch.html": {
-	      "resources": [
-	        "js/mui.min.js",
-	        "css/mui.min.css",
-	        "html/tab-webview-subpage-about.html"
-	      ],
-	      "refer": [
-	        "html/tab-webview-subpage-setting.html",
-	        "html/tab-webview-subpage-chat.html",
-	        "html/tab-webview-subpage-contact.html"
-	      ],
-	      "priority": 0
-	    },
-	    "html/tab-webview-subpage-setting.html": {
-	      "resources": [
-	        "fonts/mui.ttf",
-	        "css/mui.min.css",
-	        "js/mui.min.js"
-	      ],
-	      "refer": [],
-	      "priority": 0
-	    },
-	    "html/tab-webview-subpage-about.html": {
-	      "resources": [
-	        "css/mui.min.css",
-	        "js/mui.min.js",
-	        "js/util.js"
-	      ],
-	      "refer": [],
-	      "priority": 0
-	    },
-	    "html/tab-webview-subpage-chat.html": {
-	      "resources": [
-	        "fonts/mui.ttf",
-	        "js/mui.min.js",
-	        "css/mui.min.css"
-	      ],
-	      "refer": [],
-	      "priority": 0
-	    },
-	    "html/tab-webview-subpage-contact.html": {
-	      "resources": [
-	        "images/60x60.gif",
-	        "js/mui.min.js",
-	        "css/mui.min.css"
-	      ],
-	      "refer": [],
-	      "priority": 0
-	    },
-	    "html/new-webview.html": {
-	      "resources": [
-	        "css/mui.min.css",
-	        "js/mui.min.js",
-	        "fonts/mui.ttf"
-	      ],
-	      "refer": [],
-	      "priority": 0
-	    },
-	    "news.html": {
-	      "href": "news.html",
-	      "resources": [
-	        "css/mui.min.css",
-	        "fonts/mui.ttf",
-	        "js/mui.min.js"
-	      ],
-	      "priority": 0
-	    },
-	    "mine.html": {
-	      "href": "mine.html",
-	      "resources": [
-	        "js/mui.min.js",
-	        "css/mui.min.css",
-	        "fonts/mui.ttf",
-	        "images/60x60.gif"
-	      ],
-	      "priority": 1
-	    },
-	    "order.html": {
-	      "href": "order.html",
-	      "resources": [
-	        "js/mui.min.js",
-	        "css/mui.min.css",
-	        "fonts/mui.ttf",
-	        "images/60x60.gif"
-	      ],
-	      "priority": 2
-	    },
-	    "push.html": {
-	      "href": "push.html",
-	      "resources": [
-	        "css/mui.min.css",
-	        "fonts/mui.ttf",
-	        "css/style.css",
-	        "js/mui.min.js",
-	        "js/app.js"
-	      ],
-	      "priority": 3
-	    },
-	    "signup.html": {
-	      "href": "signup.html",
-	      "resources": [
-	        "js/mui.min.js",
-	        "js/md5.min.js",
-	        "css/mui.min.css",
-	        "fonts/mui.ttf",
-	        "css/style.css"
-	      ],
-	      "priority": 4
-	    },
-	    "signin.html": {
-	      "href": "signin.html",
-	      "resources": [
-	        "js/mui.min.js",
-	        "js/md5.min.js",
-	        "css/mui.min.css",
-	        "fonts/mui.ttf",
-	        "css/style.css"
-	      ],
-	      "refer": [
-	        "signup.html"
-	      ],
-	      "priority": 4
-	    },
-	    "guide.html": {
-	      "href": "guide.html",
-	      "resources": [
-	        "css/mui.min.css",
-	        "fonts/mui.ttf",
-	        "js/mui.min.js"
-	      ],
-	      "refer": [
-	        "signin.html"
-	      ],
-	      "priority": 4
-	    }
-	  },
-	  "idle": {
-	    "resources": [
-	      "js/mui.imageViewer.js",
-	      "detail.html",
-	      "images/starFull.png",
-	      "js/statusBar.js",
-	      "login.html",
-	      "css/icons-extra.css",
-	      "images/head.jpg",
-	      "fonts/mui-icons-extra.ttf",
-	      "js/vue.js",
-	      "images/logo.png",
-	      "im-chat.html",
-	      "user.html",
-	      "css/mui.imageviewer.css",
-	      "js/mui.js",
-	      "README.md",
-	      "js/websocket.js",
-	      "css/login.css",
-	      "images/unlogin.jpg",
-	      "js/login.js",
-	      "setting.html",
-	      "css/mui.css",
-	      "images/starEmpty.png",
-	      "images/map.png",
-	      "main.html",
-	      "images/ma.png",
-	      "css/app.css",
-	      "track.html",
-	      "chat.html",
-	      "evaluate.html",
-	      "images/touxiang.jpg",
-	      "js/arttmpl.js"
-	    ]
-	  }
+		"pages": {
+			"index.html": {
+				"resources": [
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"order.html",
+					"fonts/mui.ttf",
+					"fonts/iconfont.ttf",
+					"mine.html",
+					"js/util.js",
+					"html/tab-webview-subpage-contact.html",
+					"news.html",
+					"js/vue.min.js",
+					"css/common.css",
+					"css/index.css",
+					"js/index.js",
+					"images/default.jpg"
+				],
+				"refer": [
+					"html/new-webview.html",
+					"push.html",
+					"guide.html",
+					"detail.html"
+				],
+				"priority": 0
+			},
+			"launch.html": {
+				"resources": [
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"html/tab-webview-subpage-about.html"
+				],
+				"refer": [
+					"html/tab-webview-subpage-setting.html",
+					"html/tab-webview-subpage-chat.html",
+					"html/tab-webview-subpage-contact.html"
+				],
+				"priority": 0
+			},
+			"html/tab-webview-subpage-setting.html": {
+				"resources": [
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"js/mui.min.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"html/tab-webview-subpage-about.html": {
+				"resources": [
+					"css/mui.min.css",
+					"js/mui.min.js",
+					"js/util.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"html/tab-webview-subpage-chat.html": {
+				"resources": [
+					"fonts/mui.ttf",
+					"js/mui.min.js",
+					"css/mui.min.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"html/tab-webview-subpage-contact.html": {
+				"resources": [
+					"images/60x60.gif",
+					"js/mui.min.js",
+					"css/mui.min.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"html/new-webview.html": {
+				"resources": [
+					"css/mui.min.css",
+					"js/mui.min.js",
+					"fonts/mui.ttf"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"news.html": {
+				"href": "news.html",
+				"resources": [
+					"css/mui.min.css",
+					"fonts/mui.ttf",
+					"js/mui.min.js"
+				],
+				"priority": 0
+			},
+			"mine.html": {
+				"href": "mine.html",
+				"resources": [
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"fonts/mui.ttf",
+					"images/60x60.gif"
+				],
+				"priority": 1
+			},
+			"order.html": {
+				"href": "order.html",
+				"resources": [
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"fonts/mui.ttf",
+					"images/60x60.gif"
+				],
+				"priority": 2
+			},
+			"push.html": {
+				"href": "push.html",
+				"resources": [
+					"css/mui.min.css",
+					"fonts/mui.ttf",
+					"css/style.css",
+					"js/mui.min.js",
+					"js/app.js"
+				],
+				"priority": 3
+			},
+			"signup.html": {
+				"href": "signup.html",
+				"resources": [
+					"js/mui.min.js",
+					"js/md5.min.js",
+					"css/mui.min.css",
+					"fonts/mui.ttf",
+					"css/style.css"
+				],
+				"priority": 4
+			},
+			"signin.html": {
+				"href": "signin.html",
+				"resources": [
+					"js/mui.min.js",
+					"js/md5.min.js",
+					"css/mui.min.css",
+					"fonts/mui.ttf",
+					"css/style.css"
+				],
+				"refer": [
+					"signup.html"
+				],
+				"priority": 4
+			},
+			"guide.html": {
+				"href": "guide.html",
+				"resources": [
+					"css/mui.min.css",
+					"fonts/mui.ttf",
+					"js/mui.min.js"
+				],
+				"refer": [
+					"signin.html"
+				],
+				"priority": 4
+			}
+		},
+		"idle": {
+			"resources": [
+				"js/mui.imageViewer.js",
+				"images/starFull.png",
+				"js/statusBar.js",
+				"login.html",
+				"css/icons-extra.css",
+				"images/head.jpg",
+				"fonts/mui-icons-extra.ttf",
+				"js/vue.js",
+				"images/logo.png",
+				"im-chat.html",
+				"user.html",
+				"css/mui.imageviewer.css",
+				"js/mui.js",
+				"README.md",
+				"js/websocket.js",
+				"css/login.css",
+				"images/unlogin.jpg",
+				"js/login.js",
+				"setting.html",
+				"css/mui.css",
+				"images/starEmpty.png",
+				"images/map.png",
+				"main.html",
+				"images/ma.png",
+				"css/app.css",
+				"track.html",
+				"chat.html",
+				"evaluate.html",
+				"images/touxiang.jpg",
+				"js/arttmpl.js"
+			]
+		}
 	}
 }
