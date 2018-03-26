@@ -2,16 +2,136 @@
 <html>
 
 	<head>
-		<meta charset="utf-8">
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<title>订单页</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
-		<meta name="apple-mobile-web-app-capable" content="yes">
-		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 		<script src="js/vue.min.js"></script>
-		<script src="js/mui.min.js"></script>
+		<script src="js/mui.js"></script>
 		<link href="css/mui.min.css" rel="stylesheet" />
 		<link rel="stylesheet" type="text/css" href="css/common.css" />
 		<style type="text/css">
+			html,
+			body {
+				background-color: #efeff4;
+			}
+			
+			.mui-bar~.mui-content .mui-fullscreen {
+				top: 44px;
+				height: auto;
+			}
+			
+			.mui-pull-top-tips {
+				position: absolute;
+				top: -20px;
+				left: 50%;
+				margin-left: -25px;
+				width: 40px;
+				height: 40px;
+				border-radius: 100%;
+				z-index: 1;
+			}
+			
+			.mui-bar~.mui-pull-top-tips {
+				top: 24px;
+			}
+			
+			.mui-pull-top-wrapper {
+				width: 42px;
+				height: 42px;
+				display: block;
+				text-align: center;
+				background-color: #efeff4;
+				border: 1px solid #ddd;
+				border-radius: 25px;
+				background-clip: padding-box;
+				box-shadow: 0 4px 10px #bbb;
+				overflow: hidden;
+			}
+			
+			.mui-pull-top-tips.mui-transitioning {
+				-webkit-transition-duration: 200ms;
+				transition-duration: 200ms;
+			}
+			
+			.mui-pull-top-tips .mui-pull-loading {
+				margin: 0;
+			}
+			
+			.mui-pull-top-wrapper .mui-icon,
+			.mui-pull-top-wrapper .mui-spinner {
+				margin-top: 7px;
+			}
+			
+			.mui-pull-top-wrapper .mui-icon.mui-reverse {
+				/*-webkit-transform: rotate(180deg) translateZ(0);*/
+			}
+			
+			.mui-pull-bottom-tips {
+				text-align: center;
+				background-color: #efeff4;
+				font-size: 15px;
+				line-height: 40px;
+				color: #777;
+			}
+			
+			.mui-pull-top-canvas {
+				overflow: hidden;
+				background-color: #fafafa;
+				border-radius: 40px;
+				box-shadow: 0 4px 10px #bbb;
+				width: 40px;
+				height: 40px;
+				margin: 0 auto;
+			}
+			
+			.mui-pull-top-canvas canvas {
+				width: 40px;
+			}
+			
+			.mui-slider-indicator.mui-segmented-control {
+				width: 100%;
+				display: inline-flex;
+			}
+			
+			.mui-slider .mui-slider-group .mui-slider-item>a:not(.mui-control-item) {
+				display: inline;
+			}
+			
+			.nav-line {
+				display: block;
+				position: relative;
+				padding: 5px 10px;
+				text-decoration: none;
+				-webkit-transition: color .5s ease-in-out;
+				transition: color .5s ease-in-out;
+			}
+			
+			.nav-line:before {
+				content: "";
+				position: absolute;
+				bottom: 0;
+				width: 0;
+				left: 0;
+				color: #55e;
+				border-bottom: solid 2px;
+				-webkit-transition: width .5s ease-in-out;
+				transition: width .5s ease-in-out;
+			}
+			
+			.mui-slider .mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active {
+				color: #55e;
+			}
+			
+			.mui-slider .mui-segmented-control.mui-segmented-control-inverted .mui-control-item {
+				padding: 0px;
+				width: 100%;
+			}
+			
+			.nav-line.mui-active:before {
+				color: #55e;
+				width: 100%;
+			}
+			
 			.order-footer {
 				position: relative;
 				line-height: 33px;
@@ -42,347 +162,313 @@
 			<h1 class="mui-title">订单</h1>
 		</header>
 		<div class="mui-content">
-			<div class="mui-slider" data-duration='0'>
-				<div class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
-					<a class="mui-control-item" href="#dditem1">未接单</a>
-					<a class="mui-control-item" href="#dditem2">配送中</a>
-					<a class="mui-control-item" href="#dditem3">失效订单</a>
-					<a class="mui-control-item" href="#dditem4">已完成</a>
-					<a class="mui-control-item" href="#dditem5">全部订单</a>
+			<div id="slider" class="mui-slider mui-fullscreen">
+				<div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+
+					<a class="mui-control-item nav-line mui-active" href="#item1mobile">
+						未接单
+					</a>
+					<a class="mui-control-item nav-line" href="#item2mobile">
+						配送中
+					</a>
+					<a class="mui-control-item nav-line" href="#item3mobile">
+						失效订单
+					</a>
+					<a class="mui-control-item nav-line" href="#item4mobile">
+						已完成
+					</a>
+					<a class="mui-control-item nav-line" href="#item5mobile">
+						全部订单
+					</a>
+
 				</div>
-				<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-25"></div>
 				<div class="mui-slider-group">
-					<div id="dditem1" class="mui-slider-item mui-control-content mui-active">
-						<ul class="mui-table-view">
-							<li class="order mui-table-view-cell mui-media">
-								<div class="mui-table">
-									<div class="mui-row">
-										<div class="mui-table-cell mui-col-xs-10">
-											<img class="mui-media-object mui-pull-left" src="images/default.jpg">
-											<div class="mui-media-body">
-												Maya
-												<p class="mui-h6">00:00:01</p>
+					<div id="item1mobile" class="mui-slider-item mui-control-content mui-active">
+						<div id="scroll1" class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+
+								<ul id="list1" class="mui-table-view">
+									<li class="order mui-table-view-cell mui-media" v-for="item in items">
+
+										<a @tap="open_detail(item)">
+											<div class="mui-table">
+												<div class="mui-row">
+													<div class="mui-table-cell mui-pull-right">
+														<span class="order-rmb">&yen;<span>{{item.price}}</span></span>
+													</div>
+													<div class="mui-table-cell">
+														<img class="mui-media-object mui-pull-left" src="images/default.jpg">
+														<div class="mui-media-body">
+															{{item.userName}}
+															<p class="mui-h6">{{item.dateTime}}</p>
+														</div>
+													</div>
+
+												</div>
+												<div class="mui-row">
+													<div class="mui-table-cell mui-col-xs-10">
+														<h4 class="order-title mui-ellipsis">{{item.title}}</h4>
+													</div>
+												</div>
+												<div class="mui-row">
+													<div class="mui-table-cell order-label mui-pull-left">
+														<p>Form</p>
+													</div>
+													<div class="mui-table-cell">
+														<p class="mui-ellipsis">{{item.oFrom}}</p>
+													</div>
+												</div>
+												<div class="mui-row">
+													<div class="mui-table-cell order-label mui-pull-left">
+														<p>To</p>
+													</div>
+													<div class="mui-table-cell">
+														<p class="mui-ellipsis">{{item.oTo}}</p>
+													</div>
+												</div>
+												<div class="mui-row">
+													<div class="mui-table-cell order-label mui-pull-left">
+														<p>Exp</p>
+													</div>
+													<div class="mui-table-cell mui-col-xs-10">
+														<p class="mui-ellipsis">{{item.deadline}}</p>
+													</div>
+												</div>
 											</div>
-										</div>
-										<div class="mui-table-cell mui-col-xs-2 mui-text-right">
-											<span class="card-rmb">&yen;</span>
-											<span class="card-rmb">10</span>
-										</div>
-									</div>
-									<div class="mui-row">
-										<div class="mui-table-cell">
-											<h4 class="mui-ellipsis">我要一碗垃圾街的鸭血粉丝汤！！！</h4>
-										</div>
-									</div>
-									<div class="mui-row">
-										<div class="mui-table-cell mui-col-xs-1 mui-text-left">
-											<p>Form</p>
-										</div>
-										<div class="mui-table-cell mui-col-xs-11">
-											<p class="mui-ellipsis">杭州滨江垃圾街正数第好几家店</p>
-										</div>
-									</div>
-									<div class="mui-row">
-										<div class="mui-table-cell mui-col-xs-1 mui-text-left">
-											<p>To</p>
-										</div>
-										<div class="mui-table-cell mui-col-xs-11">
-											<p class="mui-ellipsis">杭州滨江XX小区X幢X单元</p>
-										</div>
-									</div>
-									<div class="mui-row">
-										<div class="mui-table-cell mui-col-xs-1 mui-text-left">
-											<p>Exp</p>
-										</div>
-										<div class="mui-table-cell mui-col-xs-10">
-											<p class="mui-ellipsis">2012/12/21 23:59:59</p>
-										</div>
-									</div>
-								</div>
-								<div class="order-footer">
-									状态：等待接单
-									<button type="button" class="mui-btn mui-btn-blue">取消订单</button>
-								</div>
-							</li>
-						</ul>
+											<div class="order-footer">
+												状态：{{item.state}}
+												<button type="button" class="mui-btn mui-btn-blue">取消订单</button>
+											</div>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
 					</div>
-					<div id="dditem2" class="mui-slider-item mui-control-content">
-						<ul class="mui-table-view">
-							<li class="order mui-table-view-cell mui-media">
-								<div class="mui-table">
-									<div class="mui-row">
-										<div class="mui-table-cell mui-col-xs-10">
-											<img class="mui-media-object mui-pull-left" src="images/default.jpg">
-											<div class="mui-media-body">
-												粉丝店老板
-												<p class="mui-h6">00:00:02</p>
+					<div id="item2mobile" class="mui-slider-item mui-control-content">
+						<div class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<ul id="list2" class="mui-table-view">
+									<li class="order mui-table-view-cell mui-media" v-for="item in items">
+										<div class="mui-table">
+											<div class="mui-row">
+												<div class="mui-table-cell mui-pull-right">
+													<span class="order-rmb">&yen;<span>{{item.price}}</span></span>
+												</div>
+												<div class="mui-table-cell">
+													<img class="mui-media-object mui-pull-left" src="images/default.jpg">
+													<div class="mui-media-body">
+														{{item.userName}}
+														<p class="mui-h6">{{item.dateTime}}</p>
+													</div>
+												</div>
+
+											</div>
+											<div class="mui-row">
+												<div class="mui-table-cell mui-col-xs-10">
+													<h4 class="order-title mui-ellipsis">{{item.title}}</h4>
+												</div>
+											</div>
+											<div class="mui-row">
+												<div class="mui-table-cell order-label mui-pull-left">
+													<p>Form</p>
+												</div>
+												<div class="mui-table-cell">
+													<p class="mui-ellipsis">{{item.oFrom}}</p>
+												</div>
+											</div>
+											<div class="mui-row">
+												<div class="mui-table-cell order-label mui-pull-left">
+													<p>To</p>
+												</div>
+												<div class="mui-table-cell">
+													<p class="mui-ellipsis">{{item.oTo}}</p>
+												</div>
+											</div>
+											<div class="mui-row">
+												<div class="mui-table-cell order-label mui-pull-left">
+													<p>Exp</p>
+												</div>
+												<div class="mui-table-cell mui-col-xs-10">
+													<p class="mui-ellipsis">{{item.deadline}}</p>
+												</div>
 											</div>
 										</div>
-										<div class="mui-table-cell mui-col-xs-2 mui-text-right">
-											<span class="card-rmb">&yen;</span>
-											<span class="card-rmb">5000</span>
-										</div>
-									</div>
-									<div class="mui-row">
-										<div class="mui-table-cell">
-											<h4 class="mui-ellipsis">店面转让！！！</h4>
-										</div>
-									</div>
-									<div class="mui-row">
-										<div class="mui-table-cell mui-col-xs-1 mui-text-left">
-											<p>Form</p>
-										</div>
-										<div class="mui-table-cell mui-col-xs-11">
-											<p class="mui-ellipsis">杭州滨江垃圾街正数第好几家店</p>
-										</div>
-									</div>
-									<div class="mui-row">
-										<div class="mui-table-cell mui-col-xs-1 mui-text-left">
-											<p>To</p>
-										</div>
-										<div class="mui-table-cell mui-col-xs-11">
-											<p class="mui-ellipsis">看看你能不能搬得动</p>
-										</div>
-									</div>
-									<div class="mui-row">
-										<div class="mui-table-cell mui-col-xs-1 mui-text-left">
-											<p>Exp</p>
-										</div>
-										<div class="mui-table-cell mui-col-xs-10">
-											<p class="mui-ellipsis">2012/12/21 23:59:59</p>
-										</div>
-									</div>
-								</div>
-								<div class="order-footer">
-									状态：配送中
-									<button type="button" class="mui-btn mui-btn-blue">订单跟踪</button>
-									<button type="button" class="mui-btn mui-btn-blue">申请取消</button>
-								</div>
-							</li>
-						</ul>
-
+									</li>
+								</ul>
+							</div>
+						</div>
 					</div>
-					<div id="dditem3" class="mui-slider-item mui-control-content">
-						<ul class="mui-table-view">
-							<li class="order mui-table-view-cell mui-media">
-								<div class="mui-table">
-									<div class="mui-row">
-										<div class="mui-table-cell mui-pull-right">
-											<span class="order-rmb">&yen;<span>{{item.price}}</span></span>
-										</div>
-										<div class="mui-table-cell">
-											<img class="mui-media-object mui-pull-left" src="images/default.jpg">
-											<div class="mui-media-body">
-												{{item.userName}}
-												<p class="mui-h6">{{item.dateTime}}</p>
+					<div id="item3mobile" class="mui-slider-item mui-control-content">
+						<div class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<ul id="list3" class="mui-table-view">
+									<li class="order mui-table-view-cell mui-media" v-for="item in items">
+										<div class="mui-table">
+											<div class="mui-row">
+												<div class="mui-table-cell mui-pull-right">
+													<span class="order-rmb">&yen;<span>{{item.price}}</span></span>
+												</div>
+												<div class="mui-table-cell">
+													<img class="mui-media-object mui-pull-left" src="images/default.jpg">
+													<div class="mui-media-body">
+														{{item.userName}}
+														<p class="mui-h6">{{item.dateTime}}</p>
+													</div>
+												</div>
+
+											</div>
+											<div class="mui-row">
+												<div class="mui-table-cell mui-col-xs-10">
+													<h4 class="order-title mui-ellipsis">{{item.title}}</h4>
+												</div>
+											</div>
+											<div class="mui-row">
+												<div class="mui-table-cell order-label mui-pull-left">
+													<p>Form</p>
+												</div>
+												<div class="mui-table-cell">
+													<p class="mui-ellipsis">{{item.oFrom}}</p>
+												</div>
+											</div>
+											<div class="mui-row">
+												<div class="mui-table-cell order-label mui-pull-left">
+													<p>To</p>
+												</div>
+												<div class="mui-table-cell">
+													<p class="mui-ellipsis">{{item.oTo}}</p>
+												</div>
+											</div>
+											<div class="mui-row">
+												<div class="mui-table-cell order-label mui-pull-left">
+													<p>Exp</p>
+												</div>
+												<div class="mui-table-cell mui-col-xs-10">
+													<p class="mui-ellipsis">{{item.deadline}}</p>
+												</div>
 											</div>
 										</div>
-
-									</div>
-									<div class="mui-row">
-										<div class="mui-table-cell mui-col-xs-10">
-											<h4 class="order-title mui-ellipsis">{{item.title}}</h4>
-										</div>
-									</div>
-									<div class="mui-row">
-										<div class="mui-table-cell order-label mui-pull-left">
-											<p>Form</p>
-										</div>
-										<div class="mui-table-cell">
-											<p class="mui-ellipsis">{{item.oFrom}}</p>
-										</div>
-									</div>
-									<div class="mui-row">
-										<div class="mui-table-cell order-label mui-pull-left">
-											<p>To</p>
-										</div>
-										<div class="mui-table-cell">
-											<p class="mui-ellipsis">{{item.oTo}}</p>
-										</div>
-									</div>
-									<div class="mui-row">
-										<div class="mui-table-cell order-label mui-pull-left">
-											<p>Exp</p>
-										</div>
-										<div class="mui-table-cell mui-col-xs-10">
-											<p class="mui-ellipsis">{{item.deadline}}</p>
-										</div>
-									</div>
-								</div>
-								<div class="order-footer">
-									<div class="mui-pull-left">状态：无人接单</div>
-
-									<button type="button" class="mui-btn mui-btn-blue">取消订单</button>
-									<button type="button" class="mui-btn mui-btn-blue">重发订单</button>
-								</div>
-							</li>
-						</ul>
+									</li>
+								</ul>
+							</div>
+						</div>
 					</div>
-					<div id="dditem4" class="mui-slider-item mui-control-content">
-						<ul class="mui-table-view">
-							<li class="order mui-table-view-cell mui-media">
-								<div class="mui-table">
-									<div class="mui-row">
-										<div class="mui-table-cell mui-pull-right">
-											<span class="order-rmb">&yen;<span>{{item.price}}</span></span>
-										</div>
-										<div class="mui-table-cell">
-											<img class="mui-media-object mui-pull-left" src="images/default.jpg">
-											<div class="mui-media-body">
-												{{item.userName}}
-												<p class="mui-h6">{{item.dateTime}}</p>
+					<div id="item4mobile" class="mui-slider-item mui-control-content">
+						<div class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<ul id="list4" class="mui-table-view">
+									<li class="order mui-table-view-cell mui-media" v-for="item in items">
+										<div class="mui-table">
+											<div class="mui-row">
+												<div class="mui-table-cell mui-pull-right">
+													<span class="order-rmb">&yen;<span>{{item.price}}</span></span>
+												</div>
+												<div class="mui-table-cell">
+													<img class="mui-media-object mui-pull-left" src="images/default.jpg">
+													<div class="mui-media-body">
+														{{item.userName}}
+														<p class="mui-h6">{{item.dateTime}}</p>
+													</div>
+												</div>
+
+											</div>
+											<div class="mui-row">
+												<div class="mui-table-cell mui-col-xs-10">
+													<h4 class="order-title mui-ellipsis">{{item.title}}</h4>
+												</div>
+											</div>
+											<div class="mui-row">
+												<div class="mui-table-cell order-label mui-pull-left">
+													<p>Form</p>
+												</div>
+												<div class="mui-table-cell">
+													<p class="mui-ellipsis">{{item.oFrom}}</p>
+												</div>
+											</div>
+											<div class="mui-row">
+												<div class="mui-table-cell order-label mui-pull-left">
+													<p>To</p>
+												</div>
+												<div class="mui-table-cell">
+													<p class="mui-ellipsis">{{item.oTo}}</p>
+												</div>
+											</div>
+											<div class="mui-row">
+												<div class="mui-table-cell order-label mui-pull-left">
+													<p>Exp</p>
+												</div>
+												<div class="mui-table-cell mui-col-xs-10">
+													<p class="mui-ellipsis">{{item.deadline}}</p>
+												</div>
 											</div>
 										</div>
-
-									</div>
-									<div class="mui-row">
-										<div class="mui-table-cell mui-col-xs-10">
-											<h4 class="order-title mui-ellipsis">{{item.title}}</h4>
-										</div>
-									</div>
-									<div class="mui-row">
-										<div class="mui-table-cell order-label mui-pull-left">
-											<p>Form</p>
-										</div>
-										<div class="mui-table-cell">
-											<p class="mui-ellipsis">{{item.oFrom}}</p>
-										</div>
-									</div>
-									<div class="mui-row">
-										<div class="mui-table-cell order-label mui-pull-left">
-											<p>To</p>
-										</div>
-										<div class="mui-table-cell">
-											<p class="mui-ellipsis">{{item.oTo}}</p>
-										</div>
-									</div>
-									<div class="mui-row">
-										<div class="mui-table-cell order-label mui-pull-left">
-											<p>Exp</p>
-										</div>
-										<div class="mui-table-cell mui-col-xs-10">
-											<p class="mui-ellipsis">{{item.deadline}}</p>
-										</div>
-									</div>
-								</div>
-								<div class="order-footer">
-									<div class="mui-pull-left">状态：待评价</div>
-									<button type="button" class="mui-btn mui-btn-blue">评价订单</button>
-								</div>
-							</li>
-							<li class="order mui-table-view-cell mui-media">
-								<div class="mui-table">
-									<div class="mui-row">
-										<div class="mui-table-cell mui-pull-right">
-											<span class="order-rmb">&yen;<span>{{item.price}}</span></span>
-										</div>
-										<div class="mui-table-cell">
-											<img class="mui-media-object mui-pull-left" src="images/default.jpg">
-											<div class="mui-media-body">
-												{{item.userName}}
-												<p class="mui-h6">{{item.dateTime}}</p>
-											</div>
-										</div>
-
-									</div>
-									<div class="mui-row">
-										<div class="mui-table-cell mui-col-xs-10">
-											<h4 class="order-title mui-ellipsis">{{item.title}}</h4>
-										</div>
-									</div>
-									<div class="mui-row">
-										<div class="mui-table-cell order-label mui-pull-left">
-											<p>Form</p>
-										</div>
-										<div class="mui-table-cell">
-											<p class="mui-ellipsis">{{item.oFrom}}</p>
-										</div>
-									</div>
-									<div class="mui-row">
-										<div class="mui-table-cell order-label mui-pull-left">
-											<p>To</p>
-										</div>
-										<div class="mui-table-cell">
-											<p class="mui-ellipsis">{{item.oTo}}</p>
-										</div>
-									</div>
-									<div class="mui-row">
-										<div class="mui-table-cell order-label mui-pull-left">
-											<p>Exp</p>
-										</div>
-										<div class="mui-table-cell mui-col-xs-10">
-											<p class="mui-ellipsis">{{item.deadline}}</p>
-										</div>
-									</div>
-								</div>
-								<div class="order-footer">
-									<div class="mui-pull-left">状态：已完成</div>
-								</div>
-							</li>
-						</ul>
+									</li>
+								</ul>
+							</div>
+						</div>
 					</div>
-					<div id="dditem5" class="mui-slider-item mui-control-content">
-						<ul class="mui-table-view">
-							<li class="order mui-table-view-cell mui-media">
-								<div class="mui-table">
-									<div class="mui-row">
-										<div class="mui-table-cell mui-pull-right">
-											<span class="order-rmb">&yen;<span>{{item.price}}</span></span>
-										</div>
-										<div class="mui-table-cell">
-											<img class="mui-media-object mui-pull-left" src="images/default.jpg">
-											<div class="mui-media-body">
-												{{item.userName}}
-												<p class="mui-h6">{{item.dateTime}}</p>
+					<div id="item5mobile" class="mui-slider-item mui-control-content">
+						<div class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<ul id="list5" class="mui-table-view">
+									<li class="order mui-table-view-cell mui-media" v-for="item in items">
+										<div class="mui-table">
+											<div class="mui-row">
+												<div class="mui-table-cell mui-pull-right">
+													<span class="order-rmb">&yen;<span>{{item.price}}</span></span>
+												</div>
+												<div class="mui-table-cell">
+													<img class="mui-media-object mui-pull-left" src="images/default.jpg">
+													<div class="mui-media-body">
+														{{item.userName}}
+														<p class="mui-h6">{{item.dateTime}}</p>
+													</div>
+												</div>
+
+											</div>
+											<div class="mui-row">
+												<div class="mui-table-cell mui-col-xs-10">
+													<h4 class="order-title mui-ellipsis">{{item.title}}</h4>
+												</div>
+											</div>
+											<div class="mui-row">
+												<div class="mui-table-cell order-label mui-pull-left">
+													<p>Form</p>
+												</div>
+												<div class="mui-table-cell">
+													<p class="mui-ellipsis">{{item.oFrom}}</p>
+												</div>
+											</div>
+											<div class="mui-row">
+												<div class="mui-table-cell order-label mui-pull-left">
+													<p>To</p>
+												</div>
+												<div class="mui-table-cell">
+													<p class="mui-ellipsis">{{item.oTo}}</p>
+												</div>
+											</div>
+											<div class="mui-row">
+												<div class="mui-table-cell order-label mui-pull-left">
+													<p>Exp</p>
+												</div>
+												<div class="mui-table-cell mui-col-xs-10">
+													<p class="mui-ellipsis">{{item.deadline}}</p>
+												</div>
 											</div>
 										</div>
-
-									</div>
-									<div class="mui-row">
-										<div class="mui-table-cell mui-col-xs-10">
-											<h4 class="order-title mui-ellipsis">{{item.title}}</h4>
-										</div>
-									</div>
-									<div class="mui-row">
-										<div class="mui-table-cell order-label mui-pull-left">
-											<p>Form</p>
-										</div>
-										<div class="mui-table-cell">
-											<p class="mui-ellipsis">{{item.oFrom}}</p>
-										</div>
-									</div>
-									<div class="mui-row">
-										<div class="mui-table-cell order-label mui-pull-left">
-											<p>To</p>
-										</div>
-										<div class="mui-table-cell">
-											<p class="mui-ellipsis">{{item.oTo}}</p>
-										</div>
-									</div>
-									<div class="mui-row">
-										<div class="mui-table-cell order-label mui-pull-left">
-											<p>Exp</p>
-										</div>
-										<div class="mui-table-cell mui-col-xs-10">
-											<p class="mui-ellipsis">{{item.deadline}}</p>
-										</div>
-									</div>
-								</div>
-								<div class="order-footer">
-									<div class="mui-pull-left">状态：已完成</div>
-								</div>
-							</li>
-						</ul>
+									</li>
+								</ul>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+		<script src="js/util.js"></script>
+		<script src="js/mui.min.js"></script>
+		<script src="js/mui.pullToRefresh.js"></script>
+		<script src="js/mui.pullToRefresh.material.js"></script>
+		<script src="js/order.js" type="text/javascript" charset="utf-8"></script>
 	</body>
-	<script src="js/mui.min.js"></script>
-	<script>
-		mui.init({
-			swipeBack: true //启用右滑关闭功能
-		});
-	</script>
 
 </html>

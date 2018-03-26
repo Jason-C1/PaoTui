@@ -536,7 +536,8 @@
 					"js/mui.min.js"
 				],
 				"refer": [
-					"signin.html"
+					"signin.html",
+					"login.html"
 				],
 				"priority": 4
 			}
