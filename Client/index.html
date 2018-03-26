@@ -221,6 +221,8 @@
 								</div>
 								<ul id="list1" class="mui-table-view">
 									<li class="order mui-table-view-cell mui-media" v-for="item in items">
+										
+										<a @tap="open_detail(item)">
 										<div class="mui-table">
 											<div class="mui-row">
 												<div class="mui-table-cell mui-pull-right">
@@ -265,6 +267,7 @@
 												</div>
 											</div>
 										</div>
+										</a>
 									</li>
 								</ul>
 							</div>
