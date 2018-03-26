@@ -28,7 +28,7 @@
 		</header>
 		<div class="mui-content">
 			<ul class="mui-table-view gap-20">
-				<li class="mui-table-view-cell mui-media head">
+				<li id="openLogin" class="mui-table-view-cell mui-media head">
 					<a class="mui-navigate-right">头像
 						<span class="mui-pull-right">
 							<img class="head-img mui-action-preview pic-6" src="images/default.jpg"/>
@@ -53,41 +53,7 @@
 		<script>
 			(function($, doc) {
 				$.init();
-				//未修改
 				$.plusReady(function() {
-
-					var settings = app.getSettings();
-					var regButton = doc.getElementById('reg');
-					var accountBox = doc.getElementById('account');
-					var passwordBox = doc.getElementById('password');
-					var passwordConfirmBox = doc.getElementById('password_confirm');
-					var emailBox = doc.getElementById('email');
-					regButton.addEventListener('tap', function(event) {
-						var regInfo = {
-							account: accountBox.value,
-							password: passwordBox.value,
-							email: emailBox.value
-						};
-						var passwordConfirm = passwordConfirmBox.value;
-						if(passwordConfirm != regInfo.password) {
-							plus.nativeUI.toast('密码两次输入不一致');
-							return;
-						}
-						app.reg(regInfo, function(err) {
-							if(err) {
-								plus.nativeUI.toast(err);
-								return;
-							}
-							plus.nativeUI.toast('注册成功');
-							$.openWindow({
-								url: 'login.html',
-								id: 'login',
-								show: {
-									aniShow: 'pop-in'
-								}
-							});
-						});
-					});
 				});
 			}(mui, document));
 		</script>

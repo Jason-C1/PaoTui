@@ -6,17 +6,17 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<title></title>
 		<link href="css/mui.min.css" rel="stylesheet" />
-		<style>
-			#head-img1 {
-				position: absolute;
-				bottom: 10px;
-				right: 60px;
-				width: 60px;
-				height: 60px;
-				border-radius: 10%;
-			}
-			#head {
+		<link rel="stylesheet" type="text/css" href="css/common.css" />
+		<style type="text/css">
+			.head {
+				padding: 10 15px;
 				line-height: 60px;
+				height: 100%;
+			}
+			
+			.head span {
+				height: 60px;
+				margin-right: 30px;
 			}
 		</style>
 	</head>
@@ -24,17 +24,19 @@
 	<body>
 		<header class="mui-bar mui-bar-nav">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-			<h1 class="mui-title">信息修改</h1>
+			<h1 class="mui-title">用户</h1>
 		</header>
 		<div class="mui-content">
-			<ul class="mui-table-view" style="margin-top: 25px;">
-				<li class="mui-table-view-cell">
-					<a id="head" class="mui-navigate-right">头像
-						<span class="mui-pull-right head" >
-							<img class="head-img mui-action-preview pic-6" src="https://dummyimage.com/60x60/0e88eb/fff"/>
+			<ul class="mui-table-view gap-20">
+				<li id="openLogin" class="mui-table-view-cell mui-media head">
+					<a class="mui-navigate-right">头像
+						<span class="mui-pull-right">
+							<img class="head-img mui-action-preview pic-6" src="images/default.jpg"/>
 						</span>
 					</a>
 				</li>
+			</ul>
+			<ul class="mui-table-view gap-20">
 				<li class="mui-table-view-cell">
 					<a>姓名<span class="mui-pull-right mui-h5">Hbuilder</span></a>
 				</li>
@@ -44,47 +46,14 @@
 					</a>
 				</li>
 			</ul>
+
 		</div>
 		<script src="js/mui.min.js"></script>
 		<script src="js/app.js"></script>
 		<script>
 			(function($, doc) {
 				$.init();
-				//未修改
 				$.plusReady(function() {
-
-					var settings = app.getSettings();
-					var regButton = doc.getElementById('reg');
-					var accountBox = doc.getElementById('account');
-					var passwordBox = doc.getElementById('password');
-					var passwordConfirmBox = doc.getElementById('password_confirm');
-					var emailBox = doc.getElementById('email');
-					regButton.addEventListener('tap', function(event) {
-						var regInfo = {
-							account: accountBox.value,
-							password: passwordBox.value,
-							email: emailBox.value
-						};
-						var passwordConfirm = passwordConfirmBox.value;
-						if(passwordConfirm != regInfo.password) {
-							plus.nativeUI.toast('密码两次输入不一致');
-							return;
-						}
-						app.reg(regInfo, function(err) {
-							if(err) {
-								plus.nativeUI.toast(err);
-								return;
-							}
-							plus.nativeUI.toast('注册成功');
-							$.openWindow({
-								url: 'login.html',
-								id: 'login',
-								show: {
-									aniShow: 'pop-in'
-								}
-							});
-						});
-					});
 				});
 			}(mui, document));
 		</script>

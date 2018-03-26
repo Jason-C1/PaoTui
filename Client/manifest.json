@@ -475,7 +475,12 @@
 					"fonts/mui.ttf",
 					"images/60x60.gif"
 				],
-				"priority": 1
+				"priority": 1,
+				"refer": [
+					"login.html",
+					"setting.html",
+					"user.html"
+				]
 			},
 			"order.html": {
 				"href": "order.html",
@@ -541,14 +546,12 @@
 				"js/mui.imageViewer.js",
 				"images/starFull.png",
 				"js/statusBar.js",
-				"login.html",
 				"css/icons-extra.css",
 				"images/head.jpg",
 				"fonts/mui-icons-extra.ttf",
 				"js/vue.js",
 				"images/logo.png",
 				"im-chat.html",
-				"user.html",
 				"css/mui.imageviewer.css",
 				"js/mui.js",
 				"README.md",
@@ -556,7 +559,6 @@
 				"css/login.css",
 				"images/unlogin.jpg",
 				"js/login.js",
-				"setting.html",
 				"css/mui.css",
 				"images/starEmpty.png",
 				"images/map.png",

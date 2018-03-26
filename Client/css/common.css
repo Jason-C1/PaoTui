@@ -56,7 +56,12 @@ body,
 .mui-slider-progress-bar {
 	background: white;
 }
-
+.pic-8 {
+	line-height: 80px;
+	max-width: 80px;
+	height: 80px;
+	border-radius: 50%;
+}
 .pic-6 {
 	line-height: 60px;
 	max-width: 60px;

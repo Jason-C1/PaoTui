@@ -99,7 +99,11 @@
 			"css/mui.min.css",
 			"images/60x60.gif"
 		],
-		"refer": [],
+		"refer": [
+			"login.html",
+			"setting.html",
+			"user.html"
+		],
 		"priority": 0
 	},
 	"order.html": {

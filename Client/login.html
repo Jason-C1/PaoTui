@@ -4,51 +4,126 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-		<title></title>
+		<title>signin</title>
+		<script src="js/mui.min.js"></script>
+		<script src="js/md5.min.js"></script>
 		<link href="css/mui.min.css" rel="stylesheet" />
-		<link rel="stylesheet" type="text/css" href="css/login.css" />
+		<link rel="stylesheet" href="css/style.css" />
+		<script type="text/javascript" charset="utf-8">
+			mui.init({
+				swipeBack: true
+			});
+			/*beforeback: function(){
+		        //获得列表界面的webview
+		        var i=plus.webview.getWebviewById("index.html");
+		        if(i){
+		            i.evalJS("getUserInfo()");
+		        }
+		        return true;
+		    }*/
+		</script>
 	</head>
 
 	<body>
 		<header class="mui-bar mui-bar-nav">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-			<h1 class="mui-title">登录</h1>
+			<h1 class="mui-title">登陆</h1>
 		</header>
 		<div class="mui-content">
-			<form id='login-form' class="mui-input-group">
+			<form class="mui-input-group" style="margin-top: 20px;" id="sign_in">
 				<div class="mui-input-row">
-					<label>账号</label>
-					<input id='account' type="text" class="mui-input-clear mui-input" placeholder="请输入账号">
+					<label for="username">用户名</label>
+					<input id="username" type="text" class="mui-input-clear" placeholder="请输入用户名">
 				</div>
 				<div class="mui-input-row">
-					<label>密码</label>
-					<input id='password' type="password" class="mui-input-clear mui-input" placeholder="请输入密码">
+					<label for="passwd">密码</label>
+					<input id="passwd" type="password" class="mui-input-password" placeholder="请输入密码">
 				</div>
 			</form>
-			<form class="mui-input-group">
-				<ul class="mui-table-view mui-table-view-chevron">
-					<li class="mui-table-view-cell">
-						自动登录
-						<div id="autoLogin" class="mui-switch">
-							<div class="mui-switch-handle"></div>
-						</div>
-					</li>
-				</ul>
-			</form>
-			<div class="mui-content-padded">
-				<button id='login' class="mui-btn mui-btn-block mui-btn-primary">登录</button>
+			<div id="bdiv" class="mui-content-padded" style="margin-top: 25px;">
+				<button id="button1" class="mui-btn mui-btn-block mui-btn-primary" style="padding: 10px;">登陆</button>
 				<div class="link-area">
 					<a id='reg'>注册账号</a> <span class="spliter">|</span>
 					<a id='forgetPassword'>忘记密码</a>
 				</div>
 			</div>
-			<div class="mui-content-padded oauth-area">
-			
-			</div>
 		</div>
-		<script src="js/mui.js"></script>
-		<script src="js/app.js"></script>
-		<script src="js/login.js"></script>
+		<script>
+			mui.plusReady(function() {
+				var clk = document.getElementById('reg');
+				clk.addEventListener('tap', function(event) {
+					mui.openWindow({
+						url: 'login.html',
+						id: 'reg',
+						show: {
+							aniShow: "slide-in-right",
+							duration: 300,
+							autoShow: true
+						},
+						waiting: {
+							autoShow: false
+						}
+					});
+				});
+				mui("#bdiv").on("tap", "#button1", function() {
+					var user_name = document.getElementById("username").value;
+					var passwd = document.getElementById("passwd").value;
+					if(user_name.length == 0) {
+						mui.toast("用户名未输入");
+					} else {
+						if(passwd.length == 0) {
+							mui.toast("密码未输入");
+						} else {
+							passwd = md5(passwd);
+							var mask = mui.createMask();
+							mui.ajax("http://172.19.44.20/login.php", {
+								data: {
+									user_name: user_name,
+									passwd: passwd
+								},
+								dataType: "html",
+								type: "post",
+								timeout: 10000,
+								beforeSend: function() {
+									plus.nativeUI.showWaiting("正在登陆");
+									mask.show();
+								},
+								complete: function() {
+									plus.nativeUI.closeWaiting();
+									mask.close();
+								},
+								success: function(data) {
+									var err;
+									if(data == "error") {
+										err = "登陆失败，请检查用户名与密码";
+										mui.toast(err);
+										document.getElementById("passwd").value = "";
+									} else if(data == "update_error") {
+										mui.toast("登陆失败，请稍后再试");
+									} else {
+										var storage = window.localStorage;
+										storage.username = user_name;
+										storage.passwd = passwd;
+
+										
+										mui.toast("登陆成功");
+										plus.webview.close("guide");
+										plus.webview.currentWebview().close();
+										/*var signin=plus.webview.currentWebview();
+							            var index=signin.opener(); 
+							            index.evalJS("addlis3()");*/
+
+									}
+								},
+								error: function(xhr, type, errorThrown) {
+									mui.toast("登陆失败，请稍后再试");
+								}
+							});
+						}
+					}
+				});
+			});
+		</script>
 	</body>
 
 </html>
