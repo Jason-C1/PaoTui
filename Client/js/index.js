@@ -1,23 +1,23 @@
 (function($) {
 	//预加载详情页
-
-	open_detail = function(item) {
-		console.log(JSON.stringify(item));
-		mui.fire(webview_detail, 'get_detail', item);
-		console.log(webview_detail);
-		setTimeout(function() {
-			webview_detail.show("slide-in-right", 300);
-		}, 150);
-	}
 	$.init({
 		swipeBack: true, //关闭右滑关闭功能
-		
 	});
 	var hostUrl = "http://169.254.136.8/";
 	var ordertpl = {
 		template: orderComponent,
 		props: ['item'],
 	};
+	open_detail = function(data) {
+		var webview = mui.openWindow({
+			url: 'detail.html',
+			id: 'detail',
+			extras: {
+				orderData: data, //扩展参数
+			}
+		});
+	}
+
 	/*
 	 *请求
 	 * ate:0,1,2,3,4;类别0为推荐,暂时表示全部.
@@ -26,7 +26,8 @@
 	 * size:正常请求或下拉加载的请求订单条数;
 	 * minid:返回第minid-size条,到第minid条
 	 */
-	var lastId = [0, 0, 0, 0, 0],minId = [0, 0, 0, 0, 0];
+	var lastId = [0, 0, 0, 0, 0],
+		minId = [0, 0, 0, 0, 0];
 	//阻尼系数
 	var deceleration = mui.os.ios ? 0.003 : 0.0009;
 	$('.mui-scroll-wrapper').scroll({
@@ -41,29 +42,18 @@
 		 * 若存在，说明不是首次启动，直接进入首页；
 		 * 若不存在，说明是首次启动，进入引导页；
 		 */
-//		var launchFlag = localStorage.getItem("launchFlag");
-//		if(!launchFlag) {
-//			mui.openWindow({
-//				url: "guide.html",
-//				id: "guide",
-//				show: {
-//					aniShow: "none",
-//					duration: 0,
-//					autoShow: true
-//				}
-//			});
-//		};
-		webview_detail = mui.preload({
-			url: 'detail.html',
-			id: 'news_detail',
-			styles: {
-				"render": "always",
-				"popGesture": "hide",
-				"bounce": "vertical",
-				"bounceBackground": "#efeff4",
-			}
-		});
-
+		//		var launchFlag = localStorage.getItem("launchFlag");
+		//		if(!launchFlag) {
+		//			mui.openWindow({
+		//				url: "guide.html",
+		//				id: "guide",
+		//				show: {
+		//					aniShow: "none",
+		//					duration: 0,
+		//					autoShow: true
+		//				}
+		//			});
+		//		};
 		var self = plus.webview.currentWebview(),
 			leftPos = Math.ceil((window.innerWidth - 60) / 2); // 设置凸起大图标为水平居中
 		/**
@@ -139,14 +129,10 @@
 		}]);
 		// append 到父webview中
 		self.append(drawNativeIcon);
-
 		//自定义监听图标点击事件
 		var active_color = '#fff';
 		drawNativeIcon.addEventListener('click', function(e) {
-			//open(url: URIString, id: WebviewIdString, 
-			//styles: plus.webview.WebviewStyles, aniShow: DOMString, 
-			//duration: Number, showedCB: Function): plus.webview.WebviewObject
-			plus.webview.open('push.html', 'push', {}, 'slide-in-bottom', 200);
+			plus.webview.open('push.html', 'push', {}, 'slide-in-bottom', 300);
 		});
 		// 中间凸起图标绘制及监听点击完毕
 

@@ -5,8 +5,10 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<title></title>
+		<script src="js/vue.min.js" type="text/javascript" charset="utf-8"></script>
 		<link href="css/mui.min.css" rel="stylesheet" />
 		<link href="css/style.css" rel="stylesheet" />
+
 		<style>
 			.area {
 				margin: 20px auto 0px auto;
@@ -15,33 +17,27 @@
 			.mui-input-group:first-child {
 				margin-top: 20px;
 			}
-			
-			.mui-input-group label {
-				width: 22%;
-			}
-			
-			.mui-input-row label~input,
-			.mui-input-row label~select,
-			.mui-input-row label~textarea {
-				width: 78%;
-			}
-			
 			.mui-checkbox input[type=checkbox],
 			.mui-radio input[type=radio] {
 				top: 6px;
 			}
 			
 			.mui-content-padded {
-				margin-top: 25px;
+				margin-top: 10px;
 			}
-			
+			.mui-scroll-wrapper {
+				top: 50px
+			}
 			.mui-btn {
 				padding: 10px;
 			}
-			/*.table-border {
-			    margin: 10px;
-			    border: 1px solid rgba(200,200,200,0.6);
-			}*/
+			.cell-title{
+				width: 80px;
+				display: inline-block;
+			}
+			.cell-content{
+				display: inline-block;
+			}
 		</style>
 	</head>
 
@@ -50,182 +46,103 @@
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 			<h1 class="mui-title">订单详情</h1>
 		</header>
-		<div class="mui-content">
+		<div class="mui-scroll-wrapper">
+			<div class="mui-scroll">
+				<div id="order" class="mui-content">
+					<ul class="mui-table-view">
+						<li class="mui-table-view-cell">
+							<button type="button" class="mui-btn mui-pull-right mui-btn-blue mui-btn-outlined mui-icon mui-icon-chatbubble-filled">发起聊天</button>
+							<img class="mui-media-object mui-pull-left" src="images/default.jpg">
+							<div class="mui-media-body">
+								{{item.userName}}
+								<p class="mui-h6">{{item.dateTime}}</p>
+							</div>
+						</li>
+						<li class="mui-table-view-cell">
+							<div class="mui-table-cell mui-pull-right">
+								<span class="order-rmb">&yen;<span>{{item.price}}</span></span>
+							</div>
+							<div class="mui-table-cell mui-col-xs-10">
+								<h4 class="order-title mui-ellipsis">{{item.title}}</h4>
+							</div>
+							<p>{{item.content}}
+							</p>
+							<img src="https://dummyimage.com/80x80/0e88eb/fff" />
+							<img src="https://dummyimage.com/80x80/880eeb/fff" />
+							<img src="https://dummyimage.com/80x80/88eb0e/fff" />
+						</li>
+						<li class="mui-table-view-cell">
+							<div class="cell-title">类型</div>
+							<div class="cell-content">{{item.cate}}</div>
+						</li>
+						<li class="mui-table-view-cell">
+							<div class="cell-title">取货地</div>
+							<div class="cell-content">{{item.oFrom}}</div>
+						</li>
+						<li class="mui-table-view-cell">
+							<div class="cell-title">目的地</div>
+							<div class="cell-content">{{item.oTo}}</div>
+						</li>
+						<li class="mui-table-view-cell">
+							<div class="cell-title">跑腿费</div>
+							<div class="cell-content"><span class="card-rmb">&yen;{{item.price}}</span>
+							</div>
+						</li>
+						<li class="mui-table-view-cell">
+							<div class="cell-title">购货费</div>
+							<div class="cell-content"><span class="card-rmb">&yen;{{item.money}}</span>
+							</div>
+						</li>
+						<li class="mui-table-view-cell">
+							<div class="cell-title">总价</div>
+							<div class="cell-content"><span class="card-rmb">&yen;{{item.price+item.money}}</span>
+							</div>
+						</li>
+						<li class="mui-table-view-cell">
+							<div class="cell-title">联系人</div>
+							<div class="cell-content">{{item.userName}}</div>
+						</li>
+						<li class="mui-table-view-cell">
+							<div class="cell-title">联系电话</div>
+							<div class="cell-content">{{item.phone}}</div>
+						</li>
+						<li class="mui-table-view-cell">
+							<div class="cell-title">截止时间</div>
+							<div class="cell-content">{{item.deadline}}</div>
+						</li>
+						<li class="mui-table-view-cell">
+							<div class="cell-title">状态</div>
+							<div class="cell-content">{{item.stateName}}</div>
+						</li>
+					</ul>
+				<div class="mui-content-padded">
+					<button id='reg' class="mui-btn mui-btn-block mui-btn-primary">接受订单</button>
+				</div>
 
-			<!--<ul class="mui-table-view mui-table-view-chevron">
-				<li class="mui-table-view-cell mui-media">
-					<div href="#account">
-						<img class="mui-media-object mui-pull-left" src="http://placehold.it/40x30">
-						<div class="mui-media-body">
-							Maya
-							<p class="mui-h6">00:00:01</p>
-						</div>
-					</div>
-					<button type="button" class="mui-btn mui-pull-left mui-btn-blue mui-icon mui-icon-phone">联系发布者</button>
-				</li>
-			</ul>-->
-			<!--<ul class="mui-table-view table-border">
-				<li class="mui-table-view-cell">
-					<div class="mui-table">
-						<div class="mui-table-cell">
-							<h4 class="mui-ellipsis">店面转让！！！</h4>
-						</div>
-						<div class="mui-table-cell mui-pull-right">
-							<span class="card-rmb">&yen;</span>
-							<span class="card-rmb">5000</span>
-						</div>
-					</div>
-				</li>
-				<li class="mui-table-view-cell">
-					<div class="mui-table">
-						<div class="mui-table-cell">
-							<h4 class="mui-ellipsis">店面转让！！！</h4>
-						</div>
-						<div class="mui-table-cell mui-pull-right">
-							<span class="card-rmb">&yen;</span>
-							<span class="card-rmb">5000</span>
-						</div>
-					</div>
-				</li>
-			</ul>-->
-			<div class="mui-card">
-				<div class="mui-table-view-cell mui-card-header mui-card-media">
-					<img src="images/logo.png" />
-					<div class="mui-media-body">
-						小M
-						<p>发表于 2016-06-30 15:30</p>
-					</div>
-					<button type="button" class="mui-btn mui-pull-left mui-btn-blue mui-btn-outlined mui-icon mui-icon-chatbubble-filled">发起聊天</button>
-					<!--<img class="mui-pull-left" src="../images/logo.png" width="34px" height="34px" />
-					<h2>小M</h2>
-					<p>发表于 2016-06-30 15:30</p>-->
-				</div>
-				<div class="mui-card-content-inner">
-					<div class="mui-table">
-						<div class="mui-table-cell">
-							<h4 class="mui-ellipsis">店面转让！！！</h4>
-						</div>
-						<div class="mui-table-cell mui-pull-right">
-							<span class="card-rmb">&yen;</span>
-							<span class="card-rmb">5000</span>
-						</div>
-					</div>
-					<h5>那个买鸭血粉丝的天天来，烦得不行，只好转了。<br>
-					绝佳位置，先到先得。
-					</h5>
-					<img src="https://dummyimage.com/80x80/0e88eb/fff" />
-					<img src="https://dummyimage.com/80x80/880eeb/fff" />
-					<img src="https://dummyimage.com/80x80/88eb0e/fff" />
-				</div>
-				<div class="mui-card-footer">
-					<div class="mui-card-title">类型</div>
-					<div class="mui-card-text">店面转让</div>
-				</div>	
-				<div class="mui-card-footer">
-					<div class="mui-card-title">取货地</div>
-					<div class="mui-card-text">我忘了是什么了</div>
-				</div>	
-				<div class="mui-card-footer">
-					<div class="mui-card-title">目的地</div>
-					<div class="mui-card-text">我也忘了</div>
-				</div>
-				<div class="mui-card-footer">
-					<div class="mui-card-title">跑腿费</div>
-					<div class="mui-card-text"><span class="card-rmb">&yen;</span>
-					<span class="card-rmb">5</span></div>
-				</div>
-				<div class="mui-card-footer">
-					<div class="mui-card-title">购货费</div>
-					<div class="mui-card-text"><span class="card-rmb">&yen;</span>
-					<span class="card-rmb">5000</span></div>
-				</div>
-				<div class="mui-card-footer">
-					<div class="mui-card-title">联系人</div>
-					<div class="mui-card-text">陈老板</div>
-				</div>
-				<div class="mui-card-footer">
-					<div class="mui-card-title">联系电话</div>
-					<div class="mui-card-text">114-13123456789</div>
-				</div>
-				<div class="mui-card-footer">
-					<a class="mui-card-link">Like</a>
-					<a class="mui-card-link">Comment</a>
-					<a class="mui-card-link">Read more</a>
-				</div>
 			</div>
-
-			<div class="mui-content-padded">
-				<button id='reg' class="mui-btn mui-btn-block mui-btn-primary">接受订单</button>
-			</div>
-
 		</div>
-
+		</div>
 		<script src="js/mui.min.js"></script>
 		<script src="js/app.js"></script>
 		<script>
-			mui.init();
-
-			function getDefaultData() {
-				return {
-					cover: '',
-					title: '',
-					author: '',
-					time: '',
-					content: ''
+			var order = new Vue({
+				el: "#order",
+				data: {
+					item: {},
 				}
-			}
-
-//			var vm = new Vue({
-//				el: '.mui-content',
-//				data: getDefaultData(),
-//				methods: {
-//					resetData: function() {//重置数据
-//						Object.assign(this.$data, getDefaultData());
-//					}
-//				}
-//			});
-
-			//监听自定义事件，获取新闻详情
-			document.addEventListener('get_detail', function(event) {
-				console.log(event);
-//				var guid = event.detail.guid;
-//				if(!guid) {
-//					return;
-//				}
-//				
-//				//前页传入的数据，直接渲染，无需等待ajax请求详情后
-//				vm.cover = event.detail.cover;
-//				vm.title = event.detail.title;
-//				vm.author = event.detail.author;
-//				vm.time = event.detail.time;
-//				//向服务端请求文章详情内容
-//				mui.ajax('http://spider.dcloud.net.cn/api/news/36kr/' + guid, {
-//					type:'GET',
-//					dataType: 'json', //服务器返回json格式数据
-//					timeout: 15000, //15秒超时
-//					success: function(rsp) {
-//						vm.content = rsp.content;
-//					},
-//					error: function(xhr, type, errorThrown) {
-//						mui.toast('获取文章内容失败');
-//						//TODO 此处可以向服务端告警
-//					}
-//				});
 			});
-//
-//			//重写返回逻辑
-//			mui.back = function() {
-//				plus.webview.currentWebview().hide("auto", 300);
-//			}
-//			
-//			//窗口隐藏时，重置页面数据
-//			mui.plusReady(function () {
-//				var self = plus.webview.currentWebview();
-//				self.addEventListener("hide",function (e) {
-//					window.scrollTo(0, 0);
-//					vm.resetData();
-//				},false);
-//			})
+			mui.init({
+				swipeBack: true, //关闭右滑关闭功能
+			});
+			mui.plusReady(function() {
+				var self = plus.webview.currentWebview();
+				var orderData = self.orderData;
+				order.item = orderData;
+			});
+			mui('.mui-scroll-wrapper').scroll({
+				bounce: true,
+				indicators: true, //是否显示滚动条
+			});
 		</script>
 	</body>
 

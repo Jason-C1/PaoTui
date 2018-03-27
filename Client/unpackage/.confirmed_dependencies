@@ -113,7 +113,9 @@
 			"css/mui.min.css",
 			"images/60x60.gif"
 		],
-		"refer": [],
+		"refer": [
+			"detail.html"
+		],
 		"priority": 0
 	},
 	"push.html": {
