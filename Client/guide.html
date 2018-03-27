@@ -261,32 +261,28 @@
 		</div>
 		<script src="js/mui.min.js"></script>
 		<script>
-			mui.back = function() {};
-			function addlis1(){
-				var guide=plus.webview.currentWebview();
-				var index=guide.opener();
-				index.evalJS("addlis1()");
-			}
 			mui.plusReady(function() {
 				if(mui.os.ios) {
 					plus.navigator.setFullscreen(true);
 				}
 				plus.navigator.closeSplashscreen();
+				//立即体验按钮点击事件
+				document.getElementById("close").addEventListener('tap', function(event) {
+					localStorage.setItem("launchFlag", "true");
+					plus.navigator.setFullscreen(false);
+					var token = localStorage.getItem("token");
+					console.log(token);
+					if(token) {
+						plus.webview.currentWebview().close();
+					} else {
+						mui.openWindow({
+							url: "login.html",
+							id: "login"
+						});
+					}
+				}, false);
 			});
-			//立即体验按钮点击事件
-			document.getElementById("close").addEventListener('tap', function(event) {
-				plus.storage.setItem("launchFlag", "true");
-				plus.navigator.setFullscreen(false);
-				var token = plus.storage.getItem("token");
-				if(token) {
-					//plus.webview.currentWebview().close();
-				} else {
-					mui.openWindow({
-						url: "login.html",
-						id: "login"
-					});
-				}
-			}, false);
+
 			//图片切换时，触发动画
 			document.querySelector('.mui-slider').addEventListener('slide', function(event) {
 				//注意slideNumber是从0开始的；

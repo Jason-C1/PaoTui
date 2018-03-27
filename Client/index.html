@@ -97,7 +97,7 @@
 				width: 100%;
 				display: inline-flex;
 			}
-						
+			
 			.mui-slider .mui-slider-group .mui-slider-item>a:not(.mui-control-item) {
 				display: inline;
 			}
@@ -110,7 +110,7 @@
 				-webkit-transition: color .5s ease-in-out;
 				transition: color .5s ease-in-out;
 			}
-	
+			
 			.nav-line:before {
 				content: "";
 				position: absolute;
@@ -126,14 +126,19 @@
 			.mui-slider .mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active {
 				color: #55e;
 			}
-			.mui-slider .mui-segmented-control.mui-segmented-control-inverted .mui-control-item{
+			
+			.mui-slider .mui-segmented-control.mui-segmented-control-inverted .mui-control-item {
 				padding: 0px;
 				width: 100%;
 			}
+			
 			.nav-line.mui-active:before {
 				color: #55e;
 				width: 100%;
-								
+			}
+			
+			.mui-bar-nav~.mui-content .mui-slider.mui-fullscreen {
+				bottom: 40px;
 			}
 		</style>
 	</head>
@@ -150,23 +155,23 @@
 		<div class="mui-content">
 			<div id="slider" class="mui-slider mui-fullscreen">
 				<div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
-	
-						<a class="mui-control-item nav-line mui-active" href="#item1mobile">
-							推荐
-						</a>
-						<a class="mui-control-item nav-line" href="#item2mobile">
-							校园帮帮
-						</a>
-						<a class="mui-control-item nav-line" href="#item3mobile">
-							同城快送
-						</a>
-						<a class="mui-control-item nav-line" href="#item4mobile">
-							生鲜蔬果
-						</a>
-						<a class="mui-control-item nav-line" href="#item5mobile">
-							其他服务
-						</a>
-				
+
+					<a class="mui-control-item nav-line mui-active" href="#item1mobile">
+						推荐
+					</a>
+					<a class="mui-control-item nav-line" href="#item2mobile">
+						校园帮帮
+					</a>
+					<a class="mui-control-item nav-line" href="#item3mobile">
+						同城快送
+					</a>
+					<a class="mui-control-item nav-line" href="#item4mobile">
+						生鲜蔬果
+					</a>
+					<a class="mui-control-item nav-line" href="#item5mobile">
+						其他服务
+					</a>
+
 				</div>
 				<div class="mui-slider-group">
 					<div id="item1mobile" class="mui-slider-item mui-control-content mui-active">
@@ -220,55 +225,7 @@
 									</div>
 								</div>
 								<ul id="list1" class="mui-table-view">
-									<li class="order mui-table-view-cell mui-media" v-for="item in items">
-										
-										<a @tap="open_detail(item)">
-										<div class="mui-table">
-											<div class="mui-row">
-												<div class="mui-table-cell mui-pull-right">
-													<span class="order-rmb">&yen;<span>{{item.price}}</span></span>
-												</div>
-												<div class="mui-table-cell">
-													<img class="mui-media-object mui-pull-left" src="images/default.jpg">
-													<div class="mui-media-body">
-														{{item.userName}}
-														<p class="mui-h6">{{item.dateTime}}</p>
-													</div>
-												</div>
-
-											</div>
-											<div class="mui-row">
-												<div class="mui-table-cell mui-col-xs-10">
-													<h4 class="order-title mui-ellipsis">{{item.title}}</h4>
-												</div>
-											</div>
-											<div class="mui-row">
-												<div class="mui-table-cell order-label mui-pull-left">
-													<p>Form</p>
-												</div>
-												<div class="mui-table-cell">
-													<p class="mui-ellipsis">{{item.oFrom}}</p>
-												</div>
-											</div>
-											<div class="mui-row">
-												<div class="mui-table-cell order-label mui-pull-left">
-													<p>To</p>
-												</div>
-												<div class="mui-table-cell">
-													<p class="mui-ellipsis">{{item.oTo}}</p>
-												</div>
-											</div>
-											<div class="mui-row">
-												<div class="mui-table-cell order-label mui-pull-left">
-													<p>Exp</p>
-												</div>
-												<div class="mui-table-cell mui-col-xs-10">
-													<p class="mui-ellipsis">{{item.deadline}}</p>
-												</div>
-											</div>
-										</div>
-										</a>
-									</li>
+									<order v-for="item in items" :item="item"></order>
 								</ul>
 							</div>
 						</div>
@@ -277,52 +234,7 @@
 						<div class="mui-scroll-wrapper">
 							<div class="mui-scroll">
 								<ul id="list2" class="mui-table-view">
-									<li class="order mui-table-view-cell mui-media" v-for="item in items">
-										<div class="mui-table">
-											<div class="mui-row">
-												<div class="mui-table-cell mui-pull-right">
-													<span class="order-rmb">&yen;<span>{{item.price}}</span></span>
-												</div>
-												<div class="mui-table-cell">
-													<img class="mui-media-object mui-pull-left" src="images/default.jpg">
-													<div class="mui-media-body">
-														{{item.userName}}
-														<p class="mui-h6">{{item.dateTime}}</p>
-													</div>
-												</div>
-
-											</div>
-											<div class="mui-row">
-												<div class="mui-table-cell mui-col-xs-10">
-													<h4 class="order-title mui-ellipsis">{{item.title}}</h4>
-												</div>
-											</div>
-											<div class="mui-row">
-												<div class="mui-table-cell order-label mui-pull-left">
-													<p>Form</p>
-												</div>
-												<div class="mui-table-cell">
-													<p class="mui-ellipsis">{{item.oFrom}}</p>
-												</div>
-											</div>
-											<div class="mui-row">
-												<div class="mui-table-cell order-label mui-pull-left">
-													<p>To</p>
-												</div>
-												<div class="mui-table-cell">
-													<p class="mui-ellipsis">{{item.oTo}}</p>
-												</div>
-											</div>
-											<div class="mui-row">
-												<div class="mui-table-cell order-label mui-pull-left">
-													<p>Exp</p>
-												</div>
-												<div class="mui-table-cell mui-col-xs-10">
-													<p class="mui-ellipsis">{{item.deadline}}</p>
-												</div>
-											</div>
-										</div>
-									</li>
+									<order v-for="item in items" :item="item"></order>
 								</ul>
 							</div>
 						</div>
@@ -331,52 +243,7 @@
 						<div class="mui-scroll-wrapper">
 							<div class="mui-scroll">
 								<ul id="list3" class="mui-table-view">
-									<li class="order mui-table-view-cell mui-media" v-for="item in items">
-										<div class="mui-table">
-											<div class="mui-row">
-												<div class="mui-table-cell mui-pull-right">
-													<span class="order-rmb">&yen;<span>{{item.price}}</span></span>
-												</div>
-												<div class="mui-table-cell">
-													<img class="mui-media-object mui-pull-left" src="images/default.jpg">
-													<div class="mui-media-body">
-														{{item.userName}}
-														<p class="mui-h6">{{item.dateTime}}</p>
-													</div>
-												</div>
-
-											</div>
-											<div class="mui-row">
-												<div class="mui-table-cell mui-col-xs-10">
-													<h4 class="order-title mui-ellipsis">{{item.title}}</h4>
-												</div>
-											</div>
-											<div class="mui-row">
-												<div class="mui-table-cell order-label mui-pull-left">
-													<p>Form</p>
-												</div>
-												<div class="mui-table-cell">
-													<p class="mui-ellipsis">{{item.oFrom}}</p>
-												</div>
-											</div>
-											<div class="mui-row">
-												<div class="mui-table-cell order-label mui-pull-left">
-													<p>To</p>
-												</div>
-												<div class="mui-table-cell">
-													<p class="mui-ellipsis">{{item.oTo}}</p>
-												</div>
-											</div>
-											<div class="mui-row">
-												<div class="mui-table-cell order-label mui-pull-left">
-													<p>Exp</p>
-												</div>
-												<div class="mui-table-cell mui-col-xs-10">
-													<p class="mui-ellipsis">{{item.deadline}}</p>
-												</div>
-											</div>
-										</div>
-									</li>
+									<order v-for="item in items" :item="item"></order>
 								</ul>
 							</div>
 						</div>
@@ -385,52 +252,7 @@
 						<div class="mui-scroll-wrapper">
 							<div class="mui-scroll">
 								<ul id="list4" class="mui-table-view">
-									<li class="order mui-table-view-cell mui-media" v-for="item in items">
-										<div class="mui-table">
-											<div class="mui-row">
-												<div class="mui-table-cell mui-pull-right">
-													<span class="order-rmb">&yen;<span>{{item.price}}</span></span>
-												</div>
-												<div class="mui-table-cell">
-													<img class="mui-media-object mui-pull-left" src="images/default.jpg">
-													<div class="mui-media-body">
-														{{item.userName}}
-														<p class="mui-h6">{{item.dateTime}}</p>
-													</div>
-												</div>
-
-											</div>
-											<div class="mui-row">
-												<div class="mui-table-cell mui-col-xs-10">
-													<h4 class="order-title mui-ellipsis">{{item.title}}</h4>
-												</div>
-											</div>
-											<div class="mui-row">
-												<div class="mui-table-cell order-label mui-pull-left">
-													<p>Form</p>
-												</div>
-												<div class="mui-table-cell">
-													<p class="mui-ellipsis">{{item.oFrom}}</p>
-												</div>
-											</div>
-											<div class="mui-row">
-												<div class="mui-table-cell order-label mui-pull-left">
-													<p>To</p>
-												</div>
-												<div class="mui-table-cell">
-													<p class="mui-ellipsis">{{item.oTo}}</p>
-												</div>
-											</div>
-											<div class="mui-row">
-												<div class="mui-table-cell order-label mui-pull-left">
-													<p>Exp</p>
-												</div>
-												<div class="mui-table-cell mui-col-xs-10">
-													<p class="mui-ellipsis">{{item.deadline}}</p>
-												</div>
-											</div>
-										</div>
-									</li>
+									<order v-for="item in items" :item="item"></order>
 								</ul>
 							</div>
 						</div>
@@ -439,52 +261,7 @@
 						<div class="mui-scroll-wrapper">
 							<div class="mui-scroll">
 								<ul id="list5" class="mui-table-view">
-									<li class="order mui-table-view-cell mui-media" v-for="item in items">
-										<div class="mui-table">
-											<div class="mui-row">
-												<div class="mui-table-cell mui-pull-right">
-													<span class="order-rmb">&yen;<span>{{item.price}}</span></span>
-												</div>
-												<div class="mui-table-cell">
-													<img class="mui-media-object mui-pull-left" src="images/default.jpg">
-													<div class="mui-media-body">
-														{{item.userName}}
-														<p class="mui-h6">{{item.dateTime}}</p>
-													</div>
-												</div>
-
-											</div>
-											<div class="mui-row">
-												<div class="mui-table-cell mui-col-xs-10">
-													<h4 class="order-title mui-ellipsis">{{item.title}}</h4>
-												</div>
-											</div>
-											<div class="mui-row">
-												<div class="mui-table-cell order-label mui-pull-left">
-													<p>Form</p>
-												</div>
-												<div class="mui-table-cell">
-													<p class="mui-ellipsis">{{item.oFrom}}</p>
-												</div>
-											</div>
-											<div class="mui-row">
-												<div class="mui-table-cell order-label mui-pull-left">
-													<p>To</p>
-												</div>
-												<div class="mui-table-cell">
-													<p class="mui-ellipsis">{{item.oTo}}</p>
-												</div>
-											</div>
-											<div class="mui-row">
-												<div class="mui-table-cell order-label mui-pull-left">
-													<p>Exp</p>
-												</div>
-												<div class="mui-table-cell mui-col-xs-10">
-													<p class="mui-ellipsis">{{item.deadline}}</p>
-												</div>
-											</div>
-										</div>
-									</li>
+									<order v-for="item in items" :item="item"></order>
 								</ul>
 							</div>
 						</div>
@@ -492,6 +269,58 @@
 				</div>
 			</div>
 		</div>
+
+		<template id="orderComponent">
+			<li class="order mui-table-view-cell mui-media">
+				<a @tap="open_detail(item)">
+					<div class="mui-table">
+						<div class="mui-row">
+							<div class="mui-table-cell mui-pull-right">
+								<span class="order-rmb">&yen;<span>{{item.price}}</span></span>
+							</div>
+							<div class="mui-table-cell">
+								<img class="mui-media-object mui-pull-left" src="images/default.jpg">
+								<div class="mui-media-body">
+									{{item.userName}}
+									<p class="mui-h6">{{item.dateTime}}</p>
+								</div>
+							</div>
+
+						</div>
+						<div class="mui-row">
+							<div class="mui-table-cell mui-col-xs-10">
+								<h4 class="order-title mui-ellipsis">{{item.title}}</h4>
+							</div>
+						</div>
+						<div class="mui-row">
+							<div class="mui-table-cell order-label mui-pull-left">
+								<p>Form</p>
+							</div>
+							<div class="mui-table-cell">
+								<p class="mui-ellipsis">{{item.oFrom}}</p>
+							</div>
+						</div>
+						<div class="mui-row">
+							<div class="mui-table-cell order-label mui-pull-left">
+								<p>To</p>
+							</div>
+							<div class="mui-table-cell">
+								<p class="mui-ellipsis">{{item.oTo}}</p>
+							</div>
+						</div>
+						<div class="mui-row">
+							<div class="mui-table-cell order-label mui-pull-left">
+								<p>Exp</p>
+							</div>
+							<div class="mui-table-cell mui-col-xs-10">
+								<p class="mui-ellipsis">{{item.deadline}}</p>
+							</div>
+						</div>
+					</div>
+				</a>
+			</li>
+		</template>
+
 		<script src="js/util.js"></script>
 		<script src="js/mui.min.js"></script>
 		<script src="js/mui.pullToRefresh.js"></script>

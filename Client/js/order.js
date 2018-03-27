@@ -1,20 +1,22 @@
 (function($) {
 	//预加载详情页
-	
 
 	open_detail = function(item) {
 		console.log(JSON.stringify(item));
 		mui.fire(webview_detail, 'get_detail', item);
 		console.log(webview_detail);
-				setTimeout(function() {
-					webview_detail.show("slide-in-right", 300);
-				}, 150);
+		setTimeout(function() {
+			webview_detail.show("slide-in-right", 300);
+		}, 150);
 	}
 	$.init({
 		swipeBack: true, //关闭右滑关闭功能
 	});
-	var hostUrl = "http://172.19.44.20/";
-
+	var hostUrl = "http://169.254.136.8/";
+	var ordertpl = {
+		template: orderComponent,
+		props: ['item'],
+	};
 	/*
 	 *请求
 	 * ate:0,1,2,3,4;类别0为推荐,暂时表示全部.
@@ -52,36 +54,54 @@
 				el: '#list1',
 				data: {
 					items: []
+				},
+				components: {
+					'order': ordertpl,
 				}
 			}),
 			new Vue({
 				el: '#list2',
 				data: {
 					items: []
+				},
+				components: {
+					'order': ordertpl,
 				}
 			}),
 			new Vue({
 				el: '#list3',
 				data: {
 					items: []
+				},
+				components: {
+					'order': ordertpl,
 				}
 			}),
 			new Vue({
 				el: '#list4',
 				data: {
 					items: []
+				},
+				components: {
+					'order': ordertpl,
 				}
 			}),
 			new Vue({
 				el: '#list5',
 				data: {
 					items: []
+				},
+				components: {
+					'order': ordertpl,
 				}
 			}),
 			new Vue({
 				el: '#list6',
 				data: {
 					items: []
+				},
+				components: {
+					'order': ordertpl,
 				}
 			}),
 		];
@@ -99,6 +119,7 @@
 					oId: item.oId,
 					deadline: item.deadline,
 					dateTime: dateUtils.format(item.dateTime),
+					state:item.state
 				});
 			});
 			return newItems;
@@ -112,8 +133,8 @@
 			}
 			var data = {
 				state: index,
-				token: null,
-				id:1,
+				token: "yantao",
+				id: 1,
 			};
 			//	var ul = self.element.querySelector('.mui-table-view');
 			//ul.insertBefore(createFragment(ul, index, 10, true), ul.firstChild);
@@ -130,29 +151,6 @@
 					}
 				}
 			});
-		};
-
-		var pullUpToRefresh = function(index, self) {
-			var data = {
-				cate: index,
-				size: 5,
-
-			};
-			if(minId[index] != 0) { //说明已有数据，目前处于上拉加载，传递当前minId 返回历史数据
-				data.minId = minId[index];
-			}
-			$.getJSON(hostUrl + "myForm.php", data, function(list) {
-				self.endPullUpToRefresh(!list || list.length <= 0);
-				if(list && list.length > 0) {
-					minId[index] = list[list.length - 1].oId; //保存最后一条消息的id，上拉加载时使用
-					var newItems = [];
-					orders[index].items = orders[index].items.concat(convert(list));
-				} else {
-					mui.toast("没有更多订单了哟~");
-				}
-
-			});
-
 		};
 		/**
 		 * 格式化时间的辅助类，将一个时间转换成x小时前、y天前等
@@ -203,16 +201,6 @@
 						var self = this;
 						pulldownRefresh(index, self);
 					},
-				},
-				up: {
-					contentrefresh: '正在查找更多订单...',
-					contentdown: '暂时没有更多订单了呢~',
-					contentnomore: '没有更多订单了',
-					callback: function() {
-						var self = this;
-						pullUpToRefresh(index, self);
-					}
-
 				}
 			});
 		});

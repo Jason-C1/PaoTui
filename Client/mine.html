@@ -151,8 +151,7 @@
 				plus.nativeUI.confirm("是否重置首次打开app？", function(event) {
 					var confirm = event.index;
 					if(confirm == 0) {
-						plus.storage.removeItem("launchFlag");
-
+						localStorage.clear();
 						plus.nativeUI.toast("重置成功，2秒后重启app。", {
 							verticalAlign: "center"
 						});

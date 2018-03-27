@@ -13,14 +13,6 @@
 			mui.init({
 				swipeBack: true
 			});
-			/*beforeback: function(){
-		        //获得列表界面的webview
-		        var i=plus.webview.getWebviewById("index.html");
-		        if(i){
-		            i.evalJS("getUserInfo()");
-		        }
-		        return true;
-		    }*/
 		</script>
 	</head>
 
@@ -104,14 +96,9 @@
 										var storage = window.localStorage;
 										storage.username = user_name;
 										storage.passwd = passwd;
-
-										
 										mui.toast("登陆成功");
 										plus.webview.close("guide");
 										plus.webview.currentWebview().close();
-										/*var signin=plus.webview.currentWebview();
-							            var index=signin.opener(); 
-							            index.evalJS("addlis3()");*/
 
 									}
 								},

@@ -1,20 +1,23 @@
 (function($) {
 	//预加载详情页
-	
 
 	open_detail = function(item) {
 		console.log(JSON.stringify(item));
 		mui.fire(webview_detail, 'get_detail', item);
 		console.log(webview_detail);
-				setTimeout(function() {
-					webview_detail.show("slide-in-right", 300);
-				}, 150);
+		setTimeout(function() {
+			webview_detail.show("slide-in-right", 300);
+		}, 150);
 	}
 	$.init({
 		swipeBack: true, //关闭右滑关闭功能
+		
 	});
-	var hostUrl = "http://172.19.44.20/";
-
+	var hostUrl = "http://169.254.136.8/";
+	var ordertpl = {
+		template: orderComponent,
+		props: ['item'],
+	};
 	/*
 	 *请求
 	 * ate:0,1,2,3,4;类别0为推荐,暂时表示全部.
@@ -23,8 +26,7 @@
 	 * size:正常请求或下拉加载的请求订单条数;
 	 * minid:返回第minid-size条,到第minid条
 	 */
-	var lastId = [0, 0, 0, 0, 0];
-	var minId = [0, 0, 0, 0, 0];
+	var lastId = [0, 0, 0, 0, 0],minId = [0, 0, 0, 0, 0];
 	//阻尼系数
 	var deceleration = mui.os.ios ? 0.003 : 0.0009;
 	$('.mui-scroll-wrapper').scroll({
@@ -34,6 +36,23 @@
 	});
 
 	mui.plusReady(function() {
+		/**
+		 * 获取本地存储中launchFlag的值
+		 * 若存在，说明不是首次启动，直接进入首页；
+		 * 若不存在，说明是首次启动，进入引导页；
+		 */
+//		var launchFlag = localStorage.getItem("launchFlag");
+//		if(!launchFlag) {
+//			mui.openWindow({
+//				url: "guide.html",
+//				id: "guide",
+//				show: {
+//					aniShow: "none",
+//					duration: 0,
+//					autoShow: true
+//				}
+//			});
+//		};
 		webview_detail = mui.preload({
 			url: 'detail.html',
 			id: 'news_detail',
@@ -44,16 +63,7 @@
 				"bounceBackground": "#efeff4",
 			}
 		});
-		/**
-		 * 获取本地存储中launchFlag的值
-		 * http://www.html5plus.org/doc/zh_cn/storage.html#plus.storage.getItem
-		 * 若存在，说明不是首次启动，直接进入首页；
-		 * 若不存在，说明是首次启动，进入引导页；
-		 */
-		var launchFlag = plus.storage.getItem("launchFlag");
-		if(!launchFlag) {
-			plus.webview.open('guide.html', 'guide', {}, 'fade-in', 0);
-		}
+
 		var self = plus.webview.currentWebview(),
 			leftPos = Math.ceil((window.innerWidth - 60) / 2); // 设置凸起大图标为水平居中
 		/**
@@ -192,36 +202,54 @@
 				el: '#list1',
 				data: {
 					items: []
+				},
+				components: {
+					'order': ordertpl,
 				}
 			}),
 			new Vue({
 				el: '#list2',
 				data: {
 					items: []
+				},
+				components: {
+					'order': ordertpl,
 				}
 			}),
 			new Vue({
 				el: '#list3',
 				data: {
 					items: []
+				},
+				components: {
+					'order': ordertpl,
 				}
 			}),
 			new Vue({
 				el: '#list4',
 				data: {
 					items: []
+				},
+				components: {
+					'order': ordertpl,
 				}
 			}),
 			new Vue({
 				el: '#list5',
 				data: {
 					items: []
+				},
+				components: {
+					'order': ordertpl,
 				}
 			}),
 			new Vue({
 				el: '#list6',
 				data: {
 					items: []
+				},
+				components: {
+					'order': ordertpl,
 				}
 			}),
 		];
