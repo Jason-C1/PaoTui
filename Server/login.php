@@ -26,21 +26,26 @@ header('Access-Control-Allow-Headers:Origin, No-Cache, X-Requested-With, If-Modi
 require_once 'mysql.fnc.php';
 error_reporting(0);
 session_start();
-$userName=$_GET['userName'];
-$password=$_GET['password'];
-$token = md5($userName.time().rand());
-$_SESSION['token']=$token;
-$mysqli = connect();
-$sql = "select uId from user where userName = '".$userName."' and password = '".$password."'";
-$userInfo = getData($mysqli,$sql);
-$userInfo['token']=$token;
-$_SESSION['userInfo']=$userInfo;
-if($userInfo==null)
-{
-	  $message['message'] = "账号密码错误";
-echo json_encode($message);
+$userName=$_POST['userName'];
+$password=$_POST['password'];
+if($userName==null||$userName==""){
+    $response['message']="用户名不能为空";
+}else if($password==null||$password==""){
+    $response['message']="密码不能为空";
+}else {
+    $token = md5($userName . time() . rand());
+    $_SESSION['token'] = $token;
+    $mysqli = connect();
+    $sql = "select * from user where userName = '" . $userName . "' and password = '" . $password . "'";
+    $info = getData($mysqli, $sql);
+    $info['token'] = $token;
+    $_SESSION['info'] = $info;
+    if ($info == null) {
+        $response['message'] = "账号密码错误";
 
+    } else {
+        $response['info'] = $info;
+        $response['message'] = "登陆成功";
+    }
 }
-else{
-    echo json_encode($userInfo) ;
-}
+echo json_encode($response);

@@ -25,71 +25,78 @@
 			},
 		}
 	});
-		var data ={
-			userName:"zhang",
-			password:"123456"
-		}
-		
-		var login = function() {
-			$.ajax(hostUrl+"login.php", {
-				data: data,
-				dataType: 'json',
-				type: 'get',
-				contentType: "application/x-www-form-urlencoded; charset=utf-8",
-				timeout: 60000,
-				success: function(data) {
-					if(data.message) {
-						// 如果密码错误，提示一下信息  
-						$.alert("用户名或密码错误", "登录错误", "关闭");
-					} else {
-						$.rm(JSON.stringify(data), "成功", "关闭");
-					}
-				},
-				error: function(xhr, type, errorThrown) {
-//					wd.close();
-					$.alert("<网络连接失败，请重新尝试一下>", "错误", "OK", null);
-				}
-			});
-		}
-		document.getElementById("submin").addEventListener("tap", function(e) {
-			login();
-		});
+
+	
 	$.plusReady(function() {
-//		var data ={
-//			userName:"zhang",
-//			password:"123456"
-//		}
-//		
-//		var login = function() {
-//			var wd = plus.nativeUI.showWaiting();
-//			$.ajax(hostUrl+"login.php", {
-//				data: data,
-//				dataType: 'json',
-//				type: 'post',
-//				contentType: "application/x-www-form-urlencoded; charset=utf-8",
-//				timeout: 60000,
-//				success: function(data) {
-//					wd.close(); // 调用成功，先关闭等待的对话框  
-//					if(data.result == "checkOK") {
-//						// 如果密码错误，提示一下信息  
-//						$.alert("用户名或密码错误", "登录错误", "关闭");
-//						return;
-//					} else {
-//						$.alert(JSON.stringify(data), "成功", "关闭");
-//					}
-//
-//					plus.webview.close("guide");
-//					plus.webview.currentWebview().close();
-//				},
-//				error: function(xhr, type, errorThrown) {
-//					wd.close();
-//					$.alert("<网络连接失败，请重新尝试一下>", "错误", "OK", null);
-//				}
-//			});
-//		}
-//		document.getElementById("submin").addEventListener("tap", function(e) {
-//			login();
-//		});
+		var login = function(data) {
+			var wd = plus.nativeUI.showWaiting();
+		$.ajax(hostUrl + "login.php", {
+			data: data,
+			dataType: 'json',
+			type: 'get',
+			contentType: "application/x-www-form-urlencoded; charset=utf-8",
+			timeout: 60000,
+			success: function(data) {
+				if(data.message) {
+					// 如果密码错误，提示一下信息  
+					wd.close();
+					$.alert("用户名或密码错误", "登录错误", "关闭");
+				} else {
+					wd.close();
+					$.alert(JSON.stringify(data), "成功", "关闭");
+					plus.webview.getWebviewById("index").reload();
+					plus.webview.close("guide");
+					plus.webview.currentWebview().close();
+				}
+			},
+			error: function(xhr, type, errorThrown) {
+				wd.close();
+				$.alert("<网络连接失败，请重新尝试一下>", "错误", "OK", null);
+			}
+		});
+	}
+	document.getElementById("submin").addEventListener("tap", function(e) {
+		var data = {
+			userName: vue.username,
+			password: vue.password
+		};
+		login(data);
+	});
+		//		var data ={
+		//			userName:"zhang",
+		//			password:"123456"
+		//		}
+		//		
+		//		var login = function() {
+		//			var wd = plus.nativeUI.showWaiting();
+		//			$.ajax(hostUrl+"login.php", {
+		//				data: data,
+		//				dataType: 'json',
+		//				type: 'post',
+		//				contentType: "application/x-www-form-urlencoded; charset=utf-8",
+		//				timeout: 60000,
+		//				success: function(data) {
+		//					wd.close(); // 调用成功，先关闭等待的对话框  
+		//					if(data.result == "checkOK") {
+		//						// 如果密码错误，提示一下信息  
+		//						$.alert("用户名或密码错误", "登录错误", "关闭");
+		//						return;
+		//					} else {
+		//						$.alert(JSON.stringify(data), "成功", "关闭");
+		//					}
+		//
+		//					plus.webview.close("guide");
+		//					plus.webview.currentWebview().close();
+		//				},
+		//				error: function(xhr, type, errorThrown) {
+		//					wd.close();
+		//					$.alert("<网络连接失败，请重新尝试一下>", "错误", "OK", null);
+		//				}
+		//			});
+		//		}
+		//		document.getElementById("submin").addEventListener("tap", function(e) {
+		//			login();
+		//		});
 
 	});
 })(mui);

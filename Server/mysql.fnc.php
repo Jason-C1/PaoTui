@@ -15,7 +15,7 @@
     return $data;
 }
 function connect(){
-    $mysqli = new mysqli('localhost','root','');
+    $mysqli = new mysqli('localhost','root','root');
     $mysqli->select_db('paotui');
     if($mysqli->connect_errno){
         die('CONNECT ERROR:'.$mysqli->connect_error);

@@ -2,6 +2,7 @@
 	//预加载详情页
 	$.init({
 		swipeBack: true, //关闭右滑关闭功能
+		id:"index",
 	});
 	var ordertpl = {
 		template: orderComponent,
@@ -180,75 +181,73 @@
 		});
 
 	});
-
+	var orders = [
+		new Vue({
+			el: '#list1',
+			data: {
+				items: [{
+					uId: NaN,
+					userName: "加载中..",
+					title: "加载中..",
+					price: NaN,
+					oFrom: "加载中..",
+					oTo: "加载中..",
+					oId: NaN,
+					deadline: NaN,
+					dateTime: NaN,
+				}, ]
+			},
+			components: {
+				'order': ordertpl,
+			}
+		}),
+		new Vue({
+			el: '#list2',
+			data: {
+				items: []
+			},
+			components: {
+				'order': ordertpl,
+			}
+		}),
+		new Vue({
+			el: '#list3',
+			data: {
+				items: []
+			},
+			components: {
+				'order': ordertpl,
+			}
+		}),
+		new Vue({
+			el: '#list4',
+			data: {
+				items: []
+			},
+			components: {
+				'order': ordertpl,
+			}
+		}),
+		new Vue({
+			el: '#list5',
+			data: {
+				items: []
+			},
+			components: {
+				'order': ordertpl,
+			}
+		}),
+		new Vue({
+			el: '#list6',
+			data: {
+				items: []
+			},
+			components: {
+				'order': ordertpl,
+			}
+		}),
+	];
 	$.ready(function() {
-		var orders = [
-			new Vue({
-				el: '#list1',
-				data: {
-					items: [{
-						uId: NaN,
-						userName: "加载中..",
-						title: "加载中..",
-						price: NaN,
-						oFrom: "加载中..",
-						oTo: "加载中..",
-						oId: NaN,
-						deadline: NaN,
-						dateTime: NaN,
-					},
-					]
-				},
-				components: {
-					'order': ordertpl,
-				}
-			}),
-			new Vue({
-				el: '#list2',
-				data: {
-					items: []
-				},
-				components: {
-					'order': ordertpl,
-				}
-			}),
-			new Vue({
-				el: '#list3',
-				data: {
-					items: []
-				},
-				components: {
-					'order': ordertpl,
-				}
-			}),
-			new Vue({
-				el: '#list4',
-				data: {
-					items: []
-				},
-				components: {
-					'order': ordertpl,
-				}
-			}),
-			new Vue({
-				el: '#list5',
-				data: {
-					items: []
-				},
-				components: {
-					'order': ordertpl,
-				}
-			}),
-			new Vue({
-				el: '#list6',
-				data: {
-					items: []
-				},
-				components: {
-					'order': ordertpl,
-				}
-			}),
-		];
 
 		function convert(items) {
 			var newItems = [];
