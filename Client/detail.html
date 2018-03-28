@@ -128,7 +128,17 @@
 			var order = new Vue({
 				el: "#order",
 				data: {
-					item: {},
+					item: {
+						uId: NaN,
+						userName: "加载中..",
+						title: "加载中..",
+						price: NaN,
+						oFrom: "加载中..",
+						oTo: "加载中..",
+						oId: NaN,
+						deadline: NaN,
+						dateTime: NaN,
+					},
 				}
 			});
 			mui.init({

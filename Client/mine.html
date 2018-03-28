@@ -103,7 +103,7 @@
 			</ul>
 			<ul class="mui-table-view gap-20">
 				<li class="mui-table-view-cell">
-					<a style="text-align: center;color: #FF3B30;">
+					<a id="logout" style="text-align: center;color: #FF3B30;">
 						退出登录
 					</a>
 				</li>
@@ -120,10 +120,24 @@
 	<script type="text/javascript">
 		(function($, doc) {
 			$.init();
-			$.plusReady(function() {});
-			localStorage.setItem("token", "55555");
-			localStorage.setItem("userName", "杨涛");
-			localStorage.setItem("uId", "123");
+			$.plusReady(function() {
+				
+			document.getElementById("logout").addEventListener("tap", function() {
+				plus.nativeUI.confirm("是否退出登录？", function(event) {
+					var confirm = event.index;
+					if(confirm == 0) {
+						localStorage.clear();
+						plus.nativeUI.toast("退出成功", {
+							verticalAlign: "center"
+						});
+						
+					}
+				}, "退出登录", ["退出", "放弃"]);
+			});
+			});
+//			localStorage.setItem("token", "55555");
+//			localStorage.setItem("userName", "杨涛");
+//			localStorage.setItem("uId", "123");
 			var token = localStorage.getItem("token");
 			var userName = localStorage.getItem("userName");
 			var addOpenWindow = function(btn, site) {
@@ -162,7 +176,7 @@
 				}, "重置启动", ["重置", "放弃"]);
 			});
 
-			
+
 		}(mui, document));
 	</script>
 

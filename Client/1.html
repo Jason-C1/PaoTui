@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <script type="text/javascript" src="js/mui.min.js"></script>
+
+</head>
+<body>
+   <button id="btn" onclick="test()">发送一个AJAX请求</button>
+<div id="box">
+   
+</div>
+</body>
+<script type="text/javascript">
+        var url="http://169.254.136.8/reg.php";
+        mui.ajax(url, {
+            data: {
+              phone: '152666101',
+              userName : 'zhaww',
+              password :  '123456',
+                check  :  '123456',
+                idCard :  '1256789012356'
+            },
+            dataType: 'json',
+            type: 'GET',
+            contentType: "application/x-www-form-urlencoded; charset=utf-8",
+            timeout:60000,
+            success: function (e) {
+             	console.log(e);
+            },
+            error:function (e) {
+             	console.log(e);
+            },
+
+        });
+
+</script>
+</html>

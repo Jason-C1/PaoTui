@@ -3,7 +3,6 @@
 	$.init({
 		swipeBack: true, //关闭右滑关闭功能
 	});
-	var hostUrl = "http://169.254.136.8/";
 	var ordertpl = {
 		template: orderComponent,
 		props: ['item'],
@@ -187,7 +186,18 @@
 			new Vue({
 				el: '#list1',
 				data: {
-					items: []
+					items: [{
+						uId: NaN,
+						userName: "加载中..",
+						title: "加载中..",
+						price: NaN,
+						oFrom: "加载中..",
+						oTo: "加载中..",
+						oId: NaN,
+						deadline: NaN,
+						dateTime: NaN,
+					},
+					]
 				},
 				components: {
 					'order': ordertpl,

@@ -1,0 +1,82 @@
+.form{
+	top: 50px;
+}
+
+.mui-btn {
+	padding: 10px;
+}
+
+.input-error {
+	position: absolute;
+	bottom: -20px;
+	right: 0px;
+	font-size: 90%;
+	color: #e20;
+}
+
+.mui-content {
+	background: url(../images/bg.png) no-repeat;
+	-moz-background-size: 100% 100%;
+	background-size: 100% 100%;
+}
+
+.mui-input-group {
+	background: transparent;
+}
+
+.mui-input-group:before,
+.mui-input-group:after {
+	display: none;
+}
+.input-wrap{
+	margin: 20px 30px;
+}
+.input-control {
+	color: white;
+}
+.input-wrap input {
+	font-size: 18px;
+	padding: 20px 0px;
+	background: none;
+	border: none;
+	text-align: center;
+	border-bottom: 1px solid #fff;
+	text-decoration: none;
+}
+.input-wrap input:focus{
+	border-color: rgb(34, 153, 221);
+	outline: 0;
+	box-shadow: inset 0 2px 2px rgba(0,0,0,.075), 0 0 10px rgb(34, 153, 221);
+}
+
+.btn {
+	background: #fff;
+	width: 100%;
+	border-radius: 30px;
+	color: #2a90df;
+	border: none;
+	font-size: 18px;
+	margin-top: 20px;
+}
+
+:-moz-placeholder {
+	/* Mozilla Firefox 4 to 18 */
+	color: #eee;
+	opacity: 1;
+}
+
+::-moz-placeholder {
+	/* Mozilla Firefox 19+ */
+	color: #eee;
+	opacity: 1;
+}
+
+input:-ms-input-placeholder {
+	color: #eee;
+	opacity: 1;
+}
+
+input::-webkit-input-placeholder {
+	color: #eee;
+	opacity: 1;
+}

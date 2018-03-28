@@ -12,7 +12,6 @@
 	$.init({
 		swipeBack: true, //关闭右滑关闭功能
 	});
-	var hostUrl = "http://169.254.136.8/";
 	var ordertpl = {
 		template: orderComponent,
 		props: ['item'],

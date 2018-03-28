@@ -11,15 +11,11 @@
 
     $result=mysqli_query($mysqli,$sql);
     $data = mysqli_fetch_all($result,MYSQLI_ASSOC);
-    if (!$data) {
-        echo mysqli_error($mysqli);
-        exit();
-    }
 
     return $data;
 }
 function connect(){
-    $mysqli = new mysqli('localhost','root','root');
+    $mysqli = new mysqli('localhost','root','');
     $mysqli->select_db('paotui');
     if($mysqli->connect_errno){
         die('CONNECT ERROR:'.$mysqli->connect_error);
