@@ -1,45 +1,45 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-	<title>signin</title>
-	<script src="js/vue.min.js"></script>
-	<script src="js/mui.min.js"></script>
-	<script src="js/md5.min.js"></script>
-	<script src="js/config.js" type="text/javascript" charset="utf-8"></script>
-	<link href="css/mui.min.css" rel="stylesheet" />
-	<link rel="stylesheet" type="text/css" href="css/common.css">
-	<link rel="stylesheet" href="css/style.css" />
-	<link rel="stylesheet" type="text/css" href="css/reg.css">
-</head>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>signin</title>
+		
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="css/common.css">
+		<link rel="stylesheet" href="css/style.css" />
+		<link rel="stylesheet" href="css/reg.css">
+	</head>
 
-<body>
-	<header class="mui-bar mui-bar-nav">
-		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-		<h1 class="mui-title">登陆</h1>
-	</header>
-	<div class="mui-content">
-		<div class="form">
-			<form id="login" class="mui-input-group" v-on:submit.prevent >
-				<div class="input-wrap">
-					<input type="text" name="username" class="mui-input-clear input-control" v-model="username" placeholder="请输入用户名">
-					<div class="input-error" v-show="usernameError">用户名长度为2~16个字符</div>
-				</div>
-				<div class="input-wrap">
-					<input type="password" name="password" class="mui-input-clear input-control" v-model="password" placeholder="请输入密码">
-					<div class="input-error" v-show="passwordError">密码为6~16个字母或数字的组合</div>
-				</div>
-				<div class="input-wrap">
-				<button id="submin" class="btn" type="submit">登陆</button>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">登陆</h1>
+		</header>
+		<div class="mui-content">
+			<div class="form">
+				<form id="login" class="mui-input-group" v-on:submit.prevent>
+					<div class="input-wrap">
+						<input type="text" name="username" class="mui-input-clear input-control" v-model="username" placeholder="请输入用户名">
+						<div class="input-error" v-show="usernameError">用户名长度为2~16个字符</div>
+					</div>
+					<div class="input-wrap">
+						<input type="password" name="password" class="mui-input-clear input-control" v-model="password" placeholder="请输入密码">
+						<div class="input-error" v-show="passwordError">密码为6~16个字母或数字的组合</div>
+					</div>
+					<div class="input-wrap">
+						<button id="submin" class="btn" type="submit">登陆</button>
+					</div>
+				</form>
 			</div>
-			</form>
-			
 		</div>
-	</div>
-	<script src="js/validator.js"></script>
-	<script src="js/login.js"></script>
-</body>
+		<script src="js/mui.js"></script>
+		<script src="js/md5.min.js"></script>
+		<script src="js/config.js"></script>
+		<script src="js/vue.js"></script>
+		<script src="js/validator.js"></script>
+		<script src="js/login.js"></script>
+	</body>
 
 </html>

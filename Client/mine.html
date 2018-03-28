@@ -121,29 +121,29 @@
 		(function($, doc) {
 			$.init();
 			$.plusReady(function() {
-				
-			document.getElementById("logout").addEventListener("tap", function() {
-				plus.nativeUI.confirm("是否退出登录？", function(event) {
-					var confirm = event.index;
-					if(confirm == 0) {
-						localStorage.clear();
-						plus.nativeUI.toast("退出成功", {
-							verticalAlign: "center"
-						});
-						
-					}
-				}, "退出登录", ["退出", "放弃"]);
+
+				document.getElementById("logout").addEventListener("tap", function() {
+					plus.nativeUI.confirm("是否退出登录？", function(event) {
+						var confirm = event.index;
+						if(confirm == 0) {
+							localStorage.clear();
+							plus.webview.open("login.html", "login");
+							plus.nativeUI.toast("退出成功", {
+								verticalAlign: "center"
+							});
+						}
+					}, "退出登录", ["退出", "放弃"]);
+				});
 			});
-			});
-//			localStorage.setItem("token", "55555");
-//			localStorage.setItem("userName", "杨涛");
-//			localStorage.setItem("uId", "123");
+			//			localStorage.setItem("token", "55555");
+			//			localStorage.setItem("userName", "杨涛");
+			//			localStorage.setItem("uId", "123");
 			var token = localStorage.getItem("token");
 			var userName = localStorage.getItem("userName");
 			var addOpenWindow = function(btn, site) {
 				document.getElementById(btn).addEventListener("tap", function() {
 					mui.openWindow({
-						url: site+".html",
+						url: site + ".html",
 						id: site,
 						show: {
 							aniShow: "slide-in-right",
@@ -156,11 +156,11 @@
 			if(token) {
 				var username = document.getElementById("username");
 				username.innerHTML = userName;
-				addOpenWindow("openLogin","user");
+				addOpenWindow("openLogin", "user");
 			} else {
-				addOpenWindow("openLogin","login");
+				addOpenWindow("openLogin", "login");
 			}
-			addOpenWindow("setting","setting");
+			addOpenWindow("setting", "setting");
 			document.getElementById("reset_launch").addEventListener("tap", function() {
 				plus.nativeUI.confirm("是否重置首次打开app？", function(event) {
 					var confirm = event.index;
@@ -175,7 +175,6 @@
 					}
 				}, "重置启动", ["重置", "放弃"]);
 			});
-
 
 		}(mui, document));
 	</script>

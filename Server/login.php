@@ -37,7 +37,7 @@ if($userName==null||$userName==""){
     $_SESSION['token'] = $token;
     $mysqli = connect();
     $sql = "select * from user where userName = '" . $userName . "' and password = '" . $password . "'";
-    $info = getData($mysqli, $sql);
+    $info = getData($mysqli, $sql)[0];
     $info['token'] = $token;
     $_SESSION['info'] = $info;
     if ($info == null) {

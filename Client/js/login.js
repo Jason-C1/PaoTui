@@ -33,20 +33,26 @@
 		$.ajax(hostUrl + "login.php", {
 			data: data,
 			dataType: 'json',
-			type: 'get',
+			type: 'post',
 			contentType: "application/x-www-form-urlencoded; charset=utf-8",
 			timeout: 60000,
 			success: function(data) {
-				if(data.message) {
+				if(data.message=="登陆成功") {
+					wd.close();
+					localStorage.setItem("token",data.info.token);
+					localStorage.setItem("userName",data.info.userName);
+					localStorage.setItem("uId",data.info.uId);
+					if(plus.webview.getWebviewById("index")){
+						plus.webview.close("index");
+					}
+					plus.webview.close("guide");
+					plus.webview.open("index.html","index")
+					plus.webview.currentWebview().close();
+					
+				} else {
 					// 如果密码错误，提示一下信息  
 					wd.close();
-					$.alert("用户名或密码错误", "登录错误", "关闭");
-				} else {
-					wd.close();
-					$.alert(JSON.stringify(data), "成功", "关闭");
-					plus.webview.getWebviewById("index").reload();
-					plus.webview.close("guide");
-					plus.webview.currentWebview().close();
+					$.alert(data.message, "登录失败", "关闭");
 				}
 			},
 			error: function(xhr, type, errorThrown) {

@@ -94,15 +94,7 @@
 					'order': ordertpl,
 				}
 			}),
-			new Vue({
-				el: '#list6',
-				data: {
-					items: []
-				},
-				components: {
-					'order': ordertpl,
-				}
-			}),
+			
 		];
 
 		function convert(items) {

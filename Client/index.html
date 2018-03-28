@@ -2,331 +2,159 @@
 <html>
 
 	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-		<title>首页</title>
-		<script src="js/vue.min.js"></script>
-		<script src="js/mui.js"></script>
-		<link href="css/mui.min.css" rel="stylesheet" />
+		<meta charset="utf-8">
+		<title>Hello MUI</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 		<script src="js/config.js" type="text/javascript" charset="utf-8"></script>
 		<link rel="stylesheet" type="text/css" href="css/common.css" />
+		<link rel="stylesheet" href="css/mui.min.css">
 		<style>
-			.mui-bar .mui-title {
-				right: 10px;
-				left: 80px;
-			}
-			
 			html,
 			body {
 				background-color: #efeff4;
 			}
 			
-			.mui-bar~.mui-content .mui-fullscreen {
-				top: 44px;
-				height: auto;
-			}
-			
-			.mui-pull-top-tips {
-				position: absolute;
-				top: -20px;
-				left: 50%;
-				margin-left: -25px;
-				width: 40px;
-				height: 40px;
-				border-radius: 100%;
-				z-index: 1;
-			}
-			
-			.mui-bar~.mui-pull-top-tips {
-				top: 24px;
-			}
-			
-			.mui-pull-top-wrapper {
-				width: 42px;
-				height: 42px;
-				display: block;
-				text-align: center;
-				background-color: #efeff4;
-				border: 1px solid #ddd;
-				border-radius: 25px;
-				background-clip: padding-box;
-				box-shadow: 0 4px 10px #bbb;
+			.push {
+				display: table-cell;
 				overflow: hidden;
-			}
-			
-			.mui-pull-top-tips.mui-transitioning {
-				-webkit-transition-duration: 200ms;
-				transition-duration: 200ms;
-			}
-			
-			.mui-pull-top-tips .mui-pull-loading {
-				margin: 0;
-			}
-			
-			.mui-pull-top-wrapper .mui-icon,
-			.mui-pull-top-wrapper .mui-spinner {
-				margin-top: 7px;
-			}
-			
-			.mui-pull-top-wrapper .mui-icon.mui-reverse {
-				/*-webkit-transform: rotate(180deg) translateZ(0);*/
-			}
-			
-			.mui-pull-bottom-tips {
+				width: 1%;
 				text-align: center;
-				background-color: #efeff4;
-				font-size: 15px;
-				line-height: 40px;
-				color: #777;
+				vertical-align: middle;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+				color: #929292;
+				background: rgb(250, 50, 0);
+				padding: 0;
 			}
 			
-			.mui-pull-top-canvas {
-				overflow: hidden;
-				background-color: #fafafa;
-				border-radius: 40px;
-				box-shadow: 0 4px 10px #bbb;
-				width: 40px;
-				height: 40px;
-				margin: 0 auto;
-			}
-			
-			.mui-pull-top-canvas canvas {
-				width: 40px;
-			}
-			
-			.mui-slider-indicator.mui-segmented-control {
+			.mui-icon.push-icon {
 				width: 100%;
-				display: inline-flex;
-			}
-			
-			.mui-slider .mui-slider-group .mui-slider-item>a:not(.mui-control-item) {
-				display: inline;
-			}
-			
-			.nav-line {
-				display: block;
-				position: relative;
-				padding: 5px 10px;
-				text-decoration: none;
-				-webkit-transition: color .5s ease-in-out;
-				transition: color .5s ease-in-out;
-			}
-			
-			.nav-line:before {
-				content: "";
-				position: absolute;
-				bottom: 0;
-				width: 0;
-				left: 0;
-				color: #55e;
-				border-bottom: solid 2px;
-				-webkit-transition: width .5s ease-in-out;
-				transition: width .5s ease-in-out;
-			}
-			
-			.mui-slider .mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active {
-				color: #55e;
-			}
-			
-			.mui-slider .mui-segmented-control.mui-segmented-control-inverted .mui-control-item {
-				padding: 0px;
-				width: 100%;
-			}
-			
-			.nav-line.mui-active:before {
-				color: #55e;
-				width: 100%;
-			}
-			
-			.mui-bar-nav~.mui-content .mui-slider.mui-fullscreen {
-				bottom: 40px;
+				padding: 0;
+				height: 100%;
+				font-size: 50px;
+				color: white;
+				font-weight: 900;
 			}
 		</style>
 	</head>
 
 	<body>
-		<header id="header" class="mui-bar mui-bar-nav">
-			<button type="button" class="mui-btn mui-btn-link">
-				<span class="mui-icon mui-icon-location-filled"></span><span>杭州</span>
-			</button>
-			<div class="mui-title title-search">
-				<span class="mui-icon mui-icon-search"></span><span>垃圾街鸭血粉丝</span>
-			</div>
-		</header>
-		<div class="mui-content">
-			<div id="slider" class="mui-slider mui-fullscreen">
-				<div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
-
-					<a class="mui-control-item nav-line mui-active" href="#item1mobile">
-						推荐
-					</a>
-					<a class="mui-control-item nav-line" href="#item2mobile">
-						校园帮帮
-					</a>
-					<a class="mui-control-item nav-line" href="#item3mobile">
-						同城快送
-					</a>
-					<a class="mui-control-item nav-line" href="#item4mobile">
-						生鲜蔬果
-					</a>
-					<a class="mui-control-item nav-line" href="#item5mobile">
-						其他服务
-					</a>
-
-				</div>
-				<div class="mui-slider-group">
-					<div id="item1mobile" class="mui-slider-item mui-control-content mui-active">
-						<div id="scroll1" class="mui-scroll-wrapper">
-							<div class="mui-scroll">
-
-								<div id="slider" class="mui-slider">
-									<div class="mui-slider-group mui-slider-loop">
-										<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
-										<div class="mui-slider-item mui-slider-item-duplicate">
-											<a href="#">
-												<img src="images/fff.png">
-											</a>
-										</div>
-										<!-- 第一张 -->
-										<div class="mui-slider-item">
-											<a href="#">
-												<img src="images/fff.png">
-											</a>
-										</div>
-										<!-- 第二张 -->
-										<div class="mui-slider-item">
-											<a href="#">
-												<img src="images/fff.png">
-											</a>
-										</div>
-										<!-- 第三张 -->
-										<div class="mui-slider-item">
-											<a href="#">
-												<img src="images/fff.png">
-											</a>
-										</div>
-										<!-- 第四张 -->
-										<div class="mui-slider-item">
-											<a href="#">
-												<img src="images/fff.png">
-											</a>
-										</div>
-										<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
-										<div class="mui-slider-item mui-slider-item-duplicate">
-											<a href="#">
-												<img src="images/fff.png">
-											</a>
-										</div>
-									</div>
-									<div class="mui-slider-indicator">
-										<div class="mui-indicator mui-active"></div>
-										<div class="mui-indicator"></div>
-										<div class="mui-indicator"></div>
-										<div class="mui-indicator"></div>
-									</div>
-								</div>
-								<ul id="list1" class="mui-table-view">
-									<order v-for="item in items" :item="item"></order>
-								</ul>
-							</div>
-						</div>
-					</div>
-					<div id="item2mobile" class="mui-slider-item mui-control-content">
-						<div class="mui-scroll-wrapper">
-							<div class="mui-scroll">
-								<ul id="list2" class="mui-table-view">
-									<order v-for="item in items" :item="item"></order>
-								</ul>
-							</div>
-						</div>
-					</div>
-					<div id="item3mobile" class="mui-slider-item mui-control-content">
-						<div class="mui-scroll-wrapper">
-							<div class="mui-scroll">
-								<ul id="list3" class="mui-table-view">
-									<order v-for="item in items" :item="item"></order>
-								</ul>
-							</div>
-						</div>
-					</div>
-					<div id="item4mobile" class="mui-slider-item mui-control-content">
-						<div class="mui-scroll-wrapper">
-							<div class="mui-scroll">
-								<ul id="list4" class="mui-table-view">
-									<order v-for="item in items" :item="item"></order>
-								</ul>
-							</div>
-						</div>
-					</div>
-					<div id="item5mobile" class="mui-slider-item mui-control-content">
-						<div class="mui-scroll-wrapper">
-							<div class="mui-scroll">
-								<ul id="list5" class="mui-table-view">
-									<order v-for="item in items" :item="item"></order>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<template id="orderComponent">
-			<li class="order mui-table-view-cell mui-media">
-				<a @tap="open_detail(item)">
-					<div class="mui-table">
-						<div class="mui-row">
-							<div class="mui-table-cell mui-pull-right">
-								<span class="order-rmb">&yen;<span>{{item.price}}</span></span>
-							</div>
-							<div class="mui-table-cell">
-								<img class="mui-media-object mui-pull-left" src="images/default.jpg">
-								<div class="mui-media-body">
-									{{item.userName}}
-									<p class="mui-h6">{{item.dateTime}}</p>
-								</div>
-							</div>
-
-						</div>
-						<div class="mui-row">
-							<div class="mui-table-cell mui-col-xs-10">
-								<h4 class="order-title mui-ellipsis">{{item.title}}</h4>
-							</div>
-						</div>
-						<div class="mui-row">
-							<div class="mui-table-cell order-label mui-pull-left">
-								<p>Form</p>
-							</div>
-							<div class="mui-table-cell">
-								<p class="mui-ellipsis">{{item.oFrom}}</p>
-							</div>
-						</div>
-						<div class="mui-row">
-							<div class="mui-table-cell order-label mui-pull-left">
-								<p>To</p>
-							</div>
-							<div class="mui-table-cell">
-								<p class="mui-ellipsis">{{item.oTo}}</p>
-							</div>
-						</div>
-						<div class="mui-row">
-							<div class="mui-table-cell order-label mui-pull-left">
-								<p>Exp</p>
-							</div>
-							<div class="mui-table-cell mui-col-xs-10">
-								<p class="mui-ellipsis">{{item.deadline}}</p>
-							</div>
-						</div>
-					</div>
-				</a>
-			</li>
-		</template>
-
-		<script src="js/util.js"></script>
+		<nav class="mui-bar mui-bar-tab">
+			<a id="defaultTab" class="mui-tab-item mui-active" href="home.html">
+				<span class="mui-icon mui-icon-home"></span>
+				<span class="mui-tab-label">首页</span>
+			</a>
+			<a class="mui-tab-item" href="order.html">
+				<span class="mui-icon mui-icon-compose"></span>
+				<span class="mui-tab-label">订单</span>
+			</a>
+			<a id="push" class="push" href="push.html">
+				<span class="mui-icon mui-icon-plusempty push-icon"></span>
+			</a>
+			<a class="mui-tab-item" href="news.html">
+				<span class="mui-icon mui-icon-email"><span class="mui-badge">9</span></span>
+				<span class="mui-tab-label">消息</span>
+			</a>
+			<a class="mui-tab-item" href="mine.html">
+				<span class="mui-icon mui-icon-gear"></span>
+				<span class="mui-tab-label">我的</span>
+			</a>
+		</nav>
 		<script src="js/mui.min.js"></script>
-		<script src="js/mui.pullToRefresh.js"></script>
-		<script src="js/mui.pullToRefresh.material.js"></script>
-		<script src="js/index.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" charset="utf-8">
+			var subpage_style = {
+				top: '0px',
+				bottom: '51px'
+			};
+			//mui初始化
+			mui.init({
+				subpages:[{
+					url:'home.html',
+					id:"home",
+					styles:subpage_style,
+				},{
+					url:'order.html',
+					id:"order",
+					styles:subpage_style,
+				},{
+					url:'push.html',
+					id:"home",
+					styles:subpage_style,
+				},{
+					url:'news.html',
+					id:"news",
+					styles:subpage_style,
+				},{
+					url:'mine.html',
+					id:"mine",
+					styles:subpage_style,
+				},],
+			});
+			var subpages = ['home.html', 'order.html', 'news.html', 'mine.html'];
+			//创建子页面，首个选项卡页面显示，其它均隐藏；
+			mui.plusReady(function() {
+				var self = plus.webview.currentWebview();
+				for(var i = 0; i < 5; i++) {
+					var temp = {};
+					var sub = plus.webview.create(subpages[i], subpages[i], subpage_style);
+					if(i > 0) {
+						sub.hide();
+					} else {
+						temp[subpages[i]] = "true";
+						mui.extend(aniShow, temp);
+					}
+					self.append(sub);
+				}
+			});
+			var aniShow = {};
+			//当前激活选项
+			var activeTab = subpages[0];
+			//选项卡点击事件
+			mui('.mui-bar-tab').on('tap', 'a', function(e) {
+				var targetTab = this.getAttribute('href');
+				if(targetTab == activeTab) {
+					return;
+				}
+				//显示目标选项卡
+				//若为iOS平台或非首次显示，则直接显示
+				if(mui.os.ios || aniShow[targetTab]) {
+					plus.webview.show(targetTab);
+				} else {
+					//否则，使用fade-in动画，且保存变量
+					var temp = {};
+					temp[targetTab] = "true";
+					mui.extend(aniShow, temp);
+					plus.webview.show(targetTab, "fade-in", 300);
+				}
+				//隐藏当前;
+				plus.webview.hide(activeTab);
+				//更改当前活跃的选项卡
+				activeTab = targetTab;
+			});
+			//自定义事件，模拟点击“首页选项卡”
+			document.addEventListener('gohome', function() {
+				var defaultTab = document.getElementById("defaultTab");
+				//模拟首页点击
+				mui.trigger(defaultTab, 'tap');
+				//切换选项卡高亮
+				var current = document.querySelector(".mui-bar-tab>.mui-tab-item.mui-active");
+				if(defaultTab !== current) {
+					current.classList.remove('mui-active');
+					defaultTab.classList.add('mui-active');
+				}
+			});
+			document.getElementById("push").addEventListener('tap',function (e) {
+				mui.openWindow({
+					url:"push.html",
+					id:"push",
+					show:{
+						aniShow:"slide-in-bottom",
+					},
+				});
+			})
+		</script>
 	</body>
 
 </html>
