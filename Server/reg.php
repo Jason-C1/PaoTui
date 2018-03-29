@@ -36,18 +36,12 @@ if($data['userName']==null||$data['userName']==""){
     $message['message']="密码不能为空";
 }else if($data['phone']==null||$data['userName']==""){
     $message['message']="手机号不能为空";
-}else if($data['idCard']==null||$data['userName']==""){
-    $message['message']="身份证号不能为空";
-}else if(strlen($data['userName'])>16||strlen($data['userName'])<4){
-    $message['message']="用户名长度请在4-16个字符";
-}else if(strlen($data['password'])>16||strlen($data['password'])<4){
-    $message['message']="密码请在6-16个字符";
-}else if($data['check']!=$data['password']){
-    $message['message']="两次输入的密码不一致";
+}else if(strlen($data['userName'])>16||strlen($data['userName'])<2){
+    $message['message']="用户名长度请在2-16个字符";
 }else {
     $mysqli = connect();
 
-    $sql = "select * from user where phone = '".$data['phone']."' or idCard = '".$data['idCard']."'";
+    $sql = "select * from user where phone = '".$data['phone']."'";
 
     $result = getData($mysqli, $sql);
     if($result!=null) {
@@ -57,6 +51,8 @@ if($data['userName']==null||$data['userName']==""){
         unset($data['check']);
         insert($mysqli,'user',$data);
         $message['message'] = "注册成功";
+
+
 
     }
 }

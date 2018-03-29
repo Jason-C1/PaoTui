@@ -127,180 +127,189 @@
 		}
 	},
 	"dependencies": {
-	  "pages": {
-	    "index.html": {
-	      "resources": [
-	        "home.html",
-	        "js/config.js",
-	        "css/common.css",
-	        "css/mui.min.css",
-	        "fonts/mui.ttf",
-	        "js/mui.min.js"
-	      ],
-	      "refer": [
-	        "news.html",
-	        "push.html",
-	        "order.html",
-	        "mine.html",
-	        "home.html"
-	      ],
-	      "priority": 0
-	    },
-	    "order.html": {
-	      "resources": [
-	        "js/vue.min.js",
-	        "js/mui.js",
-	        "css/mui.min.css",
-	        "fonts/mui.ttf",
-	        "js/config.js",
-	        "css/common.css",
-	        "js/util.js",
-	        "js/mui.min.js",
-	        "js/mui.pullToRefresh.js",
-	        "js/mui.pullToRefresh.material.js",
-	        "js/order.js",
-	        "images/default.jpg"
-	      ],
-	      "refer": [
-	        "detail.html"
-	      ],
-	      "priority": 0
-	    },
-	    "mine.html": {
-	      "resources": [
-	        "js/mui.min.js",
-	        "js/vue.min.js",
-	        "css/mui.css",
-	        "fonts/mui.ttf",
-	        "css/common.css",
-	        "images/default.jpg"
-	      ],
-	      "refer": [
-	        "login.html",
-	        "user.html"
-	      ],
-	      "priority": 0
-	    },
-	    "home.html": {
-	      "resources": [
-	        "css/mui.min.css",
-	        "fonts/mui.ttf",
-	        "js/vue.min.js",
-	        "js/mui.js",
-	        "js/config.js",
-	        "css/common.css",
-	        "js/util.js",
-	        "js/mui.min.js",
-	        "js/app.js",
-	        "js/mui.pullToRefresh.js",
-	        "js/mui.pullToRefresh.material.js",
-	        "js/home.js",
-	        "images/default.jpg",
-	        "images/fff.png"
-	      ],
-	      "refer": [
-	        "detail.html",
-	        "news.html",
-	        "mine.html",
-	        "order.html"
-	      ],
-	      "priority": 0
-	    },
-	    "news.html": {
-	      "href": "news.html",
-	      "resources": [
-	        "css/mui.min.css",
-	        "fonts/mui.ttf",
-	        "js/mui.min.js",
-	        "images/unlogin.jpg",
-	        "images/touxiang.jpg"
-	      ],
-	      "priority": 0
-	    },
-	    "detail.html": {
-	      "href": "detail.html",
-	      "resources": [
-	        "js/vue.min.js",
-	        "css/mui.min.css",
-	        "fonts/mui.ttf",
-	        "css/style.css",
-	        "js/mui.min.js",
-	        "js/app.js",
-	        "images/default.jpg"
-	      ],
-	      "priority": 3
-	    },
-	    "push.html": {
-	      "href": "push.html",
-	      "resources": [
-	        "css/mui.min.css",
-	        "fonts/mui.ttf",
-	        "css/style.css",
-	        "js/mui.min.js",
-	        "js/app.js"
-	      ],
-	      "priority": 2
-	    },
-	    "login.html": {
-	      "href": "login.html",
-	      "resources": [
-	        "css/mui.min.css",
-	        "fonts/mui.ttf",
-	        "css/common.css",
-	        "css/style.css",
-	        "css/reg.css",
-	        "images/bg.png",
-	        "js/mui.js",
-	        "js/md5.min.js",
-	        "js/config.js",
-	        "js/vue.js",
-	        "js/validator.js",
-	        "js/login.js"
-	      ],
-	      "refer": [
-	        "index.html"
-	      ],
-	      "priority": 0
-	    }
-	  },
-	  "idle": {
-	    "resources": [
-	      "js/mui.imageViewer.js",
-	      "images/starFull.png",
-	      "images/Hello MUI.html",
-	      "js/statusBar.js",
-	      "css/icons-extra.css",
-	      "images/head.jpg",
-	      "js/reg.js",
-	      "index2.html",
-	      "fonts/mui-icons-extra.ttf",
-	      "images/d.png",
-	      "html/new-webview.html",
-	      "im-chat.html",
-	      "images/logo.png",
-	      "images/Hello MUI_files/common.css",
-	      "images/60x60.gif",
-	      "images/Hello MUI_files/mui.min.js.下载",
-	      "fonts/iconfont.ttf",
-	      "css/mui.imageviewer.css",
-	      "1.html",
-	      "js/websocket.js",
-	      "guide.html",
-	      "setting.html",
-	      "reg.html",
-	      "signup.html",
-	      "images/starEmpty.png",
-	      "images/map.png",
-	      "main.html",
-	      "images/Hello MUI_files/mui.min.css",
-	      "images/ma.png",
-	      "css/app.css",
-	      "index3.html",
-	      "track.html",
-	      "chat.html",
-	      "evaluate.html",
-	      "js/arttmpl.js"
-	    ]
-	  }
+		"pages": {
+			"index.html": {
+				"resources": [
+					"home.html",
+					"js/config.js",
+					"css/common.css",
+					"css/mui.min.css",
+					"fonts/mui.ttf",
+					"js/mui.min.js"
+				],
+				"refer": [
+					"news.html",
+					"push.html",
+					"order.html",
+					"mine.html"
+				],
+				"priority": 0
+			},
+			"order.html": {
+				"resources": [
+					"js/vue.min.js",
+					"js/mui.js",
+					"css/mui.min.css",
+					"fonts/mui.ttf",
+					"js/config.js",
+					"css/common.css",
+					"js/util.js",
+					"js/mui.min.js",
+					"js/mui.pullToRefresh.js",
+					"js/mui.pullToRefresh.material.js",
+					"js/order.js",
+					"images/default.jpg"
+				],
+				"refer": [
+					"detail.html"
+				],
+				"priority": 0
+			},
+			"mine.html": {
+				"resources": [
+					"js/mui.min.js",
+					"js/vue.min.js",
+					"css/mui.css",
+					"fonts/mui.ttf",
+					"css/common.css",
+					"images/default.jpg"
+				],
+				"refer": [
+					"login.html",
+					"user.html"
+				],
+				"priority": 0
+			},
+			"home.html": {
+				"resources": [
+					"css/mui.min.css",
+					"fonts/mui.ttf",
+					"js/vue.min.js",
+					"js/mui.js",
+					"js/config.js",
+					"css/common.css",
+					"js/util.js",
+					"js/mui.min.js",
+					"js/app.js",
+					"js/mui.pullToRefresh.js",
+					"js/mui.pullToRefresh.material.js",
+					"js/home.js",
+					"images/default.jpg",
+					"images/fff.png"
+				],
+				"refer": [
+					"detail.html",
+					"news.html",
+					"mine.html",
+					"order.html"
+				],
+				"priority": 0
+			},
+			"news.html": {
+				"href": "news.html",
+				"resources": [
+					"css/mui.min.css",
+					"fonts/mui.ttf",
+					"js/mui.min.js",
+					"images/unlogin.jpg",
+					"images/touxiang.jpg"
+				],
+				"priority": 0
+			},
+			"detail.html": {
+				"href": "detail.html",
+				"resources": [
+					"js/vue.min.js",
+					"css/mui.min.css",
+					"fonts/mui.ttf",
+					"css/style.css",
+					"js/mui.min.js",
+					"js/app.js",
+					"images/default.jpg"
+				],
+				"priority": 3
+			},
+			"push.html": {
+				"href": "push.html",
+				"resources": [
+					"css/mui.min.css",
+					"fonts/mui.ttf",
+					"css/style.css",
+					"js/mui.min.js",
+					"js/app.js"
+				],
+				"priority": 2,
+				"refer": [
+					"index.html"
+				]
+			},
+			"login.html": {
+				"href": "login.html",
+				"resources": [
+					"css/mui.min.css",
+					"fonts/mui.ttf",
+					"css/common.css",
+					"css/style.css",
+					"css/reg.css",
+					"images/bg.png",
+					"js/mui.js",
+					"js/md5.min.js",
+					"js/config.js",
+					"js/vue.js",
+					"js/validator.js",
+					"js/login.js"
+				],
+				"refer": [
+					"index.html",
+					"reg.html"
+				],
+				"priority": 0
+			},
+			"reg.html": {
+				"resources": [],
+				"refer": [
+					"reg.html"
+				],
+				"priority": 0
+			}
+		},
+		"idle": {
+			"resources": [
+				"js/mui.imageViewer.js",
+				"images/starFull.png",
+				"images/Hello MUI.html",
+				"js/statusBar.js",
+				"css/icons-extra.css",
+				"images/head.jpg",
+				"js/reg.js",
+				"index2.html",
+				"fonts/mui-icons-extra.ttf",
+				"images/d.png",
+				"html/new-webview.html",
+				"im-chat.html",
+				"images/logo.png",
+				"images/Hello MUI_files/common.css",
+				"images/60x60.gif",
+				"images/Hello MUI_files/mui.min.js.下载",
+				"fonts/iconfont.ttf",
+				"css/mui.imageviewer.css",
+				"1.html",
+				"js/websocket.js",
+				"guide.html",
+				"setting.html",
+				"signup.html",
+				"images/starEmpty.png",
+				"images/map.png",
+				"main.html",
+				"images/Hello MUI_files/mui.min.css",
+				"images/ma.png",
+				"css/app.css",
+				"index3.html",
+				"track.html",
+				"chat.html",
+				"evaluate.html",
+				"js/arttmpl.js"
+			]
+		}
 	}
 }
