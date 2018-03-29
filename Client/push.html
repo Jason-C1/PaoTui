@@ -5,6 +5,9 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<title></title>
+		<script src="js/vue.min.js"></script>
+		<script src="js/config.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="css/common.css">
 		<link href="css/mui.min.css" rel="stylesheet" />
 		<link href="css/style.css" rel="stylesheet" />
 		<style>
@@ -42,7 +45,7 @@
 			.zj-footer {
 				line-height: 33px;
 				padding: 10px;
-				color: rgb(100,100,100);
+				color: rgb(100, 100, 100);
 			}
 		</style>
 	</head>
@@ -52,133 +55,59 @@
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 			<h1 class="mui-title">发布订单</h1>
 		</header>
+
 		<div class="mui-content">
-			<form class="mui-input-group">
+			<form id="push" class="mui-input-group" v-on:submit.prevent>
 
 				<div class="mui-input-row">
 					<label>标题</label>
-					<input id='account' type="text" class="mui-input-clear mui-input" placeholder="请大致描述你的订单要求">
+					<input id='title' type="text" class="mui-input-clear mui-input" v-model="title" placeholder="请大致描述你的订单要求">
 				</div>
 				<div class="mui-input-row">
 					<label>详细描述</label>
-					<textarea id='textarea' class="mui-input-clear mui-input" rows="5" placeholder="请详细描述你的订单要求"></textarea>
+					<textarea id='content' class="mui-input-clear mui-input" rows="5" v-model="content" placeholder="请详细描述你的订单要求"></textarea>
 
 				</div>
 				<div class="mui-input-row">
 					<label>类别</label>
-					<select id="lb">
-						<option value="1">1</option>
-						<option value="2">12</option>
-						<option value="2">123</option>
-						<option value="3">1234</option>
+					<select id="cate" v-model="cate">
+						<option value="1">校园帮帮</option>
+						<option value="2">同城快送</option>
+						<option value="3">生鲜蔬果</option>
+						<option value="4">其他服务</option>
 					</select>
 				</div>
 
 				<div class="mui-input-row">
 					<label>取货地址</label>
-					<input id='account' type="text" class="mui-input-clear mui-input" placeholder="请告诉小哥去哪里取货">
+					<input id='oFrom' v-model='oFrom' type="text" class="mui-input-clear mui-input" placeholder="请告诉小哥去哪里取货">
 				</div>
 				<div class="mui-input-row">
 					<label>收货地址</label>
-					<input id='account' type="text" class="mui-input-clear mui-input" placeholder="请告诉小哥把货送到哪">
+					<input id='oTo' v-model="oTo" type="text" class="mui-input-clear mui-input" placeholder="请告诉小哥把货送到哪">
 				</div>
 				<div class="mui-input-row">
 					<label>截止时间</label>
-					<input id='datetime' type="datetime" class="mui-input-clear mui-input" placeholder="请告诉小哥你要啥时候拿到货">
+					<input id='deadline' v-model='deadline' type="datetime" class="mui-input-clear mui-input" placeholder="请告诉小哥你要啥时候拿到货">
 				</div>
 				<div class="mui-input-row">
 					<label>购货费用</label>
-					<input id='account' type="number" class="mui-input-clear mui-input" placeholder="请输入购货所需费用,没有请跳过">
+					<input id='money' v-model='money' type="number" class="mui-input-clear mui-input" placeholder="请输入购货所需费用,没有请跳过">
 				</div>
 				<div class="mui-input-row">
 					<label>跑腿费用</label>
-					<input id='account' type="number" class="mui-input-clear mui-input" placeholder="请给小哥跑腿费,根据计算推荐3块钱">
+					<input id='price' v-model='price' type="number" class="mui-input-clear mui-input" placeholder="请给小哥跑腿费,根据计算推荐3块钱">
 				</div>
-				<div class="mui-pull-right zj-footer"><span>总价&nbsp;&yen;</span><span>1000</span></div>
+				<div class="mui-pull-right zj-footer"><span>总价&nbsp;&yen;</span><span>{{total}}</span></div>
 
-		</div>
 		</form>
 		<div class="mui-content-padded">
-			<button class="mui-btn mui-btn-block mui-btn-primary">注册</button>
+			<button type="submit" id="submit" class="mui-btn mui-btn-block mui-btn-primary">发送订单</button>
 		</div>
 		</div>
 		<script src="js/mui.min.js"></script>
-		<script src="js/app.js"></script>
-		<script>
-			(function($, doc) {
-				$.init();
-				//未修改
-				$.plusReady(function() {
-
-					//					var settings = app.getSettings();
-					//					var regButton = doc.getElementById('reg');
-					//					var accountBox = doc.getElementById('account');
-					//					var passwordBox = doc.getElementById('password');
-					//					var passwordConfirmBox = doc.getElementById('password_confirm');
-					//					var emailBox = doc.getElementById('email');
-					//					regButton.addEventListener('tap', function(event) {
-					//						var regInfo = {
-					//							account: accountBox.value,
-					//							password: passwordBox.value,
-					//							email: emailBox.value
-					//						};
-					//						var passwordConfirm = passwordConfirmBox.value;
-					//						if(passwordConfirm != regInfo.password) {
-					//							plus.nativeUI.toast('密码两次输入不一致');
-					//							return;
-					//						}
-					//						app.reg(regInfo, function(err) {
-					//							if(err) {
-					//								plus.nativeUI.toast(err);
-					//								return;
-					//							}
-					//							plus.nativeUI.toast('注册成功');
-					//							$.openWindow({
-					//								url: 'login.html',
-					//								id: 'login',
-					//								show: {
-					//									aniShow: 'pop-in'
-					//								}
-					//							});
-					//						});
-					//					});
-				});
-
-				document.getElementById("datetime").addEventListener('tap', function() {
-					var dDate = new Date();
-					var minDate = new Date();
-					minDate.setFullYear(dDate.getFullYear());
-					var maxDate = new Date();
-					maxDate.setFullYear(dDate.getFullYear());
-					maxDate.setYear(maxDate.getYear() + 1);
-					var dTime = new Date();
-					dTime.setHours(6, 0);
-					var datetime = document.getElementById("datetime");
-
-					plus.nativeUI.pickTime(function(e) {
-						var d = e.date;
-						datetime.value += d.getHours() + ":" + d.getMinutes();
-					}, function(e) {
-
-					}, {
-						title: "请选择时间",
-						is24Hour: true,
-						time: dTime
-					});
-
-					plus.nativeUI.pickDate(function(e) {
-						var d = e.date;
-						datetime.value = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate() + " ";
-					}, function(e) {}, {
-						title: "请选择日期",
-						date: dDate,
-						minDate: minDate,
-						maxDate: maxDate
-					});
-
-				});
-			}(mui, document));
-		</script>
+		<script src="js/validator.js"></script>
+		<script src="js/push.js"></script>
 	</body>
 
 </html>
