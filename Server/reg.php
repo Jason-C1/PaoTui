@@ -48,10 +48,17 @@ if($data['userName']==null||$data['userName']==""){
         $message['message'] = "用户已被注册";
     }
     else{
+        session_start();
+        $token = md5($userName . time() . rand());
+        $_SESSION['token']=$token;
         unset($data['check']);
         insert($mysqli,'user',$data);
         $message['message'] = "注册成功";
-
+        $_SESSION['token'] = $token;
+        $info['userName']=$data['userName'];
+        $info['password']=$data['password'];
+        $info['token']=$token;
+       $message['info']=$info;
 
 
     }
