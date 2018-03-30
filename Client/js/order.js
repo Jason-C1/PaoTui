@@ -1,14 +1,12 @@
 (function($) {
 	//预加载详情页
 
-	open_detail = function(item) {
-		console.log(JSON.stringify(item));
-		mui.fire(webview_detail, 'get_detail', item);
-		console.log(webview_detail);
-		setTimeout(function() {
-			webview_detail.show("slide-in-right", 300);
-		}, 150);
-	}
+	open_detail = function(oId) {
+		var webview = mui.openWindow({
+			url: 'detail.html?oId=' + oId,
+			id: 'detail',
+		});
+	};
 	$.init({
 		swipeBack: true, //关闭右滑关闭功能
 	});
@@ -26,6 +24,8 @@
 	 */
 	var lastId = [0, 0, 0, 0, 0];
 	var minId = [0, 0, 0, 0, 0];
+	stateList = ["未知", "未接单", "配送中", "失效订单", "待评价", "已完成"];
+						
 	//阻尼系数
 	var deceleration = mui.os.ios ? 0.003 : 0.0009;
 	$('.mui-scroll-wrapper').scroll({
@@ -34,18 +34,7 @@
 		deceleration: deceleration
 	});
 
-	mui.plusReady(function() {
-		webview_detail = mui.preload({
-			url: 'detail.html',
-			id: 'news_detail',
-			styles: {
-				"render": "always",
-				"popGesture": "hide",
-				"bounce": "vertical",
-				"bounceBackground": "#efeff4",
-			}
-		});
-	});
+	mui.plusReady(function() {});
 
 	$.ready(function() {
 		var orders = [
@@ -110,7 +99,8 @@
 					oId: item.oId,
 					deadline: item.deadline,
 					dateTime: dateUtils.format(item.dateTime),
-					state: item.state
+					state: item.state,
+					stateName:stateList[item.state],
 				});
 			});
 			return newItems;
@@ -122,13 +112,12 @@
 				});
 				return;
 			}
-		
+
 			var data = {
-				
+				state:index,
 				token: "yantao",
 				uId: "1",
 			};
-			data.state=((index==4)?0:(index+1)),
 			$.ajax(hostUrl + "myForm.php", {
 				data: data,
 				dataType: 'json',
@@ -140,12 +129,13 @@
 						self.endPullDownToRefresh();
 					}
 					if(list && list.length > 0) {
-						if(lastId[index] == list[0].oId) {
-							mui.toast("没有新的订单了哟~")
-						} else {
+						if(lastId[index] == list[0].oId){
+							mui.toast("没有新的订单了哟~");
+						}else{
 							lastId[index] = list[0].oId;
 							orders[index].items = convert(list);
 						}
+							
 					}
 				},
 				error: function(xhr, type, errorThrown) {

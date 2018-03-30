@@ -1,6 +1,9 @@
 * {
 	position: relative;
 	touch-action: none;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
 }
 
 html,
@@ -13,10 +16,9 @@ body,
 .mui-content,
 .mui-content>.mui-slider,
 .mui-slider-group,
-.mui-control-content {
+.mui-control-content{
 	height: 100%;
 }
-
 .mui-col-xs-25 {
 	width: 20%;
 }
@@ -86,4 +88,8 @@ body,
 	content: "";
 	display: block;
 	clear: both;
+}
+
+.mui-scroll-wrapper{
+	background: inherit;
 }

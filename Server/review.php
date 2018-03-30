@@ -39,7 +39,7 @@ header('Access-Control-Allow-Headers:Origin, No-Cache, X-Requested-With, If-Modi
 require_once 'mysql.fnc.php';
 $mysqli=connect();
 
-$data=$_POST;
+$data=$_GET;
 
 $result=insert($mysqli,'review',$data);
 if($result!=-1){

@@ -34,7 +34,7 @@ if($data['userName']==null||$data['userName']==""){
 
 }else if($data['password']==null||$data['password']==""){
     $message['message']="密码不能为空";
-}else if($data['phone']==null||$data['userName']==""){
+}else if($data['phone']==null||$data['phone']==""){
     $message['message']="手机号不能为空";
 }else if(strlen($data['userName'])>16||strlen($data['userName'])<2){
     $message['message']="用户名长度请在2-16个字符";
@@ -55,10 +55,10 @@ if($data['userName']==null||$data['userName']==""){
         insert($mysqli,'user',$data);
         $message['message'] = "注册成功";
         $_SESSION['token'] = $token;
-        $info['userName']=$data['userName'];
-        $info['password']=$data['password'];
+        $sql="select uId,userName from user where phone = '".$data['phone']."' and userName= '".$data['userName']."'";
+        $info=getData($mysqli,$sql)[0];
         $info['token']=$token;
-       $message['info']=$info;
+        $message['info']=$info;
 
 
     }

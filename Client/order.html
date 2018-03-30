@@ -163,80 +163,80 @@
 			<h1 class="mui-title">订单</h1>
 		</header>
 		<div class="mui-content">
-			<div id="slider" class="mui-slider mui-fullscreen">
-				<div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
-
-					<a class="mui-control-item nav-line mui-active" href="#item1mobile">
-						未接单
-					</a>
-					<a class="mui-control-item nav-line" href="#item2mobile">
-						配送中
-					</a>
-					<a class="mui-control-item nav-line" href="#item3mobile">
-						失效订单
-					</a>
-					<a class="mui-control-item nav-line" href="#item4mobile">
-						已完成
-					</a>
-					<a class="mui-control-item nav-line" href="#item5mobile">
+			<div class="mui-slider mui-fullscreen">
+				<div class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+					<a class="mui-control-item nav-line mui-active" href="#item1">
 						全部订单
 					</a>
-
+					<a class="mui-control-item nav-line" href="#item2">
+						未接单
+					</a>
+					<a class="mui-control-item nav-line" href="#item3">
+						配送中
+					</a>
+					<a class="mui-control-item nav-line" href="#item4">
+						失效订单
+					</a>
+					<a class="mui-control-item nav-line" href="#item5">
+						待评价
+					</a>
 				</div>
+				<!--<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-6"></div>-->
 				<div class="mui-slider-group">
-					<div id="item1mobile" class="mui-slider-item mui-control-content mui-active">
-						<div id="scroll1" class="mui-scroll-wrapper">
-							<div class="mui-scroll">
+					<div id="item1" class="mui-slider-item mui-control-content mui-active">
+							<div class="mui-scroll-wrapper">
+								<div class="mui-scroll">
+									<ul id="list1" class="mui-table-view">
+										<order v-for="item in items" :item="item"></order>
+									</ul>
+								</div>
+							</div>
+					</div>
+					<div id="item2" class="mui-slider-item mui-control-content">
+							<div class="mui-scroll-wrapper">
+								<div class="mui-scroll">
+									<ul id="list2" class="mui-table-view">
+										<order v-for="item in items" :item="item"></order>
+									</ul>
+								</div>
+							</div>
+					</div>
+					<div id="item3" class="mui-slider-item mui-control-content">
+							<div class="mui-scroll-wrapper">
+								<div class="mui-scroll">
+									<ul id="list3" class="mui-table-view">
+										<order v-for="item in items" :item="item"></order>
+									</ul>
+								</div>
+							</div>
+					</div>
+					<div id="item4" class="mui-slider-item mui-control-content">
+							<div class="mui-scroll-wrapper">
+								<div class="mui-scroll">
+									<ul id="list4" class="mui-table-view">
+										<order v-for="item in items" :item="item"></order>
+									</ul>
+								</div>
+							</div>
+					</div>
+					<div id="item5" class="mui-slider-item mui-control-content">
+						<ul class="mui-table-view">
+							<div class="mui-scroll-wrapper">
+								<div class="mui-scroll">
+									<ul id="list5" class="mui-table-view">
+										<order v-for="item in items" :item="item"></order>
+									</ul>
+								</div>
+							</div>
+						</ul>
+					</div>
 
-								<ul id="list1" class="mui-table-view">
-									<order v-for="item in items" :item="item"></order>
-								</ul>
-							</div>
-						</div>
-					</div>
-					<div id="item2mobile" class="mui-slider-item mui-control-content">
-						<div class="mui-scroll-wrapper">
-							<div class="mui-scroll">
-								<ul id="list2" class="mui-table-view">
-									<order v-for="item in items" :item="item"></order>
-								</ul>
-							</div>
-						</div>
-					</div>
-					<div id="item3mobile" class="mui-slider-item mui-control-content">
-						<div class="mui-scroll-wrapper">
-							<div class="mui-scroll">
-								<ul id="list3" class="mui-table-view">
-									<order v-for="item in items" :item="item"></order>
-								</ul>
-							</div>
-						</div>
-					</div>
-					<div id="item4mobile" class="mui-slider-item mui-control-content">
-						<div class="mui-scroll-wrapper">
-							<div class="mui-scroll">
-								<ul id="list4" class="mui-table-view">
-									<order v-for="item in items" :item="item"></order>
-								</ul>
-							</div>
-						</div>
-					</div>
-					<div id="item5mobile" class="mui-slider-item mui-control-content">
-						<div class="mui-scroll-wrapper">
-							<div class="mui-scroll">
-								<ul id="list5" class="mui-table-view">
-									<order v-for="item in items" :item="item"></order>
-								</ul>
-							</div>
-						</div>
-					</div>
 				</div>
 			</div>
 		</div>
-		
 		<template id="orderComponent">
 			<li class="order mui-table-view-cell mui-media">
-				<a @tap="open_detail(item)">
+				<a @tap="open_detail(item.oId)">
 					<div class="mui-table">
 						<div class="mui-row">
 							<div class="mui-table-cell mui-pull-right">
@@ -282,7 +282,7 @@
 						</div>
 					</div>
 					<div class="order-footer">
-						状态：{{item.state}}
+						状态：{{item.stateName}}
 						<button type="button" class="mui-btn mui-btn-blue" v-if="item.state==1||item.state==3">取消订单</button>
 						<button type="button" class="mui-btn mui-btn-blue" v-if="item.state==2">申请取消</button>
 						<button type="button" class="mui-btn mui-btn-blue" v-if="item.state==2">订单跟踪</button>
@@ -293,7 +293,6 @@
 			</li>
 		</template>
 		<script src="js/util.js"></script>
-		<script src="js/mui.min.js"></script>
 		<script src="js/mui.pullToRefresh.js"></script>
 		<script src="js/mui.pullToRefresh.material.js"></script>
 		<script src="js/order.js" type="text/javascript" charset="utf-8"></script>

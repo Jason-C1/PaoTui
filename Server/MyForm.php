@@ -28,20 +28,14 @@ require_once 'mysql.fnc.php';
 error_reporting(0);
 $uId = $_GET['uId'];
 $state=$_GET['state'];
-$message = "登录信息失效,请重新登陆";
-if($uId) {
-    $mysqli = connect();
-    if (!$state) {
-        $sql = " select orderform.title,user.userName,orderform.oId,user.uId,orderform.dateTime,orderform.deadline,orderform.price,orderform.oFrom,orderform.oTo from orderform,user where user.uId=orderForm.uId and orderForm.uId = " . $uId . " order by oId desc";
-    } else {
-        $sql = " select orderform.title,user.userName,orderform.oId,user.uId,orderform.dateTime,orderform.deadline,orderform.price,orderform.oFrom,orderform.oTo from orderform,user where user.uId=orderForm.uId and state = " . $state . " and  orderForm.uId = " . $uId . " order by oId desc";
-    }
 
+
+    $mysqli = connect();
+    if ($state == 5) {
+        $sql = " select orderform.title,user.userName,orderform.oId,user.uId,orderform.dateTime,orderform.deadline,orderform.price,orderform.oFrom,orderform.oTo from orderform,user where user.uId=orderForm.uId and user.uId = " . $uId . " order by oId desc";
+    } else {
+        $sql = " select orderform.title,user.userName,orderform.oId,user.uId,orderform.dateTime,orderform.deadline,orderform.price,orderform.oFrom,orderform.oTo from orderform,user where user.uId=orderForm.uId and state = " . $state . " and  user.uId = " . $uId . " order by oId desc";
+    }
     $data = getData($mysqli, $sql);
     echo json_encode($data);
-}
-else
-{
-	$data=['message'=>$message];
-    echo json_encode($data);
-}
+
