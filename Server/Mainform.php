@@ -26,14 +26,8 @@ require_once 'mysql.fnc.php';
 /**
 订单详情页面
  */
-
-
-
-
     $mysqli=connect();
     $data=$_GET['oId'];
     $sql="select cate,dateTime,deadline,price,money,userName,phone from user,orderform where user.uId=orderform.uId and orderform.uId ".$data;
     $response=getData($mysqli,$sql);
-
-
     echo json_encode($response);

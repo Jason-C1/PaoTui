@@ -42,22 +42,22 @@
 
 	<body>
 		<nav class="mui-bar mui-bar-tab">
-			<a id="defaultTab" class="mui-tab-item mui-active" href="home.html">
+			<a id="homeTab" class="mui-tab-item mui-active" href="home.html">
 				<span class="mui-icon mui-icon-home"></span>
 				<span class="mui-tab-label">首页</span>
 			</a>
-			<a class="mui-tab-item" href="order.html">
+			<a id="orderTab" class="mui-tab-item" href="order.html">
 				<span class="mui-icon mui-icon-compose"></span>
 				<span class="mui-tab-label">订单</span>
 			</a>
 			<a id="push" class="push" href="push.html">
 				<span class="mui-icon mui-icon-plusempty push-icon"></span>
 			</a>
-			<a class="mui-tab-item" href="news.html">
+			<a id="newsTab" class="mui-tab-item" href="news.html">
 				<span class="mui-icon mui-icon-email"><span class="mui-badge">9</span></span>
 				<span class="mui-tab-label">消息</span>
 			</a>
-			<a class="mui-tab-item" href="mine.html">
+			<a id="mineTab" class="mui-tab-item" href="mine.html">
 				<span class="mui-icon mui-icon-gear"></span>
 				<span class="mui-tab-label">我的</span>
 			</a>
@@ -70,27 +70,28 @@
 			};
 			//mui初始化
 			mui.init({
-				subpages:[{
-					url:'home.html',
-					id:"home",
-					styles:subpage_style,
-				},{
-					url:'order.html',
-					id:"order",
-					styles:subpage_style,
-				},{
-					url:'push.html',
-					id:"home",
-					styles:subpage_style,
-				},{
-					url:'news.html',
-					id:"news",
-					styles:subpage_style,
-				},{
-					url:'mine.html',
-					id:"mine",
-					styles:subpage_style,
-				},],
+				subpages: [{
+					url: 'home.html',
+					id: "home",
+					styles: subpage_style,
+				}, ],
+				preloadPages: [{
+					url: 'order.html',
+					id: "order",
+					styles: subpage_style,
+				}, {
+					url: 'push.html',
+					id: "home",
+					styles: subpage_style,
+				}, {
+					url: 'news.html',
+					id: "news",
+					styles: subpage_style,
+				}, {
+					url: 'mine.html',
+					id: "mine",
+					styles: subpage_style,
+				}, ],
 			});
 			var subpages = ['home.html', 'order.html', 'news.html', 'mine.html'];
 			//创建子页面，首个选项卡页面显示，其它均隐藏；
@@ -107,27 +108,55 @@
 					}
 					self.append(sub);
 				}
+
 			});
 			var aniShow = {};
 			//当前激活选项
-			var activeTab = subpages[0];
+			var activeTab = 'home';
 			//选项卡点击事件
-			mui('.mui-bar-tab').on('tap', 'a', function(e) {
-				var targetTab = this.getAttribute('href');
+			document.getElementById("homeTab").addEventListener("tap", function() {
+				var targetTab = 'home';
 				if(targetTab == activeTab) {
 					return;
 				}
 				//显示目标选项卡
-				//若为iOS平台或非首次显示，则直接显示
-				if(mui.os.ios || aniShow[targetTab]) {
-					plus.webview.show(targetTab);
-				} else {
-					//否则，使用fade-in动画，且保存变量
-					var temp = {};
-					temp[targetTab] = "true";
-					mui.extend(aniShow, temp);
-					plus.webview.show(targetTab, "fade-in", 300);
+				plus.webview.show(targetTab);
+				//隐藏当前;
+				plus.webview.hide(activeTab);
+				//更改当前活跃的选项卡
+				activeTab = targetTab;
+			});
+			document.getElementById("orderTab").addEventListener("tap", function() {
+				var targetTab = 'order';
+				if(targetTab == activeTab) {
+					return;
 				}
+				//显示目标选项卡
+				plus.webview.show(targetTab);
+				//隐藏当前;
+				plus.webview.hide(activeTab);
+				//更改当前活跃的选项卡
+				activeTab = targetTab;
+			});
+			document.getElementById("newsTab").addEventListener("tap", function() {
+				var targetTab = 'news';
+				if(targetTab == activeTab) {
+					return;
+				}
+				//显示目标选项卡
+				plus.webview.show(targetTab);
+				//隐藏当前;
+				plus.webview.hide(activeTab);
+				//更改当前活跃的选项卡
+				activeTab = targetTab;
+			});
+			document.getElementById("mineTab").addEventListener("tap", function() {
+				var targetTab = 'mine';
+				if(targetTab == activeTab) {
+					return;
+				}
+				//显示目标选项卡
+				plus.webview.show(targetTab);
 				//隐藏当前;
 				plus.webview.hide(activeTab);
 				//更改当前活跃的选项卡
@@ -135,22 +164,22 @@
 			});
 			//自定义事件，模拟点击“首页选项卡”
 			document.addEventListener('gohome', function() {
-				var defaultTab = document.getElementById("defaultTab");
+				var homeTab = document.getElementById("homeTab");
 				//模拟首页点击
 				mui.trigger(defaultTab, 'tap');
 				//切换选项卡高亮
 				var current = document.querySelector(".mui-bar-tab>.mui-tab-item.mui-active");
-				if(defaultTab !== current) {
+				if(homeTab !== current) {
 					current.classList.remove('mui-active');
-					defaultTab.classList.add('mui-active');
+					homeTab.classList.add('mui-active');
 				}
 			});
-			document.getElementById("push").addEventListener('tap',function (e) {
+			document.getElementById("push").addEventListener('tap', function(e) {
 				mui.openWindow({
-					url:"push.html",
-					id:"push",
-					show:{
-						aniShow:"slide-in-bottom",
+					url: "push.html",
+					id: "push",
+					show: {
+						aniShow: "slide-in-bottom",
 					},
 				});
 			})

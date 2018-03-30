@@ -122,11 +122,13 @@
 				});
 				return;
 			}
+		
 			var data = {
-				state: index,
+				
 				token: "yantao",
 				uId: "1",
 			};
+			data.state=((index==4)?0:(index+1)),
 			$.ajax(hostUrl + "myForm.php", {
 				data: data,
 				dataType: 'json',

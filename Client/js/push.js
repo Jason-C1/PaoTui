@@ -40,14 +40,9 @@
 				success: function(data) {
 					if(data.message == "发布订单成功") {
 						wd.close();
-						$.alert("提交成功,系统将自动登陆", "提交成功", "关闭");
-						localStorage.setItem("token", data.info.token);
-						localStorage.setItem("userName", data.info.userName);
-						localStorage.setItem("uId", data.info.uId);
-						plus.webview.close("index");
-						plus.webview.close("guide");
-						plus.webview.close("login");
-						plus.webview.open("index.html", "index")
+						$.alert("发布订单成功", "发布成功", "关闭");
+						plus.webview.close("push");
+						plus.webview.show("home");
 						plus.webview.currentWebview().close();
 					} else {
 						// 如果密码错误，提示一下信息  
@@ -74,7 +69,6 @@
 				price: vue.price,
 			}
 			data.uId = localStorage.getItem("uId") || "";
-			console.log(JSON.stringify(data));
 			push(data);
 		});
 
@@ -88,13 +82,14 @@
 		maxDate.setYear(maxDate.getYear() + 1);
 		var dTime = new Date();
 		dTime.setHours(6, 0);
-		var deadline = document.getElementById("deadline");
+		
+		
 		plus.nativeUI.pickDate(function(e) {
 			var d = e.date;
-			deadline.value = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate() + " ";
+			vue.deadline = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate() + " ";
 			plus.nativeUI.pickTime(function(e) {
 				var d = e.date;
-				deadline.value += d.getHours() + ":" + d.getMinutes();
+				vue.deadline += d.getHours() + ":" + d.getMinutes();
 			}, function(e) {
 
 			}, {
