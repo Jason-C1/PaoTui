@@ -1,126 +1,34 @@
 {
-  "news.html": {
-    "href": "news.html",
-    "resources": [
-      "css/mui.min.css",
-      "fonts/mui.ttf",
-      "js/mui.min.js",
-      "images/unlogin.jpg",
-      "images/touxiang.jpg"
-    ],
-    "priority": 0
-  },
-  "mine.html": {
-    "href": "mine.html",
-    "resources": [
-      "js/mui.min.js",
-      "js/vue.min.js",
-      "css/mui.css",
-      "fonts/mui.ttf",
-      "css/common.css",
-      "images/default.jpg"
-    ],
-    "priority": 2
-  },
-  "detail.html": {
-    "href": "detail.html",
-    "resources": [
-      "js/vue.min.js",
-      "css/mui.min.css",
-      "fonts/mui.ttf",
-      "css/style.css",
-      "js/mui.min.js",
-      "js/app.js",
-      "images/default.jpg"
-    ],
-    "priority": 3
-  },
-  "order.html": {
-    "href": "order.html",
-    "resources": [
-      "js/vue.min.js",
-      "js/mui.js",
-      "css/mui.min.css",
-      "fonts/mui.ttf",
-      "js/config.js",
-      "css/common.css",
-      "js/util.js",
-      "js/mui.min.js",
-      "js/mui.pullToRefresh.js",
-      "js/mui.pullToRefresh.material.js",
-      "js/order.js",
-      "images/default.jpg"
-    ],
-    "refer": [],
-    "priority": 3
-  },
-  "home.html": {
-    "href": "home.html",
-    "resources": [
-      "css/mui.min.css",
-      "fonts/mui.ttf",
-      "js/vue.min.js",
-      "js/mui.js",
-      "js/config.js",
-      "css/common.css",
-      "js/util.js",
-      "js/mui.min.js",
-      "js/app.js",
-      "js/mui.pullToRefresh.js",
-      "js/mui.pullToRefresh.material.js",
-      "js/home.js",
-      "images/default.jpg",
-      "images/fff.png"
-    ],
-    "refer": [
-      "news.html",
-      "mine.html",
-      "order.html"
-    ],
-    "priority": 1
-  },
-  "push.html": {
-    "href": "push.html",
-    "resources": [
-      "css/mui.min.css",
-      "fonts/mui.ttf",
-      "css/style.css",
-      "js/mui.min.js",
-      "js/app.js"
-    ],
-    "priority": 2
-  },
-  "index.html": {
-    "href": "index.html",
+  "reg.html": {
+    "href": "reg.html",
     "resources": [
       "js/config.js",
-      "css/common.css",
-      "css/mui.min.css",
-      "fonts/mui.ttf",
-      "js/mui.min.js"
-    ],
-    "refer": [],
-    "priority": 0
-  },
-  "login.html": {
-    "href": "login.html",
-    "resources": [
+      "js/vue.min.js",
+      "js/mui.min.js",
+      "js/md5.min.js",
       "css/mui.min.css",
       "fonts/mui.ttf",
       "css/common.css",
       "css/style.css",
       "css/reg.css",
       "images/bg.png",
-      "js/mui.js",
-      "js/md5.min.js",
-      "js/config.js",
-      "js/vue.js",
       "js/validator.js",
-      "js/login.js"
+      "js/reg.js"
     ],
     "refer": [
       "index.html"
     ],
-    "priority": 0
+    "priority": 3
+  },
+  "push.html": {
+    "href": "push.html",
+    "resources": [
+      "js/vue.min.js",
+      "js/config.js",
+      "css/common.css",
+      "js/validator.js",
+      "js/push.js"
+    ],
+    "priority": 2
   }
 }

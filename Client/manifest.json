@@ -141,7 +141,8 @@
 					"news.html",
 					"push.html",
 					"order.html",
-					"mine.html"
+					"mine.html",
+					"home.html"
 				],
 				"priority": 0
 			},
@@ -176,7 +177,8 @@
 				],
 				"refer": [
 					"login.html",
-					"user.html"
+					"user.html",
+					"setting.html"
 				],
 				"priority": 0
 			},
@@ -214,7 +216,8 @@
 					"images/unlogin.jpg",
 					"images/touxiang.jpg"
 				],
-				"priority": 0
+				"priority": 0,
+				"refer": []
 			},
 			"detail.html": {
 				"href": "detail.html",
@@ -227,7 +230,8 @@
 					"js/app.js",
 					"images/default.jpg"
 				],
-				"priority": 3
+				"priority": 3,
+				"refer": []
 			},
 			"push.html": {
 				"href": "push.html",
@@ -236,7 +240,12 @@
 					"fonts/mui.ttf",
 					"css/style.css",
 					"js/mui.min.js",
-					"js/app.js"
+					"js/app.js",
+					"js/vue.min.js",
+					"js/config.js",
+					"css/common.css",
+					"js/validator.js",
+					"js/push.js"
 				],
 				"priority": 2,
 				"refer": [
@@ -266,9 +275,23 @@
 				"priority": 0
 			},
 			"reg.html": {
-				"resources": [],
+				"resources": [
+					"js/config.js",
+					"js/vue.min.js",
+					"js/mui.min.js",
+					"js/md5.min.js",
+					"css/mui.min.css",
+					"fonts/mui.ttf",
+					"css/common.css",
+					"css/style.css",
+					"css/reg.css",
+					"images/bg.png",
+					"js/validator.js",
+					"js/reg.js"
+				],
 				"refer": [
-					"reg.html"
+					"reg.html",
+					"index.html"
 				],
 				"priority": 0
 			}
@@ -277,34 +300,26 @@
 			"resources": [
 				"js/mui.imageViewer.js",
 				"images/starFull.png",
-				"images/Hello MUI.html",
 				"js/statusBar.js",
 				"css/icons-extra.css",
 				"images/head.jpg",
-				"js/reg.js",
-				"index2.html",
 				"fonts/mui-icons-extra.ttf",
 				"images/d.png",
-				"html/new-webview.html",
-				"im-chat.html",
 				"images/logo.png",
-				"images/Hello MUI_files/common.css",
+				"im-chat.html",
+				"html/new-webview.html",
 				"images/60x60.gif",
-				"images/Hello MUI_files/mui.min.js.下载",
 				"fonts/iconfont.ttf",
 				"css/mui.imageviewer.css",
 				"1.html",
 				"js/websocket.js",
 				"guide.html",
-				"setting.html",
-				"signup.html",
 				"images/starEmpty.png",
+				"signup.html",
 				"images/map.png",
 				"main.html",
-				"images/Hello MUI_files/mui.min.css",
 				"images/ma.png",
 				"css/app.css",
-				"index3.html",
 				"track.html",
 				"chat.html",
 				"evaluate.html",
