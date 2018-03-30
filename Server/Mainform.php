@@ -31,8 +31,8 @@ require_once 'mysql.fnc.php';
 
 
     $mysqli=connect();
-    $data=$_GET['oid'];
-    $sql="select cate,dateTime,deadline,price,money,userName,phone from user,orderform where user.uId=orderform.userId and orderform.userId ".$data;
+    $data=$_GET['oId'];
+    $sql="select cate,dateTime,deadline,price,money,userName,phone from user,orderform where user.uId=orderform.uId and orderform.uId ".$data;
     $response=getData($mysqli,$sql);
 
 

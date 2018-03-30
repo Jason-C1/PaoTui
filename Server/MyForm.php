@@ -26,15 +26,15 @@ require_once 'mysql.fnc.php';
 我的订单
  */
 error_reporting(0);
-$id = $_GET['id'];
+$uId = $_GET['uId'];
 $state=$_GET['state'];
 $message = "登录信息失效,请重新登陆";
-if(false) {
+if($uId) {
     $mysqli = connect();
     if ($state == 5) {
-        $sql = " select orderform.title,user.userName,orderform.oId,user.uId,orderform.dateTime,orderform.deadline,orderform.price,orderform.oFrom,orderform.oTo from orderform,user where user.uId=orderForm.userId and uId = " . $id . " order by oId desc";
+        $sql = " select orderform.title,user.userName,orderform.oId,user.uId,orderform.dateTime,orderform.deadline,orderform.price,orderform.oFrom,orderform.oTo from orderform,user where user.uId=orderForm.userId and uId = " . $uId . " order by oId desc";
     } else {
-        $sql = " select orderform.title,user.userName,orderform.oId,user.uId,orderform.dateTime,orderform.deadline,orderform.price,orderform.oFrom,orderform.oTo from orderform,user where user.uId=orderForm.userId and state = " . $state . " and  uId = " . $id . " order by oId desc";
+        $sql = " select orderform.title,user.userName,orderform.oId,user.uId,orderform.dateTime,orderform.deadline,orderform.price,orderform.oFrom,orderform.oTo from orderform,user where user.uId=orderForm.userId and state = " . $state . " and  uId = " . $uId . " order by oId desc";
     }
 
     $data = getData($mysqli, $sql);

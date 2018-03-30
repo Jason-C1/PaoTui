@@ -2,7 +2,7 @@
 	//预加载详情页
 	$.init({
 		swipeBack: true, //关闭右滑关闭功能
-		id:"index",
+		id: "index",
 	});
 	var ordertpl = {
 		template: orderComponent,
@@ -125,20 +125,32 @@
 			};
 			//	var ul = self.element.querySelector('.mui-table-view');
 			//ul.insertBefore(createFragment(ul, index, 10, true), ul.firstChild);
-			$.getJSON(hostUrl + "index.php", data, function(list) {
-				if(self) {
-					self.endPullDownToRefresh();
-				}
-				if(list && list.length > 0) {
-					if(lastId[index] == list[0].oId) {
-						mui.toast("没有新的订单了哟~")
-					} else {
-						lastId[index] = list[0].oId;
-						minId[index] = list[list.length - 1].oId;
-						orders[index].items = convert(list);
+			$.ajax(hostUrl + "index.php", {
+				data: data,
+				dataType: 'json',
+				type: 'get',
+				contentType: "application/x-www-form-urlencoded; charset=utf-8",
+				timeout: 60000,
+				success: function(list) {
+					if(self) {
+						self.endPullDownToRefresh();
 					}
+					if(list && list.length > 0) {
+						if(lastId[index] == list[0].oId) {
+							mui.toast("没有新的订单了哟~")
+						} else {
+							lastId[index] = list[0].oId;
+							minId[index] = list[list.length - 1].oId;
+							orders[index].items = convert(list);
+						}
+					}
+
+				},
+				error: function(xhr, type, errorThrown) {
+					mui.toast("<网络连接出错,请重试>");
 				}
 			});
+
 		};
 
 		var pullUpToRefresh = function(index, self) {
@@ -149,15 +161,25 @@
 			if(minId[index] != 0) { //说明已有数据，目前处于上拉加载，传递当前minId 返回历史数据
 				data.minId = minId[index];
 			}
-			$.getJSON(hostUrl + "index.php", data, function(list) {
-				self.endPullUpToRefresh(!list || list.length <= 0);
-				if(list && list.length > 0) {
-					minId[index] = list[list.length - 1].oId; //保存最后一条消息的id，上拉加载时使用
-					orders[index].items = orders[index].items.concat(convert(list));
-				} else {
-					mui.toast("没有更多订单了哟~");
-				}
+			$.ajax(hostUrl + "index.php", {
+				data: data,
+				dataType: 'json',
+				type: 'get',
+				contentType: "application/x-www-form-urlencoded; charset=utf-8",
+				timeout: 10000,
+				success: function(list) {
+					self.endPullUpToRefresh(!list || list.length <= 0);
+					if(list && list.length > 0) {
+						minId[index] = list[list.length - 1].oId; //保存最后一条消息的id，上拉加载时使用
+						orders[index].items = orders[index].items.concat(convert(list));
+					} else {
+						mui.toast("没有更多订单了哟~");
+					}
 
+				},
+				error: function(xhr, type, errorThrown) {
+					mui.toast("<网络连接出错,请重试>");
+				}
 			});
 
 		};

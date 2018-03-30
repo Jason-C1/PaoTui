@@ -35,7 +35,6 @@ error_reporting(0);
 $data=$_POST;
 if($data['cate']==null||$data['cate']==""){
     $message['message']="请填写类别";
-
 }else if($data['title']==null||$data['title']==""){
     $message['message']="请填写标题";
 }else if($data['content']==null||$data['content']==""){
@@ -50,6 +49,8 @@ if($data['cate']==null||$data['cate']==""){
     $message['message']="请输入购货费";
 }else if($data['deadline']==null||$data['deadline']==""){
     $message['message']="请输入截止时间";
+}else if($data['uId']==null||$data['uId']==""){
+    $message['message']="请先登录";
 }
 else {
     $mysqli = connect();
@@ -60,4 +61,3 @@ else {
     }
 
 echo json_encode($message);
-

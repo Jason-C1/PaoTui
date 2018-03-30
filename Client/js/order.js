@@ -94,7 +94,7 @@
 					'order': ordertpl,
 				}
 			}),
-			
+
 		];
 
 		function convert(items) {
@@ -110,7 +110,7 @@
 					oId: item.oId,
 					deadline: item.deadline,
 					dateTime: dateUtils.format(item.dateTime),
-					state:item.state
+					state: item.state
 				});
 			});
 			return newItems;
@@ -125,21 +125,29 @@
 			var data = {
 				state: index,
 				token: "yantao",
-				id: 1,
+				uId: "1",
 			};
-			//	var ul = self.element.querySelector('.mui-table-view');
-			//ul.insertBefore(createFragment(ul, index, 10, true), ul.firstChild);
-			$.getJSON(hostUrl + "myForm.php", data, function(list) {
-				if(self) {
-					self.endPullDownToRefresh();
-				}
-				if(list && list.length > 0) {
-					if(lastId[index] == list[0].oId) {
-						mui.toast("没有新的订单了哟~")
-					} else {
-						lastId[index] = list[0].oId;
-						orders[index].items = convert(list);
+			$.ajax(hostUrl + "myForm.php", {
+				data: data,
+				dataType: 'json',
+				type: 'get',
+				contentType: "application/x-www-form-urlencoded; charset=utf-8",
+				timeout: 10000,
+				success: function(list) {
+					if(self) {
+						self.endPullDownToRefresh();
 					}
+					if(list && list.length > 0) {
+						if(lastId[index] == list[0].oId) {
+							mui.toast("没有新的订单了哟~")
+						} else {
+							lastId[index] = list[0].oId;
+							orders[index].items = convert(list);
+						}
+					}
+				},
+				error: function(xhr, type, errorThrown) {
+					mui.toast("<网络连接出错,请重试>");
 				}
 			});
 		};
