@@ -38,6 +38,7 @@
 				success: function(data) {
 					if(data.message == "登陆成功") {
 						wd.close();
+						$.alert(data.info.userName+"你好,欢迎登陆", "登陆成功", "关闭");
 						localStorage.setItem("token", data.info.token);
 						localStorage.setItem("userName", data.info.userName);
 						localStorage.setItem("uId", data.info.uId);
@@ -49,7 +50,7 @@
 					} else {
 						// 如果密码错误，提示一下信息  
 						wd.close();
-						$.alert(data.message, "登录失败", "关闭");
+						$.alert(data.message, "登陆失败", "关闭");
 					}
 				},
 				error: function(xhr, type, errorThrown) {

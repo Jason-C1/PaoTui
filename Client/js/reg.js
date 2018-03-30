@@ -60,7 +60,6 @@
 						plus.webview.close("login");
 						plus.webview.open("index.html", "index")
 						plus.webview.currentWebview().close();
-
 					} else {
 						// 如果密码错误，提示一下信息  
 						wd.close();
@@ -77,7 +76,7 @@
 			var data = {
 				userName: vue.username,
 				password:md5(vue.password),
-				check: vue.check,
+				check: md5(vue.check),
 				phone: vue.phone,
 			};
 			reg(data);
