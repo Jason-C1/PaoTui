@@ -8,13 +8,10 @@
 		template: orderComponent,
 		props: ['item'],
 	};
-	open_detail = function(data) {
+	open_detail = function(oId) {
 		var webview = mui.openWindow({
-			url: 'detail.html',
+			url: 'detail.html?oId='+oId,
 			id: 'detail',
-			extras: {
-				orderData: data, //扩展参数
-			}
 		});
 	}
 

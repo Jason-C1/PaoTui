@@ -23,7 +23,6 @@
 			total: function() {
 				return this.money * 1 + this.price * 1;
 			}
-
 		}
 	});
 

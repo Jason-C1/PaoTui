@@ -6,36 +6,44 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<title></title>
 		<script src="js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/config.js" type="text/javascript" charset="utf-8"></script>
 		<link href="css/mui.min.css" rel="stylesheet" />
 		<link href="css/style.css" rel="stylesheet" />
 
 		<style>
-			.area {
-				margin: 20px auto 0px auto;
+			.mui-table-view{
+				margin: 5px;
+				box-shadow: 3px 3px 10px #888;
 			}
 			
-			.mui-input-group:first-child {
-				margin-top: 20px;
-			}
-			.mui-checkbox input[type=checkbox],
-			.mui-radio input[type=radio] {
-				top: 6px;
-			}
-			
-			.mui-content-padded {
-				margin-top: 10px;
-			}
 			.mui-scroll-wrapper {
-				top: 50px
+				top: 40px
 			}
+			
+			.btn-cell:after,
+			.btn-cell:before {
+				content: "";
+				clear: both;
+				display: block;
+			}
+			
 			.mui-btn {
 				padding: 10px;
 			}
-			.cell-title{
+			
+			.mui-btn.mui-btn-primary {
+				margin: 5px;
+				padding: 10px 20px;
+				float: right;
+				box-shadow: 2px 2px 5px #888;
+			}
+			
+			.cell-title {
 				width: 80px;
 				display: inline-block;
 			}
-			.cell-content{
+			
+			.cell-content {
 				display: inline-block;
 			}
 		</style>
@@ -95,7 +103,7 @@
 						</li>
 						<li class="mui-table-view-cell">
 							<div class="cell-title">总价</div>
-							<div class="cell-content"><span class="card-rmb">&yen;{{item.price+item.money}}</span>
+							<div class="cell-content"><span class="card-rmb">&yen;{{total}}</span>
 							</div>
 						</li>
 						<li class="mui-table-view-cell">
@@ -112,17 +120,21 @@
 						</li>
 						<li class="mui-table-view-cell">
 							<div class="cell-title">状态</div>
-							<div class="cell-content">{{item.stateName}}</div>
+							<div class="cell-content">{{stateName}}</div>
 						</li>
-					</ul>
-				<div class="mui-content-padded">
-					<button id='reg' class="mui-btn mui-btn-block mui-btn-primary">接受订单</button>
-				</div>
 
+					</ul>
+					<div class="btn-cell">
+						<button type="button" class="mui-btn  mui-btn-primary" v-if="item.state==1||item.state==3">取消订单</button>
+						<button type="button" class="mui-btn  mui-btn-primary" v-if="item.state==2">申请取消</button>
+						<button type="button" class="mui-btn  mui-btn-primary" v-if="item.state==2">订单跟踪</button>
+						<button type="button" class="mui-btn  mui-btn-primary" v-if="item.state==3">重发订单</button>
+						<button type="button" class="mui-btn  mui-btn-primary" v-if="item.state==4">评价订单</button>
+					</div>
+				</div>
 			</div>
 		</div>
-		</div>
-		<script src="js/mui.min.js"></script>
+		<script src="js/mui.js"></script>
 		<script src="js/app.js"></script>
 		<script>
 			var order = new Vue({
@@ -133,21 +145,68 @@
 						userName: "加载中..",
 						title: "加载中..",
 						price: NaN,
+						content:"加载中..",
+						money: NaN,
+						cate:1,
 						oFrom: "加载中..",
 						oTo: "加载中..",
 						oId: NaN,
+						phone: NaN,
 						deadline: NaN,
 						dateTime: NaN,
+						state: 0,
 					},
+				},
+				computed: {
+					stateName: function() {
+						stateList = ["未知", "未接单", "配送中", "失效订单", "待评价", "已完成"];
+						return stateList[this.item.state];
+					},
+					total: function() {
+						return this.item.money * 1 + this.item.price * 1;
+					}
+				}
+			});
+			var $_GET = (function() {
+				var url = window.document.location.href.toString();
+				var u = url.split("?");
+				if(typeof(u[1]) == "string") {
+					u = u[1].split("&");
+					var get = {};
+					for(var i in u) {
+						var j = u[i].split("=");
+						get[j[0]] = j[1];
+					}
+					return get;
+				} else {
+					return {};
+				}
+			})();
+			var data = {};
+			data.oId = $_GET['oId'];
+			mui.ajax(hostUrl + "detail.php", {
+				data: data,
+				dataType: 'json',
+				type: 'get',
+				contentType: "application/x-www-form-urlencoded; charset=utf-8",
+				timeout: 60000,
+				success: function(data) {
+					if(data) {
+						order.item = data;
+					} else {
+						mui.alert("该订单不存在");
+					}
+				},
+				error: function(xhr, type, errorThrown) {
+					mui.alert("<网络连接失败，请重新尝试一下>", "错误", "OK", null);
 				}
 			});
 			mui.init({
 				swipeBack: true, //关闭右滑关闭功能
 			});
+
 			mui.plusReady(function() {
-				var self = plus.webview.currentWebview();
-				var orderData = self.orderData;
-				order.item = orderData;
+
 			});
 			mui('.mui-scroll-wrapper').scroll({
 				bounce: true,
