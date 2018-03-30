@@ -41,7 +41,7 @@
 						wd.close();
 						$.alert("发布订单成功", "发布成功", "关闭");
 						plus.webview.close("push");
-						plus.webview.show("home");
+						plus.webview.show("index");
 						plus.webview.currentWebview().close();
 					} else {
 						// 如果密码错误，提示一下信息  

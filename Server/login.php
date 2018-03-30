@@ -38,14 +38,15 @@ if($userName==null||$userName==""){
     $mysqli = connect();
     $sql = "select * from user where userName = '" . $userName . "' and password = '" . $password . "'";
     $info = getData($mysqli, $sql)[0];
-    $info['token'] = $token;
     $_SESSION['info'] = $info;
     if ($info == null) {
         $response['message'] = "账号密码错误";
 
     } else {
+        $info['token'] = $token;
         $response['info'] = $info;
         $response['message'] = "登陆成功";
     }
+
 }
 echo json_encode($response);

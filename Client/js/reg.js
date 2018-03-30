@@ -55,10 +55,13 @@
 						localStorage.setItem("token", data.info.token);
 						localStorage.setItem("userName", data.info.userName);
 						localStorage.setItem("uId", data.info.uId);
-						plus.webview.close("index");
+						plus.webview.open("index.html");
+						plus.webview.getWebviewById("mine").reload();
+						plus.webview.getWebviewById("order").reload();
+						plus.webview.getWebviewById("push").reload();
+						plus.webview.getWebviewById("news").reload();
 						plus.webview.close("guide");
 						plus.webview.close("login");
-						plus.webview.open("index.html", "index")
 						plus.webview.currentWebview().close();
 					} else {
 						// 如果密码错误，提示一下信息  

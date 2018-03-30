@@ -115,9 +115,9 @@
 
 			var data = {
 				state:index,
-				token: "yantao",
-				uId: "1",
 			};
+			data.token=localStorage.getItem("token");
+			data.uId=localStorage.getItem("uId");
 			$.ajax(hostUrl + "myForm.php", {
 				data: data,
 				dataType: 'json',
